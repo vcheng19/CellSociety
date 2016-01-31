@@ -46,22 +46,24 @@ Each specific rules class defines how each cell behaves and changes state throug
 In the event that the user decides to switch simulations, the Simulation class will then call the convertSimulation method of the SwitchSimulation class to convert between simulations. The convertSimulation will first determine the current simulation and then iterate through all of the Cells in the Grid in order to determine how to convert each Cell of the previous simulation into a Cell of the new simulation. The method will then return a newly converted Grid object full of converted Cell objects, which will then be passed into the Simulation class to update.
 
 
-*First use case*
+##*First use case*
 
 First we need to iterate through the grid using the nextGeneration method found in the Simulation class , which at the moment is tentatively planned as an ArrayList<ArrayList<Cells>>() and then call on the method cells.checkNeighbors() to determine the state of its neighboring cells. If it is determined that a sufficient number of its neighbors are in the dead state, then that cell is set to the dead state for the next generation in the Simulation class.
 
-*Second use case*
+##*Second use case*
 
 Checking for this case is similar to the first case;however, we instead check to see if a sufficient number of the cell’s neighbor are alive. If so, then the cell is set to the alive state for the next generation.
 
-*Third use case*
+##*Third use case*
 
 This use case is the sole responsibility of the Simulation class. The Simulation class iterates through each cell of the simulator grid and calls the cell.checkNeighbors() method to determine the state of its neighbors. The Simulation then uses the results of the above method as parameters for the appropriate rules class to then determine the cells’ state for the next generation
 
-*Fourth use case*
+##*Fourth use case*
+
 The XMLReader class (which is called by the Main class) parses the given XML file for the probCatch parameter as well as the simulator type and returns both values in the Main class, which are then passed into the InitializeSimulator class. The InitializeSimulator class then uses the simulation type parameter to determine the appropriate initializeState() method to call.  The probCatch parameter is used as an argument for the initializeState() method to create the initial state of the simulation grid.
 
-*Fifth use case*
+##*Fifth use case*
+
 The Simulation class will provide code to display the GUI to the user. When the user decides switch simulations, the instance variable boolean switch is set to true, which causes the Simulation class to call the method convertSimulation(Simulation x, Simulation y), where x is the current simulation and y is the simulation we are trying to switch into. The SwitchSimulation class will be found under the Conversion class and will return a Grid object where it will be passed back into the Simulation class. Additionally, the instance variable regarding which simulation is active will be changed to reflect the conversion. The next “generation” produced by the Simulation class will be of the new simulation that the users switches into.
 
 ###Design Considerations
@@ -80,18 +82,19 @@ we will work together to make sure that the core architecture works, i.e. that w
 
 During the first stage, we will be sitting together to code the following:
 
-Virginia will work on the Simulation class, which is instantiated with a Grid object, and its step functions as well as write the extensible Cell class.
-Cody will set up the RuleEnforcer abstract class, write the rules/actions for the first extended Game of Life RuleEnforcer class.
-Carolyn will work on the initialization aspect of the simulation in this order
-the XMLReader
-the Initializer, Grid object
-pass in initialized Grid to the Simulation loop. (will depend on Virginia)
+*Virginia will work on the Simulation class, which is instantiated with a Grid object, and its step functions as well as write the extensible Cell class.
+*Cody will set up the RuleEnforcer abstract class, write the rules/actions for the first extended Game of Life RuleEnforcer class.
+*Carolyn will work on the initialization aspect of the simulation in this order
+  *the XMLReader
+  *the Initializer, Grid object
+  *pass in initialized Grid to the Simulation loop. (will depend on Virginia)
+
 We’ll make sure these parts work together, committing carefully.
 
 During the second stage, once we have all the parts required to get the program up and running, we’ll work this way:
 
 The team will divide up writing the extended Cell and RuleEnforcer classes that correspond to each specific simulation (there will be three remaining, so we’ll each take one). Since we will each be working off a working master copy for a generic simulation that works for Game of Life, we can work a bit more independently at that point.
 
-##Extending the project in Spring 2
+##Extending the project in Sprint 2
 
 We will reconvene to figure out how to work on this portion.
