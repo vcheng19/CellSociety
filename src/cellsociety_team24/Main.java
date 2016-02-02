@@ -1,18 +1,27 @@
 package cellsociety_team24;
+import java.io.File;
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import jdk.internal.org.xml.sax.XMLReader;
 
 public class Main extends Application {
     public static final int SIZE = 400;
     @Override
-    public void start (Stage s) {
+    public void start (Stage s) throws SAXException, IOException, ParserConfigurationException {
         s.setTitle("Cell Society");
         Group root = new Group();
         Scene scene = new Scene(root, SIZE, SIZE, Color.BLACK);
+        FileReader reader = new FileReader(new File("xml_files/gol.xml")); 
+        GridInitializer gi= new GridInitializer(root, reader);
+        gi.test();
         s.setScene(scene);
         s.show();
     }

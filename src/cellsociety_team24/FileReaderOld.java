@@ -19,6 +19,7 @@ public class FileReaderOld {
 	private static int liveAgain;
 	private static int[] aliveX; 
 	private static int[] aliveY;
+
 	
 	public static void populateAliveVals(String vals, int[] coors) { 
 		String[] strArray = vals.split(",");
