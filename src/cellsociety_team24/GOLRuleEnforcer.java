@@ -14,14 +14,11 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 			for(int c = 0; c < myGrid.length; c++){
 				int x = myGrid[r][c].getX(); 
 				int y = myGrid[r][c].getY(); 
-				//If alive and have 2 or 3 living neighbors
-				if(!myGrid[r][c].isDead() && (checkNeighbor(x, y) == 2 || checkNeighbor(x, y) == 3)){
-					myGrid[r][c].makeAlive(); 
-				}
-				else{
+				//If not (alive and have two or three living neighbors) 
+				if(!(!myGrid[r][c].isDead() && (checkNeighbor(x, y) == 2 || checkNeighbor(x, y) == 3))){
 					myGrid[r][c].killCell(); 
 				}
-				if(myGrid[r][c].isDead() && checkNeighbor(x, y) == 3){
+				else if(myGrid[r][c].isDead() && checkNeighbor(x, y) == 3){
 					myGrid[r][c].makeAlive(); 
 				}
 			}
