@@ -6,15 +6,13 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class Cell {
 	Color color;
-	private int myX;
-	private int myY;
+	private int myRow;
+	private int myCol;
 	Rectangle myRect;
 	
 	public Cell(Group root, double size, int x, int y) {
-		// TODO Auto-generated constructor stub
-		myX = x;
-		myY = y;
-		
+		myRow = x;
+		myCol = y;
 		myRect = new Rectangle(x*size, y*size, size, size);
 		myRect.setFill(Color.BLACK);
 		root.getChildren().add(myRect);
@@ -33,11 +31,11 @@ public abstract class Cell {
 	} */
 	
 	public int getX(){
-		return myX;
+		return myRow;
 	}
 	
 	public int getY(){
-		return myY;
+		return myCol;
 	}
 
 }
