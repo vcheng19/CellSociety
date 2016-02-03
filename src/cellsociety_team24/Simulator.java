@@ -1,12 +1,16 @@
 package cellsociety_team24;
 
-import java.util.ArrayList;
-
 public class Simulator {
-	ArrayList<ArrayList<String>> grid;
+	Cell[][] myGrid;
 	
-	public Simulator(ArrayList<ArrayList<Cell>>()) {
+   //one method: step
+	
+	public Simulator(Cell[][] grid) {
 		// TODO Auto-generated constructor stub
+		myGrid = grid;
 	}
+	
+	
+	
 
 }
