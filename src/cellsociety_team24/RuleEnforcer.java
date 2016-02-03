@@ -5,7 +5,9 @@ import java.util.*;
 
 public abstract class RuleEnforcer {
 	Cell[][] myGrid; 
-	public RuleEnforcer() {
+	Cell cell; 
+	public RuleEnforcer(Cell[][] grid) {
+		myGrid = grid; 
 		// TODO Auto-generated constructor stub
 		
 	}
@@ -27,12 +29,9 @@ public abstract class RuleEnforcer {
 		return; 
 	}
 	
-//	public void checkNeighbors(int xPos, int yPos){
-//		int numDeadCells = 0; 
-//		if(xPos + 1 > myGrid.length){
-//			if(myGrid[xPos+1][yPos]) 
-//		}
-//	}
+	public void checkNeighbors(int xPos, int yPos){//Will need to update this 
+		return; 
+	}
 	
 //	public boolean isCornerCell(int r, int c){
 //		if(r == 0 || r == gridsize - 1){
