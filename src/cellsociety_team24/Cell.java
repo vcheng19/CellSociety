@@ -11,7 +11,6 @@ public abstract class Cell {
 	Rectangle myRect;
 	
 	public Cell(Group root, double size, int x, int y) {
-		// TODO Auto-generated constructor stub
 		myX = x;
 		myY = y;
 		

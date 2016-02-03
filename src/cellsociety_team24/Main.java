@@ -22,6 +22,7 @@ public class Main extends Application {
         s.setTitle(reader.readProperty("title"));
         GridInitializer gi= new GridInitializer(root, reader);
         //gi.test();
+        gi.makeGrid();
         s.setScene(scene);
         s.show();
     }
