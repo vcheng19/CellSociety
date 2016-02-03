@@ -12,7 +12,6 @@ public class Simulator {
    //one method: step
 	
 	public Simulator(Cell[][] grid, RuleEnforcer rule) {
-		// TODO Auto-generated constructor stub
 		myGrid = grid;
 		myRule = rule;		
 	}

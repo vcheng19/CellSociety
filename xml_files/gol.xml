@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='us-ascii'?>
+
+<cellsociety>
+	<sim_type value="Game of life"/>
+	<title value="Game of Life Simulation"/>
+	<author value="Team 24" />
+	<dimension value="50" /> 
+	<underpop value="2"/>
+	<overpop value="3"/>
+	<liveagain value="3"/>
+	<alivex value="24 25 26 26 25 34 34 34 38 39 40 44 49"/>
+	<alivey value="20 20 21 20 21 9 10 11 36 36 2 3 2"/>
+</cellsociety>
+

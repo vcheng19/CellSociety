@@ -11,10 +11,8 @@ public abstract class Cell {
 	Rectangle myRect;
 	
 	public Cell(Group root, double size, int x, int y) {
-		// TODO Auto-generated constructor stub
 		myRow = x;
 		myCol = y;
-		
 		myRect = new Rectangle(x*size, y*size, size, size);
 		myRect.setFill(Color.BLACK);
 		root.getChildren().add(myRect);
