@@ -13,15 +13,6 @@ import org.xml.sax.SAXException;
 
 public class FileReader{
 	private static Document doc;
-//	private static String sim_type; 
-//	private static String title; 
-//	private static String author; 
-//	private static int dimension;
-//	private static int underpop; 
-//	private static int overpop; 
-//	private static int liveAgain;
-//	private static int[] aliveX; 
-//	private static int[] aliveY;
 
 	FileReader(File f) throws SAXException, IOException, ParserConfigurationException { 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();

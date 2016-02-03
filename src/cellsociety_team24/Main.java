@@ -21,7 +21,7 @@ public class Main extends Application {
         FileReader reader = new FileReader(new File("xml_files/gol.xml")); 
         s.setTitle(reader.readProperty("title"));
         GridInitializer gi= new GridInitializer(root, reader);
-        gi.test();
+        //gi.test();
         s.setScene(scene);
         s.show();
     }
