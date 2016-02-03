@@ -13,13 +13,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    public static final int SIZE = 400;
+    public static final int WORLD_SIZE = 800;
     @Override
     public void start (Stage s) throws SAXException, IOException, ParserConfigurationException {
-        s.setTitle("Cell Society");
         Group root = new Group();
-        Scene scene = new Scene(root, SIZE, SIZE, Color.BLACK);
+        Scene scene = new Scene(root, WORLD_SIZE, WORLD_SIZE, Color.BLACK);
         FileReader reader = new FileReader(new File("xml_files/gol.xml")); 
+        s.setTitle(reader.readProperty("title"));
         GridInitializer gi= new GridInitializer(root, reader);
         gi.test();
         s.setScene(scene);
