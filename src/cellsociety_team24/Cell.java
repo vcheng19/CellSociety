@@ -10,14 +10,14 @@ public abstract class Cell {
 	private int myY;
 	Rectangle myRect;
 	
-	
 	public Cell(Group root, double size, int x, int y) {
 		// TODO Auto-generated constructor stub
 		myX = x;
 		myY = y;
 		
-		Rectangle myRect = new Rectangle(x*size, y*size, size, size);
+		myRect = new Rectangle(x*size, y*size, size, size);
 		myRect.setFill(Color.BLACK);
+		root.getChildren().add(myRect);
 	}
 	
 	/**public Cell(Color c){
