@@ -22,7 +22,15 @@ public class Main extends Application {
         s.setTitle(reader.readProperty("title"));
         GridInitializer gi= new GridInitializer(root, reader);
         gi.makeGrid();
-        //Simulator sim = new Simulator();
+        String sim_type = reader.readProperty("sim_type");
+        RuleEnforcer rule; 
+        switch(sim_type) { 
+        	case "Game of life": 
+        		rule = new GOLRuleEnforcer();
+        	default: 
+        		rule = new GOLRuleEnforcer();
+        }
+        Simulator sim = new Simulator(gi.getGrid(), rule);
         s.setScene(scene);
         s.show();
     }
