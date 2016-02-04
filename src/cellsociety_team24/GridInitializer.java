@@ -18,7 +18,12 @@ public class GridInitializer {
 	}
 	
 	public void makeGrid() { 
-		grid = new Cell[DIMENSION][DIMENSION];
+		switch(CELL_TYPE) { 
+			case "Game of life":
+				grid = new GameOfLifeCell[DIMENSION][DIMENSION];
+			default: 
+				grid = new Cell[DIMENSION][DIMENSION];
+		}
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid[0].length;j++) { 
 				Cell cell = new GameOfLifeCell(g, WORLD_SIZE/DIMENSION, i, j);
@@ -32,6 +37,7 @@ public class GridInitializer {
 			}
 		}
 		addAlive();
+		//return grid;
 	}
 	
 	// this method is specific to the game of life cell

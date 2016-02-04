@@ -1,32 +1,36 @@
 package cellsociety_team24;
 
-import java.util.*;
-
 public class GOLRuleEnforcer extends RuleEnforcer {
 	private GameOfLifeCell[][] myGrid; 
 	
-	public GOLRuleEnforcer(GameOfLifeCell[][]grid){
+	public GOLRuleEnforcer(Cell[][]grid){
 		super(grid);
-		myGrid = grid; 
+		myGrid = new GameOfLifeCell[grid.length][grid.length];
+		for (int i=0;i<grid.length;i++) { 
+			for (int j=0;j<grid.length;j++) { 
+				myGrid[i][j] = (GameOfLifeCell) grid[i][j];
+			}
+		}
 	}
-	public GameOfLifeCell [][] iterateGrid(){
+	public void iterateGrid(){
 		for(int r = 0; r < myGrid.length; r++){
 			for(int c = 0; c < myGrid.length; c++){
-				int x = myGrid[r][c].getX(); 
-				int y = myGrid[r][c].getY(); 
+				GameOfLifeCell curCell = myGrid[r][c];
+				int x = curCell.getX(); 
+				int y = curCell.getY(); 
 				//If not (alive and have two or three living neighbors) 
-				if(!(!myGrid[r][c].isDead() && (checkNeighbor(x, y) == 2 || checkNeighbor(x, y) == 3))){
-					myGrid[r][c].killCell(); 
+				if(!(!curCell.isDead() && (numNeighbors(x, y) == 2 || numNeighbors(x, y) == 3))){
+					//System.out.println(x + " " + y);
+					curCell.killCell(); 
 				}
-				else if(myGrid[r][c].isDead() && checkNeighbor(x, y) == 3){
-					myGrid[r][c].makeAlive(); 
+				else if(curCell.isDead() && numNeighbors(x, y) == 3){
+					curCell.makeAlive(); 
 				}
 			}
 		}
-		return myGrid; 
 	}
 	
-	public int checkNeighbor(int r, int c){
+	public int numNeighbors(int r, int c){
 		int numAliveCells = 0;
 		for(int rChange = -1;rChange < 2;rChange++){
 			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within the boundaries of the grid
