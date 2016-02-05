@@ -9,24 +9,47 @@ public class Simulator {
 	RuleEnforcer myRule;
 	public static final int FRAMES_PER_SECOND = 1;
 	private static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
-   //one method: step
+	private int time;
+	private boolean isNotStopped;
 	
 	public Simulator(Cell[][] grid, RuleEnforcer rule) {
 		myGrid = grid;
 		myRule = rule;		
 	}
 	
+
+	//calls changeState
+	public void step(){
+		if(isNotStopped){
+			myRule.iterateGrid();
+		}
+	}
+	
 	public void start(){
-		 KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step());
+		 time = MILLISECOND_DELAY;
+		 isNotStopped = true;
+		 KeyFrame frame = new KeyFrame(Duration.millis(time), e -> step());
 		 Timeline animation = new Timeline();
 	     animation.setCycleCount(Timeline.INDEFINITE);
 	     animation.getKeyFrames().add(frame);;
 	     animation.play();
 	}
 	
-	//calls changeState
-	public void step(){
-		myRule.iterateGrid();
+
+	public void speedUp(){
+		time = time *2;
+	}
+	
+	public void slowDown(){
+		time = time/2;
+	}
+	
+	public void stop(){
+		isNotStopped = false;
+	}
+	
+	public void resume(){
+		isNotStopped = true;
 	}
 
 }
