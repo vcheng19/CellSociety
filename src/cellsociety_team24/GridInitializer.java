@@ -3,19 +3,20 @@ import javafx.scene.Group;
 
 public class GridInitializer {
 
-	private static FileReader reader;
-	private static Group g; 
-	private final int WORLD_SIZE = 800;
-	private int DIMENSION; 
-	private String CELL_TYPE;
-	private Cell[][] grid;
+	FileReader reader;
+	Group g; 
+	int WORLD_SIZE = 800;
+	int DIMENSION; 
+	String CELL_TYPE;
+	public Cell[][] grid;
 	
 	GridInitializer (Group gr, FileReader fr) { 
-		reader = fr;
 		g = gr; 
+		reader = fr;
+		//CELL_TYPE = reader.readProperty("sim_type");
 		DIMENSION = Integer.parseInt(reader.readProperty("dimension"));
-		CELL_TYPE = reader.readProperty("sim_type");
 	}
+	
 	
 	public void makeGrid() { 
 		switch(CELL_TYPE) { 
@@ -36,23 +37,22 @@ public class GridInitializer {
 				grid[i][j] = cell;
 			}
 		}
-		addAlive();
-		//return grid;
+		//addAlive();
 	}
 	
 	// this method is specific to the game of life cell
 	public void addAlive() { 
-		int[] xAlive = FileReader.populateCoorArray(reader.readProperty("alivex"));
-		int[] yAlive = FileReader.populateCoorArray(reader.readProperty("alivey"));
+		int[] xAlive = reader.populateCoorArray(reader.readProperty("alivex"));
+		int[] yAlive = reader.populateCoorArray(reader.readProperty("alivey"));
 		for (int i=0;i<xAlive.length;i++) { 
 			GameOfLifeCell golcell= (GameOfLifeCell) grid[xAlive[i]][yAlive[i]];
 			golcell.makeAlive();
 		}	
 	}
 	
-	public Cell[][] getGrid() {
+	public Cell[][] getGrid(){
 		return grid;
-	}
+	};
 	
 	// ask for properties from reader
 //	public void test() { 
