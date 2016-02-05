@@ -1,38 +1,43 @@
 package cellsociety_team24;
 
-import java.util.*;
-
 public class GOLRuleEnforcer extends RuleEnforcer {
 	private GameOfLifeCell[][] myGrid; 
-	
-	public GOLRuleEnforcer(GameOfLifeCell[][]grid){
+	private GameOfLifeCell[][] copyGrid; 
+	public GOLRuleEnforcer(Cell[][]grid){
 		super(grid);
-		myGrid = grid; 
+		myGrid = new GameOfLifeCell[grid.length][grid.length];
+		for (int i=0;i<grid.length;i++) { 
+			for (int j=0;j<grid.length;j++) { 
+				myGrid[i][j] = (GameOfLifeCell) grid[i][j];
+			}
+		}
 	}
-	public GameOfLifeCell [][] iterateGrid(){
-		for(int r = 0; r < myGrid.length; r++){
-			for(int c = 0; c < myGrid.length; c++){
-				int x = myGrid[r][c].getX(); 
-				int y = myGrid[r][c].getY(); 
+	public void iterateGrid(){
+		copyGrid = myGrid; 
+		for(int r = 0; r < copyGrid.length; r++){
+			for(int c = 0; c < copyGrid.length; c++){
+				GameOfLifeCell copyCell = copyGrid[r][c];
+				GameOfLifeCell actualCell = myGrid[r][c];
+				int x = copyCell.getX(); 
+				int y = copyCell.getY(); 
 				//If not (alive and have two or three living neighbors) 
-				if(!(!myGrid[r][c].isDead() && (checkNeighbor(x, y) == 2 || checkNeighbor(x, y) == 3))){
-					myGrid[r][c].killCell(); 
+				if(!(!copyCell.isDead() && (numNeighbors(x, y) == 2 || numNeighbors(x, y) == 3))){
+					actualCell.killCell(); 
 				}
-				else if(myGrid[r][c].isDead() && checkNeighbor(x, y) == 3){
-					myGrid[r][c].makeAlive(); 
+				else if(copyCell.isDead() && numNeighbors(x, y) == 3){
+					actualCell.makeAlive(); 
 				}
 			}
 		}
-		return myGrid; 
 	}
 	
-	public int checkNeighbor(int r, int c){
+	public int numNeighbors(int r, int c){
 		int numAliveCells = 0;
 		for(int rChange = -1;rChange < 2;rChange++){
-			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within the boundaries of the grid
+			if(r + rChange >= 0 && r + rChange < copyGrid.length){//If r is within the boundaries of the grid
 				for(int cChange = -1;cChange < 2;cChange++){
-					if(c + cChange >= 0 && r + cChange < myGrid.length){
-						if(!myGrid[r+rChange][c+cChange].isDead()) numAliveCells++;
+					if(c + cChange >= 0 && r + cChange < copyGrid.length){
+						if(!copyGrid[r+rChange][c+cChange].isDead()) numAliveCells++;
 					}
 				}
 			}	

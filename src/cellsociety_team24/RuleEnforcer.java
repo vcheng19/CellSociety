@@ -1,22 +1,16 @@
 package cellsociety_team24;
 
-import java.util.*;
-
-
 public abstract class RuleEnforcer {
 	private Cell[][] myGrid; 
-	private Cell cell; 
 	public RuleEnforcer(Cell[][] grid) {
 		myGrid = grid; 
-		// TODO Auto-generated constructor stub
 		
 	}
 	
-	public void iterateGrid(Cell[][] grid){
-		myGrid = grid; 
+	public void iterateGrid(){
 		for(int x = 0; x < myGrid.length; x++){
 			for(int y = 0; y < myGrid.length; y++){
-				updateState(grid[x][y]); 
+				updateState(myGrid[x][y]); 
 			}
 		}
 		return; 

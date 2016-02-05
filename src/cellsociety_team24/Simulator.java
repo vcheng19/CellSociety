@@ -7,7 +7,7 @@ import javafx.util.Duration;
 public class Simulator {
 	Cell[][] myGrid;
 	RuleEnforcer myRule;
-	public static final int FRAMES_PER_SECOND = 60;
+	public static final int FRAMES_PER_SECOND = 1;
 	private static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
 	private int time;
 	private boolean isNotStopped;
@@ -17,10 +17,11 @@ public class Simulator {
 		myRule = rule;		
 	}
 	
+
 	//calls changeState
 	public void step(){
 		if(isNotStopped){
-			myRule.iterateGrid(myGrid);
+			myRule.iterateGrid();
 		}
 	}
 	
@@ -34,6 +35,7 @@ public class Simulator {
 	     animation.play();
 	}
 	
+
 	public void speedUp(){
 		time = time *2;
 	}
