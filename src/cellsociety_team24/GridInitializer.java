@@ -37,17 +37,6 @@ public class GridInitializer {
 				grid[i][j] = cell;
 			}
 		}
-		//addAlive();
-	}
-	
-	// this method is specific to the game of life cell
-	public void addAlive() { 
-		int[] xAlive = reader.populateCoorArray(reader.readProperty("alivex"));
-		int[] yAlive = reader.populateCoorArray(reader.readProperty("alivey"));
-		for (int i=0;i<xAlive.length;i++) { 
-			GameOfLifeCell golcell= (GameOfLifeCell) grid[xAlive[i]][yAlive[i]];
-			golcell.makeAlive();
-		}	
 	}
 	
 	public Cell[][] getGrid(){
