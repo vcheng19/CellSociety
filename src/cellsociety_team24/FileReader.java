@@ -49,7 +49,7 @@ public class FileReader{
 //        aliveY = populateCoorArray(ys);
 //	}
 //	
-	public static int[] populateCoorArray(String vals) { 
+	public int[] populateCoorArray(String vals) { 
 		String[] strArray = vals.split(" ");
 		int[] coors = new int[strArray.length];
 		for(int i = 0; i < strArray.length; i++) {
