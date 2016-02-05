@@ -18,7 +18,7 @@ public class Main extends Application {
     public void start (Stage s) throws SAXException, IOException, ParserConfigurationException {
         Group root = new Group();
         Scene scene = new Scene(root, WORLD_SIZE, WORLD_SIZE, Color.BLACK);
-        FileReader reader = new FileReader(new File("xml_files/test.xml")); 
+        FileReader reader = new FileReader(new File("xml_files/gol.xml")); 
         s.setTitle(reader.readProperty("title"));
         GridInitializer gi= new GridInitializer(root, reader);
         gi.makeGrid();
