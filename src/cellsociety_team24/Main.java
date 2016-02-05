@@ -13,30 +13,21 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    public static final int WORLD_SIZE = 800;
+	
+    private final int WORLD_SIZE = 600;
+    private final int UI_WIDTH = 200;
+    
     @Override
     public void start (Stage s) throws SAXException, IOException, ParserConfigurationException {
         Group root = new Group();
-        Scene scene = new Scene(root, WORLD_SIZE, WORLD_SIZE, Color.BLACK);
-        FileReader reader = new FileReader(new File("xml_files/golTest1.xml")); 
-        s.setTitle(reader.readProperty("title"));
-        GridInitializer gi= new GridInitializer(root, reader);
-        gi.makeGrid();
-        RuleEnforcer rule;
-        String sim_type = reader.readProperty("sim_type");
-        switch(sim_type) { 
-        	case "Game of Life":
-        		rule = new GOLRuleEnforcer(gi.getGrid());
-        	default: 
-        		rule = new GOLRuleEnforcer(gi.getGrid());
-        }
-        Simulator sim = new Simulator(gi.getGrid(), rule);
-        sim.start();
+        Scene scene = new Scene(root, WORLD_SIZE + UI_WIDTH, WORLD_SIZE, Color.BLACK);
+        UserInterface ui = new UserInterface(root, s);
+        ui.drawInterface();
+        s.setTitle("Cell Society");
         s.setScene(scene);
         s.show();
     }
     
-
     public static void main (String[] args) {
         launch(args);
     }
