@@ -21,7 +21,7 @@ public class SegregationGridInitializer extends GridInitializer {
 		makeRed();
 		makeBlue();
 	}
-	
+	//************REFACTOR THIS PART OF THE CODE: VVVVVVV
 	private void makeRed(){
 		int[] xAlive = reader.populateCoorArray(reader.readProperty("redx"));
 		int[] yAlive = reader.populateCoorArray(reader.readProperty("redy"));

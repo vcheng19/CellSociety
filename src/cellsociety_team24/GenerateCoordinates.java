@@ -21,7 +21,9 @@ public class GenerateCoordinates {
 	}
 	
 	public static void main(String[] args) { 
-		gen(40, 20);
+		gen(50, 1300);
+		System.out.println("");
+		gen(50, 1300);
 	}
 
 }

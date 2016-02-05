@@ -72,6 +72,7 @@ public class UserInterface {
         		gi = new SegregationGridInitializer(gr,reader);
         		gi.makeGrid();
         		rule = new SegregationRuleEnforcer(gi.getGrid(), Integer.parseInt(reader.readProperty("percentage")));
+        		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
         		gi.makeGrid();

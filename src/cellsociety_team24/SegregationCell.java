@@ -28,19 +28,19 @@ public class SegregationCell extends Cell {
 	}
 	
 	public void makeRed(){
-		myRect.setFill(Color.RED);
+		setColor(Color.RED);
 		setFalse();
 		isRed = true;
 	}
 	
 	public void makeBlue(){
-		myRect.setFill(Color.BLUE);
+		setColor(Color.BLUE);
 		setFalse();
 		isBlue = true;
 	}
 	
 	public void makeEmpty(){
-		myRect.setFill(DEFAULT_COLOR);
+		setColor(DEFAULT_COLOR);
 		setFalse();
 		isEmpty = true;
 	}
