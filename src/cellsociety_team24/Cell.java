@@ -9,12 +9,13 @@ public abstract class Cell {
 	private int myRow;
 	private int myCol;
 	Rectangle myRect;
+	final static Color DEFAULT_COLOR = Color.BLACK;
 	
 	public Cell(Group root, double size, int x, int y) {
 		myRow = x;
 		myCol = y;
 		myRect = new Rectangle(x*size, y*size, size, size);
-		myRect.setFill(Color.BLACK);
+		myRect.setFill(DEFAULT_COLOR);
 		root.getChildren().add(myRect);
 	}
 	
