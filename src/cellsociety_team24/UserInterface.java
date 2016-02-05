@@ -73,6 +73,12 @@ public class UserInterface {
         		gi.makeGrid();
         		rule = new SegregationRuleEnforcer(gi.getGrid(), Integer.parseInt(reader.readProperty("percentage")));
         		break;
+        	case "Fire":
+        		gi = new FireGridInitializer(gr,reader);
+        		gi.makeGrid();
+        		int firePercent = Integer.parseInt(reader.readProperty("percentage"));
+        		rule = new FireRuleEnforcer(gi.getGrid(), firePercent);
+        		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
         		gi.makeGrid();
