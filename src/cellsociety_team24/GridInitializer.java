@@ -5,7 +5,7 @@ public class GridInitializer {
 
 	FileReader reader;
 	Group g; 
-	int WORLD_SIZE = 800;
+	int WORLD_SIZE = 600;
 	int DIMENSION; 
 	String CELL_TYPE;
 	public Cell[][] grid;
