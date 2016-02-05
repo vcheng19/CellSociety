@@ -16,7 +16,6 @@ public class Simulator {
 		myGrid = grid;
 		myRule = rule;		
 	}
-	
 
 	//calls changeState
 	public void step(){
@@ -53,6 +52,7 @@ public class Simulator {
 	}
 	
 	public void byStep(){
+		stop();
 		if(!isNotStopped){
 			myRule.iterateGrid();
 		}
