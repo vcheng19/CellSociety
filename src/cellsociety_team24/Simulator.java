@@ -21,7 +21,6 @@ public class Simulator {
 	//calls changeState
 	public void step(){
 		if(isNotStopped){
-			System.out.println("ya\n");
 			myRule.iterateGrid();
 		}
 	}

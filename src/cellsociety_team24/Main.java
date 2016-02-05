@@ -20,7 +20,7 @@ public class Main extends Application {
         Scene scene = new Scene(root, WORLD_SIZE, WORLD_SIZE, Color.BLACK);
         FileReader reader = new FileReader(new File("xml_files/gol.xml")); 
         s.setTitle(reader.readProperty("title"));
-        GridInitializer gi= new GridInitializer(root, reader);
+        GridInitializer gi= new GOLGridInitializer(root, reader);
         gi.makeGrid();
         RuleEnforcer rule;
         String sim_type = reader.readProperty("sim_type");
