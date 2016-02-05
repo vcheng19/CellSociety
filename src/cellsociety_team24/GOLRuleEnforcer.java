@@ -21,11 +21,16 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 				int x = copyCell.getX(); 
 				int y = copyCell.getY(); 
 				//If not (alive and have two or three living neighbors) 
-				if(!(!copyCell.isDead() && (numNeighbors(x, y) == 2 || numNeighbors(x, y) == 3))){
+				if(!copyCell.isDead() && (numNeighbors(x, y) == 2 || numNeighbors(x, y) == 3)){
 					actualCell.killCell(); 
+					System.out.println("Dead" + x +" "+ y);
 				}
-				else if(copyCell.isDead() && numNeighbors(x, y) == 3){
+				else{
+					actualCell.makeAlive();
+				}
+				if(copyCell.isDead() && numNeighbors(x, y) == 3){
 					actualCell.makeAlive(); 
+					System.out.println("Alive" + x +" "+ y);
 				}
 			}
 		}
@@ -33,15 +38,18 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 	
 	public int numNeighbors(int r, int c){
 		int numAliveCells = 0;
-		for(int rChange = -1;rChange < 2;rChange++){
+		for(int rChange = -1;rChange <= 1;rChange++){
 			if(r + rChange >= 0 && r + rChange < copyGrid.length){//If r is within the boundaries of the grid
 				for(int cChange = -1;cChange < 2;cChange++){
 					if(c + cChange >= 0 && r + cChange < copyGrid.length){
-						if(!copyGrid[r+rChange][c+cChange].isDead()) numAliveCells++;
+						if(!copyGrid[r+rChange][c+cChange].isDead()) {
+							numAliveCells++;
+						}
 					}
 				}
 			}	
 		}
+		System.out.println(numAliveCells + " " + r + " " + c);
 		return numAliveCells; 
 	}
 	
