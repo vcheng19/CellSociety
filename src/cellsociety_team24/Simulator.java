@@ -20,7 +20,7 @@ public class Simulator {
 	//calls changeState
 	public void step(){
 		if(isNotStopped){
-			myGrid = myRule.iterateGrid(myGrid);
+			myRule.iterateGrid(myGrid);
 		}
 	}
 	
