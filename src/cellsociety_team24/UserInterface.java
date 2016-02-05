@@ -44,7 +44,7 @@ public class UserInterface {
 		chooseFile = makeButton("Choose file", event -> openFileChooser(), 30, 40);
 		play = makeButton("Play", event -> mySimulator.start(), 30, 100);
 		pause = makeButton("Pause", event -> mySimulator.stop(), 30, 150);	
-		step = makeButton("Step", event -> mySimulator.step(), 30, 200);
+		step = makeButton("Step", event -> mySimulator.byStep(), 30, 200);
 	}
 	
 	void openFileChooser() { 
