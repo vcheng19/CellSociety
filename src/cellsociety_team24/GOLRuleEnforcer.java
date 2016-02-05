@@ -2,7 +2,7 @@ package cellsociety_team24;
 
 public class GOLRuleEnforcer extends RuleEnforcer {
 	private GameOfLifeCell[][] myGrid; 
-	private GameOfLifeCell[][] copyGrid; 
+	private boolean[][] copyGrid; 
 	public GOLRuleEnforcer(Cell[][]grid){
 		super(grid);
 		myGrid = new GameOfLifeCell[grid.length][grid.length];
@@ -13,19 +13,30 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 		}
 	}
 	public void iterateGrid(){
-		copyGrid = myGrid; 
+		copyGrid = new boolean[myGrid.length][myGrid.length];
+		for (int row = 0; row < myGrid.length; row++){
+			for(int col = 0; col < myGrid.length; col++){
+				copyGrid[row][col] = myGrid[row][col].isDead();
+			}
+		}
+		
 		for(int r = 0; r < copyGrid.length; r++){
 			for(int c = 0; c < copyGrid.length; c++){
-				GameOfLifeCell copyCell = copyGrid[r][c];
+				boolean copyCell = copyGrid[r][c];
 				GameOfLifeCell actualCell = myGrid[r][c];
-				int x = copyCell.getX(); 
-				int y = copyCell.getY(); 
+				int x = actualCell.getX(); 
+				int y = actualCell.getY(); 
 				//If not (alive and have two or three living neighbors) 
-				if(!(!copyCell.isDead() && (numNeighbors(x, y) == 2 || numNeighbors(x, y) == 3))){
-					actualCell.killCell(); 
+				int myNeighbors = numNeighbors(x,y);
+				if(copyCell){
+					if(myNeighbors == 3){//Rule 4
+						actualCell.makeAlive();
+					}
 				}
-				else if(copyCell.isDead() && numNeighbors(x, y) == 3){
-					actualCell.makeAlive(); 
+				else{
+					if(!(myNeighbors == 2 || myNeighbors == 3)){//1,2,3
+						actualCell.killCell();
+					}
 				}
 			}
 		}
@@ -36,8 +47,10 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 		for(int rChange = -1;rChange < 2;rChange++){
 			if(r + rChange >= 0 && r + rChange < copyGrid.length){//If r is within the boundaries of the grid
 				for(int cChange = -1;cChange < 2;cChange++){
-					if(c + cChange >= 0 && r + cChange < copyGrid.length){
-						if(!copyGrid[r+rChange][c+cChange].isDead()) numAliveCells++;
+					if(c + cChange >= 0 && c + cChange < copyGrid.length){
+						if(!copyGrid[r+rChange][c+cChange] && !(rChange == 0 && cChange == 0)){
+							numAliveCells++;
+						}
 					}
 				}
 			}	
