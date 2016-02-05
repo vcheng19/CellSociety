@@ -68,6 +68,10 @@ public class UserInterface {
         		gi.makeGrid();
         		rule = new GOLRuleEnforcer(gi.getGrid());
         		break;
+        	case "Segregation":
+        		gi = new SegregationGridInitializer(gr,reader);
+        		gi.makeGrid();
+        		rule = new SegregationRuleEnforcer(gi.getGrid(), Integer.parseInt(reader.readProperty("percentage")));
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
         		gi.makeGrid();

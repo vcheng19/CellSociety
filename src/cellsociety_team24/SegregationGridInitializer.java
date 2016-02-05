@@ -18,6 +18,26 @@ public class SegregationGridInitializer extends GridInitializer {
 				grid[i][j] = cell;
 			}
 		}
+		makeRed();
+		makeBlue();
+	}
+	
+	private void makeRed(){
+		int[] xAlive = reader.populateCoorArray(reader.readProperty("redx"));
+		int[] yAlive = reader.populateCoorArray(reader.readProperty("redy"));
+		for (int i=0;i<xAlive.length;i++) { 
+			SegregationCell segcell= grid[xAlive[i]][yAlive[i]];
+			segcell.makeRed();
+		}	
+	}
+	
+	private void makeBlue(){
+		int[] xAlive = reader.populateCoorArray(reader.readProperty("bluex"));
+		int[] yAlive = reader.populateCoorArray(reader.readProperty("bluey"));
+		for (int i=0;i<xAlive.length;i++) { 
+			SegregationCell segcell= grid[xAlive[i]][yAlive[i]];
+			segcell.makeBlue();
+		}	
 	}
 	
 	public SegregationCell[][] getGrid() {
