@@ -39,13 +39,16 @@ public class WaTorCell extends Cell{
 		myRect.setFill(Color.BLUE);
 	}
 	
-	public boolean[] getState(){
-		boolean[] state = new boolean[3]; 
-		state[0] = fish; 
-		state[1] = shark;
-		state[2] = ocean; 
-		
-		return state; 
+	public boolean isFish(){
+		return fish; 
+	}
+	
+	public boolean isShark(){
+		return shark;
+	}
+	
+	public boolean isOcean(){
+		return ocean; 
 	}
 	
 	public int getTurnAlive(){
