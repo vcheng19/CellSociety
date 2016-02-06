@@ -26,5 +26,4 @@ public class GenerateCoordinates {
 		System.out.println("");
 		gen(50, 1300);
 	}
-
 }

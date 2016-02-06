@@ -8,14 +8,18 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 	private WaTorCell[][] myGrid;
 	private Random random; 
 	
-	public WaTorRuleEnforcer(Cell[][] grid) {
-		super(grid);
+	public WaTorRuleEnforcer(Cell[][] grid, FileReader fr) {
+		super(grid, fr);
 		myGrid = new WaTorCell[grid.length][grid.length];
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid.length;j++) { 
 				myGrid[i][j] = (WaTorCell) grid[i][j];
 			}
 		}
+	}
+	
+	public void initializeParameters() { 
+		
 	}
 
 	public void iterateGrid(){
@@ -99,7 +103,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 	}
 	
 	public void spawn(int x, int y, boolean fish){
-		if(fish){
+		if (fish){
 			myGrid[x][y].makeFish(); 
 		}
 		else{

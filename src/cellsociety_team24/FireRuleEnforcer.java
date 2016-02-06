@@ -11,9 +11,8 @@ public class FireRuleEnforcer extends RuleEnforcer {
 	ArrayList<FireCell> fireCells;
 	private final static int HUNDRED = 100;
 	
-	public FireRuleEnforcer(Cell[][] grid, int percent) {
-		super(grid);
-		myPercent = percent;
+	public FireRuleEnforcer(Cell[][] grid, FileReader fr) {
+		super(grid, fr);
 		myGrid = new FireCell[grid.length][grid.length];
 		fireCells = new ArrayList<FireCell>();
 	
@@ -27,6 +26,10 @@ public class FireRuleEnforcer extends RuleEnforcer {
 		}
 		
 		copyGrid = new FireCell[myGrid.length][myGrid.length];
+	}
+	
+	public void initializeParameters() { 
+		myPercent = Integer.parseInt(reader.readProperty("percentage"));
 	}
 	
 	public void iterateGrid(){

@@ -7,53 +7,46 @@ import javafx.util.Duration;
 public class Simulator {
 	Cell[][] myGrid;
 	RuleEnforcer myRule;
-	public static final int FRAMES_PER_SECOND = 1;
-	private static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
-	private int time;
-	private boolean isNotStopped;
+	public static double FRAMES_PER_SECOND = 2;
+	private static final double MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
+	private boolean isPlaying;
+	private Timeline animation = new Timeline();
 	
 	public Simulator(Cell[][] grid, RuleEnforcer rule) {
 		myGrid = grid;
 		myRule = rule;		
 	}
 
-	//calls changeState
 	public void step(){
-		if(isNotStopped){
+		if(isPlaying){
 			myRule.iterateGrid();
 		}
 	}
 	
 	public void start(){
-		 time = MILLISECOND_DELAY;
-		 isNotStopped = true;
-		 KeyFrame frame = new KeyFrame(Duration.millis(time), e -> step());
-		 Timeline animation = new Timeline();
+		 KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY), e -> step());
 	     animation.setCycleCount(Timeline.INDEFINITE);
-	     animation.getKeyFrames().add(frame);;
+	     animation.getKeyFrames().add(frame);
 	     animation.play();
+		 isPlaying = true;
 	}
 	
 
-	public void speedUp(){
-		time = time *2;
-	}
-	
-	public void slowDown(){
-		time = time/2;
+	public void adjustSpeed(double ratio){
+	    animation.setRate(ratio);
 	}
 	
 	public void stop(){
-		isNotStopped = false;
+		isPlaying = false;
 	}
 	
 	public void resume(){
-		isNotStopped = true;
+		isPlaying = true;
 	}
 	
 	public void byStep(){
 		stop();
-		if(!isNotStopped){
+		if(!isPlaying){
 			myRule.iterateGrid();
 		}
 	}
