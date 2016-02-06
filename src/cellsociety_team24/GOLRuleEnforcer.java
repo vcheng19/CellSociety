@@ -1,5 +1,7 @@
 package cellsociety_team24;
 
+import java.util.ArrayList;
+
 public class GOLRuleEnforcer extends RuleEnforcer {
 	private GameOfLifeCell[][] myGrid; 
 	private boolean[][] copyGrid; 
@@ -35,9 +37,7 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 			for(int c = 0; c < copyGrid.length; c++){
 				boolean copyCell = copyGrid[r][c];
 				GameOfLifeCell actualCell = myGrid[r][c];
-				int x = actualCell.getX(); 
-				int y = actualCell.getY(); 
-				int myNeighbors = numNeighbors(x,y);
+				int myNeighbors = numNeighbors(actualCell);
 				if(copyCell && myNeighbors == liveAgain){
 						actualCell.makeAlive();
 				}
@@ -48,17 +48,14 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 		}
 	}
 	
-	public int numNeighbors(int r, int c){
+	public int numNeighbors(Cell cell){
 		int numAliveCells = 0;
-		for(int rChange = -1;rChange <= 1;rChange++){
-			if(r + rChange >= 0 && r + rChange < copyGrid.length){//If r is within the boundaries of the grid
-				for(int cChange = -1;cChange < 2;cChange++){
-					if(c + cChange >= 0 && c + cChange < copyGrid.length){
-						if(!copyGrid[r+rChange][c+cChange] && !(rChange == 0 && cChange == 0)){
-							numAliveCells++;
-						}
-					}
-				}
+		ArrayList<Cell> myNeighbors = getNeighbors(cell);
+		for( Cell x: myNeighbors){
+			int row= x.getX();
+			int col = x.getY();
+			if(!copyGrid[row][col]){
+				numAliveCells++;
 			}	
 		}
 		return numAliveCells; 

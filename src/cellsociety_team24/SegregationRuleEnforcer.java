@@ -55,12 +55,13 @@ public class SegregationRuleEnforcer extends RuleEnforcer {
 		copyGrid = new double[myGrid.length][myGrid.length];
 		for (int row = 0; row < myGrid.length; row++){
 			for(int col = 0; col < myGrid.length; col++){
-				ArrayList<SegregationCell> myNeighbors = getNeighbors(myGrid[row][col]);
+				ArrayList<Cell> myNeighbors = getNeighbors(myGrid[row][col]);
 				int total = 0;
 				int numColor = 0;
 				if(!myGrid[row][col].isEmpty()){
 					boolean myColor = myGrid[row][col].isRed();
-					for (SegregationCell x: myNeighbors){
+					for (Cell y: myNeighbors){
+						SegregationCell x = (SegregationCell) y;
 						if(!x.isEmpty()){
 							boolean otherColor = x.isRed();
 							if(myColor == otherColor){
@@ -75,20 +76,5 @@ public class SegregationRuleEnforcer extends RuleEnforcer {
 		}
 	}
 	
-	private ArrayList<SegregationCell> getNeighbors(Cell check){
-		ArrayList<SegregationCell> result = new ArrayList<SegregationCell>();
-		int r = check.getX();
-		int c = check.getY();
-		for(int rChange = -1;rChange < 2;rChange++){
-			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within the boundaries of the grid
-				for(int cChange = -1;cChange < 2;cChange++){
-					if(c + cChange >= 0 && c + cChange < myGrid.length && !(rChange == 0 && cChange == 0)){
-						result.add(myGrid[r+rChange][c+cChange]);
-					}
-				}
-			}
-		}
-		return result;
-	}
 	
 }
