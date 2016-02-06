@@ -3,8 +3,12 @@ package cellsociety_team24;
 public class GOLRuleEnforcer extends RuleEnforcer {
 	private GameOfLifeCell[][] myGrid; 
 	private boolean[][] copyGrid; 
-	public GOLRuleEnforcer(Cell[][]grid){
-		super(grid);
+	private static int underPop; 
+	private static int overPop; 
+	private static int liveAgain; 
+	
+	public GOLRuleEnforcer(Cell[][]grid, FileReader reader){
+		super(grid, reader);
 		myGrid = new GameOfLifeCell[grid.length][grid.length];
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid.length;j++) { 
@@ -12,6 +16,13 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 			}
 		}
 	}
+	
+	public void initializeParameters() { 
+		underPop = Integer.parseInt(reader.readProperty("underpop"));
+		overPop = Integer.parseInt(reader.readProperty("overpop"));
+		liveAgain = Integer.parseInt(reader.readProperty("liveagain"));
+	}
+
 	public void iterateGrid(){
 		copyGrid = new boolean[myGrid.length][myGrid.length];
 		for (int row = 0; row < myGrid.length; row++){
@@ -26,17 +37,12 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 				GameOfLifeCell actualCell = myGrid[r][c];
 				int x = actualCell.getX(); 
 				int y = actualCell.getY(); 
-				//If not (alive and have two or three living neighbors) 
 				int myNeighbors = numNeighbors(x,y);
-				if(copyCell){
-					if(myNeighbors == 3){//Rule 4
+				if(copyCell && myNeighbors == liveAgain){
 						actualCell.makeAlive();
-					}
 				}
-				else{
-					if(!(myNeighbors == 2 || myNeighbors == 3)){//1,2,3
+				else if (myNeighbors < underPop || myNeighbors > overPop) {
 						actualCell.killCell();
-					}
 				}
 			}
 		}
@@ -55,9 +61,6 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 				}
 			}	
 		}
-		System.out.println(numAliveCells + " " + r + " " + c);
 		return numAliveCells; 
 	}
-	
-
 }
