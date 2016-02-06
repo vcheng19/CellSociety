@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 public class WaTorRuleEnforcer extends RuleEnforcer{
-	private WaTorCell[][] myGrid;
-	private Random random; 
+	private WaTorCell[][] myGrid; 
+	private int sharkSpawn = 7;
+	private int fishSpawn = 2;
+	
 	
 	public WaTorRuleEnforcer(Cell[][] grid, FileReader fr) {
 		super(grid, fr);
@@ -42,7 +44,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 			myGrid[x][y].updateTurn();
 			if(!neighbors.isEmpty()){//Moving a fish
 //				int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
-				int randomPick = (int) Math.random()*(neighbors.size() - 1);
+				int randomPick = (int) Math.floor(Math.random() * (neighbors.size() -1));
 				int [] arrayNeighbors = neighbors.get(randomPick);
 				move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish(), true);
 			}
@@ -57,30 +59,30 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 				neighbors = getNeighbors(x, y, false);
 				myGrid[x][y].updateTurn();
 				if(!neighbors.isEmpty()){//If fish were found
-					int randomPick = (int) Math.random()*(neighbors.size() - 1);
+					int randomPick = (int) Math.floor(Math.random() * (neighbors.size() -1));
 					int [] arrayNeighbors = neighbors.get(randomPick); //Something is going on here
 					move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish(), true);
 				}
 				else{//No fish were found
 					neighbors = getNeighbors(x, y, false);
 					if(!neighbors.isEmpty()){
-						int randomPick = (int) Math.random()*(neighbors.size() - 1);
+						int randomPick = (int) Math.floor(Math.random() * (neighbors.size() -1));
 						int [] arrayNeighbors = neighbors.get(randomPick); //Something is going on here
 						move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish(), false);
 					}
 				}
 			}
 		}
-		checkIfCanSpawn(x, y, myGrid[x][y].getTurnAlive());
+		checkIfCanSpawn(x, y, myGrid[x][y].getTurnAlive(), myGrid[x][y].isFish());
 	}
 	
-	public void checkIfCanSpawn(int x, int y, int turnsAlive){
-		if(turnsAlive >= 3){//This is a magic value
+	public void checkIfCanSpawn(int x, int y, int turnsAlive, boolean fish){
+		if((fish && turnsAlive >= fishSpawn) || (!fish && turnsAlive >= sharkSpawn)){//This is a magic value
 			myGrid[x][y].resetTurn();
 			List<int []> arrayEmptyNeighbors = new ArrayList<int[]>();
 			arrayEmptyNeighbors = getNeighbors(x,y, true); 
 			if(!arrayEmptyNeighbors.isEmpty()){
-				int randomPick = (int) Math.random()*(arrayEmptyNeighbors.size() - 1);
+				int randomPick = (int) Math.floor(Math.random() * (arrayEmptyNeighbors.size() -1));
 				int [] arrayNeighbors = arrayEmptyNeighbors.get(randomPick); 
 				spawn(arrayNeighbors[0], arrayNeighbors[1], myGrid[x][y].isFish());
 			}

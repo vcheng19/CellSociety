@@ -21,9 +21,14 @@ public class GenerateCoordinates {
 	}
 	
 	public static void main(String[] args) { 
-		gen(40, 200);
-		gen(50, 1300);
+//		gen(40, 200);
+//		gen(50, 1300);
 		System.out.println("");
-		gen(50, 1300);
+//		gen(50, 30);
+		for(int i = 0; i < 100; i++){
+			int randomPick = (int) Math.floor(Math.random() * 8);
+			System.out.println(randomPick);
+		}
+		
 	}
 }
