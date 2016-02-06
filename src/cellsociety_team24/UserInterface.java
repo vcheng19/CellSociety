@@ -66,12 +66,12 @@ public class UserInterface {
         	case "Game of life":
         		gi = new GOLGridInitializer(gr, reader);
         		gi.makeGrid();
-        		rule = new GOLRuleEnforcer(gi.getGrid());
+        		rule = new GOLRuleEnforcer(gi.getGrid(), reader);
         		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
         		gi.makeGrid();
-        		rule = new GOLRuleEnforcer(gi.getGrid());
+        		rule = new GOLRuleEnforcer(gi.getGrid(), reader);
         }
         return new Simulator(gi.getGrid(), rule);
     }

@@ -21,7 +21,7 @@ public class GenerateCoordinates {
 	}
 	
 	public static void main(String[] args) { 
-		gen(40, 20);
+		gen(40, 200);
 	}
 
 }

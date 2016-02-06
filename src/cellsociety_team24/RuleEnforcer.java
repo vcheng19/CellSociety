@@ -1,11 +1,16 @@
 package cellsociety_team24;
 
 public abstract class RuleEnforcer {
-	private Cell[][] myGrid; 
-	public RuleEnforcer(Cell[][] grid) {
+	public Cell[][] myGrid;
+	public FileReader reader;
+	
+	public RuleEnforcer(Cell[][] grid, FileReader fr) {
 		myGrid = grid; 
-		
+		reader = fr;
+		initializeParameters();
 	}
+	
+	abstract void initializeParameters();
 	
 	public void iterateGrid(){
 		for(int x = 0; x < myGrid.length; x++){
