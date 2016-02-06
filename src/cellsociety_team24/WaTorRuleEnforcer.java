@@ -144,4 +144,69 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 		}
 	return neighborList; 	
 	}
+	
+	public List<int[]> getNeighbors(int r, int c, boolean fish){//Needs to account for torus behavior + refactor both sharks and fish
+		List<int[]> neighborList = new ArrayList<int[]>();
+		for(int rChange = -1; rChange <= 1; rChange++){
+			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within boundaries
+				for(int cChange = -1; cChange < 2; cChange++){
+					if(c+cChange >= 0 && c + cChange < myGrid.length){//If c is within boundaries
+						if(!(rChange == 0 && cChange == 0)){
+							if(fish){ //If fish
+								if(myGrid[r+rChange][c+cChange].isOcean()){
+									int[] coordinates = new int[2]; 
+									coordinates[0] = r + rChange;
+									coordinates[1] = c + cChange; 
+									neighborList.add(coordinates);
+								}
+							}
+							else{ //If shark
+								if(myGrid[r+rChange][c+cChange].isFish()){
+									int[] coordinates = new int[2]; 
+									coordinates[0] = r + rChange;
+									coordinates[1] = c +cChange; 
+									neighborList.add(coordinates);
+								}
+							}
+						}
+					}
+					else{//c is not within boundaries
+						if(c+cChange < 0){
+							c = myGrid.length - 1; 
+						}
+						else if(c+cChange > myGrid.length - 1){
+							c = 0; 
+						}
+						if(fish){ //If fish
+							if(myGrid[r][c].isOcean()){
+								int[] coordinates = new int[2]; 
+								coordinates[0] = r + rChange;
+								coordinates[1] = c +cChange; 
+								neighborList.add(coordinates);
+							}
+						}
+						else{ //If shark
+							if(myGrid[r][c].isFish()){
+								int[] coordinates = new int[2]; 
+								coordinates[0] = r + rChange;
+								coordinates[1] = c +cChange; 
+								neighborList.add(coordinates);
+							}
+						}
+					}
+				}
+			}
+			else{//r is not within boundaries NEED TO CHANGE THIS ASAP
+				if(r + rChange < 0){
+					r = myGrid.length - 1;
+				}
+				else if(r + rChange > myGrid.length - 1){
+					r = 0; 
+				}
+			}
+		}
+	return neighborList; 
+	}
+	
+	
 }
