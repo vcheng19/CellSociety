@@ -2,11 +2,12 @@ package cellsociety_team24;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class WaTorRuleEnforcer extends RuleEnforcer{
 	private WaTorCell[][] myGrid; 
 	private WaTorCell[][] copyGrid;
-	
+	private Random random; 
 	public WaTorRuleEnforcer(Cell[][] grid) {
 		super(grid);
 		myGrid = new WaTorCell[grid.length][grid.length];
@@ -27,11 +28,21 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 		}
 	}
 	
-//	public void doFishAction(int x, int y){
-//		List<int[]> neighbors = new ArrayList<int[]>();
-//		neighbors = getNeighborsOcean(x, y); 
-//		
-//	}
+	public void doFishAction(int x, int y){
+		List<int[]> neighbors = new ArrayList<int[]>();
+		neighbors = getNeighborsOcean(x, y); 
+		if(!neighbors.isEmpty()){
+			int randomPick = random.nextInt((neighbors.size() - 1) + 1);
+			int [] arrayNeighbors = neighbors.get(randomPick);
+			moveFish(x, y, arrayNeighbors[0],arrayNeighbors[1]);
+		}	
+	}
+	
+	public void moveFish(int xOld, int yOld, int xNew, int yNew){
+		myGrid[xNew][yNew].makeFish(); 
+		myGrid[xOld][yOld].makeOcean(); 
+		return;
+	}
 	
 	public List<int[]> getNeighborsFish(int r, int c){
 		List<int[]> neighborList = new ArrayList<int[]>();
