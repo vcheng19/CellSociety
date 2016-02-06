@@ -13,7 +13,7 @@ public class WaTorGridInitializer extends GridInitializer{
 		grid = new WaTorCell[DIMENSION][DIMENSION];
 		oceanGrid = new boolean[DIMENSION][DIMENSION];
 		for(int i = 0;i<grid.length;i++){
-			for(int j = 0; j < grid.length;j++){
+			for(int j = 0; j < grid[0].length;j++){
 				WaTorCell cell = new WaTorCell(g, WORLD_SIZE/DIMENSION, i, j);
 				grid[i][j] = cell; 
 				oceanGrid[i][j] = true;
@@ -52,6 +52,10 @@ public class WaTorGridInitializer extends GridInitializer{
 				}
 			}
 		}
+	}
+	
+	public WaTorCell[][] getGrid(){
+		return grid;
 	}
 	
 }

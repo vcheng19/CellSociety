@@ -4,7 +4,7 @@
 	<sim_type value="WaTor"/>
 	<title value="Wa Tor Simulation"/>
 	<author value="Team 24" />
-	<dimension value="2" /> 
+	<dimension value="4" /> 
 	<energy value="2" />
 	<birthturns value = "3" />
 	<liveagain value="3"/>
