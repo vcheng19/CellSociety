@@ -19,7 +19,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 	}
 	
 	public void initializeParameters() { 
-
+		
 	}
 
 	public void iterateGrid(){
