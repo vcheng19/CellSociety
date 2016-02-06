@@ -15,11 +15,12 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	
     private final int WORLD_SIZE = 600;
+    private final int UI_WIDTH = 200;
     
     @Override
     public void start (Stage s) throws SAXException, IOException, ParserConfigurationException {
         Group root = new Group();
-        Scene scene = new Scene(root, WORLD_SIZE + 200, WORLD_SIZE, Color.BLACK);
+        Scene scene = new Scene(root, WORLD_SIZE + UI_WIDTH, WORLD_SIZE, Color.BLACK);
         UserInterface ui = new UserInterface(root, s);
         ui.drawInterface();
         s.setTitle("Cell Society");
