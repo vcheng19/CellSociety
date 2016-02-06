@@ -13,10 +13,8 @@ public class GridInitializer {
 	GridInitializer (Group gr, FileReader fr) { 
 		g = gr; 
 		reader = fr;
-		//CELL_TYPE = reader.readProperty("sim_type");
 		DIMENSION = Integer.parseInt(reader.readProperty("dimension"));
 	}
-	
 	
 	public void makeGrid() { 
 		switch(CELL_TYPE) { 
@@ -43,10 +41,4 @@ public class GridInitializer {
 		return grid;
 	};
 	
-	// ask for properties from reader
-//	public void test() { 
-//		System.out.println(reader.readProperty("title"));
-//		System.out.println(reader.readProperty("underpop"));
-//		System.out.println(reader.readProperty("alivex"));
-//	}
 }
