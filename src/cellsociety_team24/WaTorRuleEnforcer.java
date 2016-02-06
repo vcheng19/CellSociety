@@ -32,19 +32,34 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 		if(myGrid[x][y].isFish()){ //For fish
 			neighbors = getNeighborsOcean(x, y); 
 			myGrid[x][y].updateTurn();
-			if(!neighbors.isEmpty()){
+			if(!neighbors.isEmpty()){//Moving a fish
 				int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
 				int [] arrayNeighbors = neighbors.get(randomPick);
-				move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish());
+				move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish(), true);
 			}
 		}
 		else{ //For shark
-			neighbors = getNeighborsFish(x, y);
-			myGrid[x][y].updateTurn();
-			if(!neighbors.isEmpty()){
-				int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
-				int [] arrayNeighbors = neighbors.get(randomPick); //Something is going on here
-				move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish());
+			if(myGrid[x][y].getEnergy() == 0){//If shark has starved
+				myGrid[x][y].makeOcean();
+				myGrid[x][y].updateEnergy(myGrid[x][y].isShark(), true);
+			}
+			else{
+				myGrid[x][y].updateEnergy(myGrid[x][y].isShark(), false);
+				neighbors = getNeighborsFish(x, y);
+				myGrid[x][y].updateTurn();
+				if(!neighbors.isEmpty()){//If fish were found
+					int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
+					int [] arrayNeighbors = neighbors.get(randomPick); //Something is going on here
+					move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish(), true);
+				}
+				else{//No fish were found
+					neighbors = getNeighborsOcean(x, y);
+					if(!neighbors.isEmpty()){
+						int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
+						int [] arrayNeighbors = neighbors.get(randomPick); //Something is going on here
+						move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish(), false);
+					}
+				}
 			}
 		}
 		checkIfCanSpawn(x, y, myGrid[x][y].getTurnAlive());
@@ -63,14 +78,17 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 		}
 	}
 	
-	public void move(int xOld, int yOld, int xNew, int yNew, boolean fish){
+	public void move(int xOld, int yOld, int xNew, int yNew, boolean fish, boolean eat){
 		if(fish){	
 			myGrid[xNew][yNew].makeFish(); 
 			myGrid[xOld][yOld].makeOcean(); 
 		}
-		else{
+		else{//Move shark
 			myGrid[xNew][yNew].makeShark();
 			myGrid[xOld][yOld].makeOcean();
+			if(eat){//If the shark ate a fish
+				myGrid[xNew][yNew].updateEnergy(myGrid[xNew][yNew].isShark(), true);
+			}
 		}
 		return;
 	}

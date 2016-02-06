@@ -53,8 +53,18 @@ public class WaTorCell extends Cell{
 		return ocean; 
 	}
 	
-	public void updateEnergy(){
-		energyLevel++;
+	public void updateEnergy(boolean shark, boolean increment){
+		if(shark){
+			if(increment){
+				energyLevel+=2;
+			}
+			else{
+				energyLevel--;
+			}
+		}
+		else{
+			energyLevel = 0; 
+		}
 	}
 	
 	public int getEnergy(){
