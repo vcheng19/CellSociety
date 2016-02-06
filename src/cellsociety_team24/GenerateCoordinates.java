@@ -21,13 +21,10 @@ public class GenerateCoordinates {
 	}
 	
 	public static void main(String[] args) { 
-<<<<<<< HEAD
 		gen(40, 200);
-=======
 		gen(50, 1300);
 		System.out.println("");
 		gen(50, 1300);
->>>>>>> 356bf44a80f49efa3cd28a1ab573c83cfaa2b2a8
 	}
 
 }
