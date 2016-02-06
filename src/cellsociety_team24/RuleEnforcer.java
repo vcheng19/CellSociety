@@ -3,7 +3,6 @@ package cellsociety_team24;
 public abstract class RuleEnforcer {
 
 		Cell[][] myGrid; 
-
 		public RuleEnforcer(Cell[][] grid) {
 			myGrid = grid; 
 			
