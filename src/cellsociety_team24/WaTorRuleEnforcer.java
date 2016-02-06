@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 public class WaTorRuleEnforcer extends RuleEnforcer{
-	private WaTorCell[][] myGrid; 
-//	private WaTorCell[][] copyGrid;
+	private WaTorCell[][] myGrid;
 	private Random random; 
+	
 	public WaTorRuleEnforcer(Cell[][] grid) {
 		super(grid);
 		myGrid = new WaTorCell[grid.length][grid.length];
@@ -30,7 +30,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 	public void doAction(int x, int y){
 		List<int[]> neighbors = new ArrayList<int[]>();
 		if(myGrid[x][y].isFish()){ //For fish
-			neighbors = getNeighborsOcean(x, y); 
+			neighbors = getNeighbors(x, y, true); 
 			myGrid[x][y].updateTurn();
 			if(!neighbors.isEmpty()){//Moving a fish
 				int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
@@ -45,7 +45,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 			}
 			else{
 				myGrid[x][y].updateEnergy(myGrid[x][y].isShark(), false);
-				neighbors = getNeighborsFish(x, y);
+				neighbors = getNeighbors(x, y, false);
 				myGrid[x][y].updateTurn();
 				if(!neighbors.isEmpty()){//If fish were found
 					int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
@@ -53,7 +53,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 					move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish(), true);
 				}
 				else{//No fish were found
-					neighbors = getNeighborsOcean(x, y);
+					neighbors = getNeighbors(x, y, false);
 					if(!neighbors.isEmpty()){
 						int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
 						int [] arrayNeighbors = neighbors.get(randomPick); //Something is going on here
@@ -69,7 +69,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 		if(turnsAlive >= 3){
 			myGrid[x][y].resetTurn();
 			List<int []> arrayEmptyNeighbors = new ArrayList<int[]>();
-			arrayEmptyNeighbors = getNeighborsOcean(x,y); 
+			arrayEmptyNeighbors = getNeighbors(x,y, true); 
 			if(!arrayEmptyNeighbors.isEmpty()){
 				int randomPick = random.nextInt((arrayEmptyNeighbors.size() - 1)) + 1;
 				int [] arrayNeighbors = arrayEmptyNeighbors.get(randomPick); 
@@ -103,110 +103,90 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 		return; 
 	}
 	
-	public List<int[]> getNeighborsFish(int r, int c){
-		List<int[]> neighborList = new ArrayList<int[]>();
-		for(int rChange = -1;rChange <= 1;rChange++){
-			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within the boundaries of the grid
-				for(int cChange = -1;cChange < 2;cChange++){
-					if(c + cChange >= 0 && c + cChange < myGrid.length){
-						if(!(rChange == 0 && cChange == 0)){
-							if(myGrid[r+rChange][c+cChange].isFish()){
-								int[] coordinates = new int[2]; 
-								coordinates[0] = r + rChange;
-								coordinates[1] = c +cChange; 
-								neighborList.add(coordinates);
-							}
-						}
-					}
-				}
-			}	
-		}
-	return neighborList; 	
-	}
-	
-	public List<int[]> getNeighborsOcean(int r, int c){
-		List<int[]> neighborList = new ArrayList<int[]>();
-		for(int rChange = -1;rChange <= 1;rChange++){
-			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within the boundaries of the grid
-				for(int cChange = -1;cChange < 2;cChange++){
-					if(c + cChange >= 0 && c + cChange < myGrid.length){
-						if(!(rChange == 0 && cChange == 0)){
-							if(myGrid[r+rChange][c+cChange].isOcean()){
-								int[] coordinates = new int[2]; 
-								coordinates[0] = r + rChange;
-								coordinates[1] = c +cChange; 
-								neighborList.add(coordinates);
-							}
-						}
-					}
-				}
-			}	
-		}
-	return neighborList; 	
-	}
+//	public List<int[]> getNeighborsFish(int r, int c){
+//		List<int[]> neighborList = new ArrayList<int[]>();
+//		for(int rChange = -1;rChange <= 1;rChange++){
+//			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within the boundaries of the grid
+//				for(int cChange = -1;cChange < 2;cChange++){
+//					if(c + cChange >= 0 && c + cChange < myGrid.length){
+//						if(!(rChange == 0 && cChange == 0)){
+//							if(myGrid[r+rChange][c+cChange].isFish()){
+//								int[] coordinates = new int[2]; 
+//								coordinates[0] = r + rChange;
+//								coordinates[1] = c +cChange; 
+//								neighborList.add(coordinates);
+//							}
+//						}
+//					}
+//				}
+//			}	
+//		}
+//	return neighborList; 	
+//	}
+//	
+//	public List<int[]> getNeighborsOcean(int r, int c){
+//		List<int[]> neighborList = new ArrayList<int[]>();
+//		for(int rChange = -1;rChange <= 1;rChange++){
+//			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within the boundaries of the grid
+//				for(int cChange = -1;cChange < 2;cChange++){
+//					if(c + cChange >= 0 && c + cChange < myGrid.length){
+//						if(!(rChange == 0 && cChange == 0)){
+//							if(myGrid[r+rChange][c+cChange].isOcean()){
+//								int[] coordinates = new int[2]; 
+//								coordinates[0] = r + rChange;
+//								coordinates[1] = c +cChange; 
+//								neighborList.add(coordinates);
+//							}
+//						}
+//					}
+//				}
+//			}	
+//		}
+//	return neighborList; 	
+//	}
 	
 	public List<int[]> getNeighbors(int r, int c, boolean fish){//Needs to account for torus behavior + refactor both sharks and fish
-		List<int[]> neighborList = new ArrayList<int[]>();
+		List<int[]> neighborList = new ArrayList<int[]>(); 
 		for(int rChange = -1; rChange <= 1; rChange++){
-			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within boundaries
-				for(int cChange = -1; cChange < 2; cChange++){
-					if(c+cChange >= 0 && c + cChange < myGrid.length){//If c is within boundaries
-						if(!(rChange == 0 && cChange == 0)){
-							if(fish){ //If fish
-								if(myGrid[r+rChange][c+cChange].isOcean()){
-									int[] coordinates = new int[2]; 
-									coordinates[0] = r + rChange;
-									coordinates[1] = c + cChange; 
-									neighborList.add(coordinates);
-								}
-							}
-							else{ //If shark
-								if(myGrid[r+rChange][c+cChange].isFish()){
-									int[] coordinates = new int[2]; 
-									coordinates[0] = r + rChange;
-									coordinates[1] = c +cChange; 
-									neighborList.add(coordinates);
-								}
-							}
-						}
-					}
-					else{//c is not within boundaries
-						if(c+cChange < 0){
-							c = myGrid.length - 1; 
-						}
-						else if(c+cChange > myGrid.length - 1){
-							c = 0; 
-						}
-						if(fish){ //If fish
-							if(myGrid[r][c].isOcean()){
-								int[] coordinates = new int[2]; 
-								coordinates[0] = r + rChange;
-								coordinates[1] = c +cChange; 
+			int rNew = r + rChange; 
+			if(rNew != r){
+				if(rNew < 0)	rNew = myGrid.length - 1;
+				else if(rNew >= myGrid.length - 1)	rNew = 0; 
+				for(int cChange = -1; cChange <= 1; cChange++){
+					int cNew = c + cChange;
+					if(cNew != c){
+						if(cNew < 0)	cNew = myGrid.length - 1;
+						else if(cNew >= myGrid.length - 1)	cNew = 0; 
+						if(fish){
+							if(myGrid[rNew][cNew].isOcean()){ //This portion must be refactored...
+								int [] coordinates = new int[2];
+								coordinates[0] = rNew; coordinates[1] = cNew; //Can i even do this 
 								neighborList.add(coordinates);
 							}
 						}
-						else{ //If shark
-							if(myGrid[r][c].isFish()){
-								int[] coordinates = new int[2]; 
-								coordinates[0] = r + rChange;
-								coordinates[1] = c +cChange; 
+						else{
+							if(myGrid[rNew][cNew].isFish()){
+								int[] coordinates = new int[2];
+								coordinates[0] = rNew; coordinates[1] = cNew; 
 								neighborList.add(coordinates);
 							}
 						}
 					}
-				}
-			}
-			else{//r is not within boundaries NEED TO CHANGE THIS ASAP
-				if(r + rChange < 0){
-					r = myGrid.length - 1;
-				}
-				else if(r + rChange > myGrid.length - 1){
-					r = 0; 
 				}
 			}
 		}
-	return neighborList; 
+		return neighborList; 
 	}
 	
+//	public void returnNeighbor(int rNew, int cNew, boolean fish){
+//		if(fish){
+//			if(myGrid[rNew][cNew].isOcean()){
+//				int [] coordinates = new int[2];
+//				coordinates[0] = rNew;
+//				coordinates[1] = cNew;
+//				
+//			}
+//		}
+//	}
 	
 }
