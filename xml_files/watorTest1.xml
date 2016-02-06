@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='us-ascii'?>
 
 <cellsociety>
-	<sim_type value="Game of life"/>
-	<title value="Game of Life Simulation"/>
+	<sim_type value="WaTor"/>
+	<title value="Wa Tor Simulation"/>
 	<author value="Team 24" />
 	<dimension value="2" /> 
 	<energy value="2" />
