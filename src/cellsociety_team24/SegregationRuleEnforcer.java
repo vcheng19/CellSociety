@@ -2,8 +2,6 @@ package cellsociety_team24;
 
 import java.util.ArrayList;
 
-import javafx.scene.paint.Color;
-
 public class SegregationRuleEnforcer extends RuleEnforcer {
 	ArrayList<SegregationCell> emptyCells;
 	private double myPercent;
@@ -57,7 +55,7 @@ public class SegregationRuleEnforcer extends RuleEnforcer {
 		copyGrid = new double[myGrid.length][myGrid.length];
 		for (int row = 0; row < myGrid.length; row++){
 			for(int col = 0; col < myGrid.length; col++){
-				ArrayList<SegregationCell> myNeighbors = numNeighbors(myGrid[row][col]);
+				ArrayList<SegregationCell> myNeighbors = getNeighbors(myGrid[row][col]);
 				int total = 0;
 				int numColor = 0;
 				if(!myGrid[row][col].isEmpty()){
@@ -77,7 +75,7 @@ public class SegregationRuleEnforcer extends RuleEnforcer {
 		}
 	}
 	
-	private ArrayList<SegregationCell> numNeighbors(Cell check){
+	private ArrayList<SegregationCell> getNeighbors(Cell check){
 		ArrayList<SegregationCell> result = new ArrayList<SegregationCell>();
 		int r = check.getX();
 		int c = check.getY();
