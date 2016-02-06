@@ -11,7 +11,11 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 	public WaTorRuleEnforcer(Cell[][] grid) {
 		super(grid);
 		myGrid = new WaTorCell[grid.length][grid.length];
-//		copyGrid = myGrid; 
+		for (int i=0;i<grid.length;i++) { 
+			for (int j=0;j<grid.length;j++) { 
+				myGrid[i][j] = (WaTorCell) grid[i][j];
+			}
+		}
 	}
 
 	public void iterateGrid(){
@@ -66,7 +70,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 	}
 	
 	public void checkIfCanSpawn(int x, int y, int turnsAlive){
-		if(turnsAlive >= 3){
+		if(turnsAlive >= 3){//This is a magic value
 			myGrid[x][y].resetTurn();
 			List<int []> arrayEmptyNeighbors = new ArrayList<int[]>();
 			arrayEmptyNeighbors = getNeighbors(x,y, true); 
