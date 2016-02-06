@@ -54,7 +54,6 @@ public class UserInterface {
         //slider.setOnAction(handler(slider));
 	}
 	
-	
 	void openFileChooser() { 
 		FileChooser fc = new FileChooser(); 
 		File selectedFile = fc.showOpenDialog(myStage);
@@ -84,8 +83,7 @@ public class UserInterface {
         	case "Fire":
         		gi = new FireGridInitializer(gr,reader);
         		gi.makeGrid();
-        		int firePercent = Integer.parseInt(reader.readProperty("percentage"));
-        		rule = new FireRuleEnforcer(gi.getGrid(), firePercent);
+        		rule = new FireRuleEnforcer(gi.getGrid(), reader);
         		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);

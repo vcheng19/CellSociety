@@ -16,7 +16,6 @@ public class WaTorCell extends Cell{
 		ocean = true; 
 		turnAlive = 0; 
 		energyLevel = 0;
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void makeFish(){

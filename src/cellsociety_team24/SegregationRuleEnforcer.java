@@ -3,14 +3,13 @@ package cellsociety_team24;
 import java.util.ArrayList;
 
 public class SegregationRuleEnforcer extends RuleEnforcer {
-	ArrayList<SegregationCell> emptyCells;
-	private double myPercent;
 	SegregationCell[][] myGrid;
 	private double[][] copyGrid; 
+	private double myPercent;
+	ArrayList<SegregationCell> emptyCells;
 	
-	public SegregationRuleEnforcer(Cell[][] grid, int percent) {
-		super(grid);
-		myPercent = percent/100.0;
+	public SegregationRuleEnforcer(Cell[][] grid, FileReader fr) {
+		super(grid, fr);
 		emptyCells = new ArrayList<SegregationCell>();
 		myGrid = new SegregationCell[grid.length][grid.length];
 		for (int i=0;i<grid.length;i++) { 
@@ -26,6 +25,10 @@ public class SegregationRuleEnforcer extends RuleEnforcer {
 				}
 			}
 		}
+	}
+	
+	public void initializeParameters() { 
+		myPercent = Integer.parseInt(reader.readProperty("percentage"))/100.0;
 	}
 	
 	public void iterateGrid(){
