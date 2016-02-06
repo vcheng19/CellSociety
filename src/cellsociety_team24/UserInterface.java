@@ -85,6 +85,11 @@ public class UserInterface {
         		gi.makeGrid();
         		rule = new FireRuleEnforcer(gi.getGrid(), reader);
         		break;
+        	case "WaTor":
+        		gi = new WaTorGridInitializer(gr, reader);
+        		gi.makeGrid();
+        		rule = new WaTorRuleEnforcer(gi.getGrid());
+        		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
         		gi.makeGrid();

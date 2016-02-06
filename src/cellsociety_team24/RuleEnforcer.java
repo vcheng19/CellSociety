@@ -1,5 +1,7 @@
 package cellsociety_team24;
 
+import java.util.ArrayList;
+
 public abstract class RuleEnforcer {
 	public Cell[][] myGrid;
 	public FileReader reader;
@@ -22,13 +24,23 @@ public abstract class RuleEnforcer {
 	}
 	
 	public void updateState(Cell cell){
-		int row = cell.getX();
-		int col = cell.getY(); 
-		checkNeighbors(row, col); 
+		getNeighbors(cell); 
 		return; 
 	}
 	
-	public void checkNeighbors(int xPos, int yPos){//Will need to update this 
-		return; 
+	public ArrayList<Cell> getNeighbors(Cell check){
+		ArrayList<Cell> result = new ArrayList<Cell>();
+		int r = check.getX();
+		int c = check.getY();
+		for(int rChange = -1;rChange < 2;rChange++){
+			if(r + rChange >= 0 && r + rChange < myGrid.length){//If r is within the boundaries of the grid
+				for(int cChange = -1;cChange < 2;cChange++){
+					if(c + cChange >= 0 && c + cChange < myGrid.length && !(rChange == 0 && cChange == 0)){
+						result.add(myGrid[r+rChange][c+cChange]);
+					}
+				}
+			}
+		}
+		return result;
 	}
 }

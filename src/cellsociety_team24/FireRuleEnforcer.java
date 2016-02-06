@@ -48,7 +48,7 @@ public class FireRuleEnforcer extends RuleEnforcer {
 	
 	private Set<FireCell> catchOnFire(Set<FireCell> cellsToFire){
 		for(FireCell fire: fireCells){
-			ArrayList<FireCell> myNeighbors = getNeighbors(fire);
+			ArrayList<FireCell> myNeighbors = getAdjNeighbors(fire);
 			for(FireCell neighbor: myNeighbors){
 				if(neighbor.isTree()){
 					cellsToFire.add(neighbor);
@@ -68,19 +68,17 @@ public class FireRuleEnforcer extends RuleEnforcer {
 		}
 	}
 	
-	private ArrayList<FireCell> getNeighbors(Cell check){
+	private ArrayList<FireCell> getAdjNeighbors(Cell check){
 		ArrayList<FireCell> result = new ArrayList<FireCell>();
-		int r = check.getX();
-		int c = check.getY();
-		int[] rowChanges = {-1, 0, 0, 1};
-		int[] colChanges = {0, -1, 1, 0};
-		for(int i = 0; i< rowChanges.length;i++){
-			int rChange = rowChanges[i];
-			int cChange = colChanges[i];
-			if(r + rChange >= 0 && r + rChange < copyGrid.length){
-					if(c + cChange >= 0 && c + cChange < copyGrid.length && !(rChange == 0 && cChange == 0)){
-						result.add(copyGrid[r+rChange][c+cChange]);
-					}
+		ArrayList<Cell> allNeighbors= getNeighbors(check);
+		int myRow = check.getX();
+		int myCol = check.getY();
+		for(Cell x: allNeighbors){
+			int row = x.getX();
+			int col = x.getY();
+			if( row == myRow || col == myCol){
+				FireCell adjCell = (FireCell)x;
+				result.add(adjCell);
 			}
 		}
 		return result;
