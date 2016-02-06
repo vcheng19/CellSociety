@@ -21,21 +21,21 @@ public class SegregationGridInitializer extends GridInitializer {
 		makeRed();
 		makeBlue();
 	}
-	//************REFACTOR THIS PART OF THE CODE: VVVVVVV
+
 	private void makeRed(){
-		int[] xAlive = reader.populateCoorArray(reader.readProperty("redx"));
-		int[] yAlive = reader.populateCoorArray(reader.readProperty("redy"));
-		for (int i=0;i<xAlive.length;i++) { 
-			SegregationCell segcell= grid[xAlive[i]][yAlive[i]];
+		int[] xRed = reader.populateCoorArray(reader.readProperty("redx"));
+		int[] yRed = reader.populateCoorArray(reader.readProperty("redy"));
+		for (int i=0;i<xRed.length;i++) { 
+			SegregationCell segcell= grid[xRed[i]][yRed[i]];
 			segcell.makeRed();
 		}	
 	}
 	
 	private void makeBlue(){
-		int[] xAlive = reader.populateCoorArray(reader.readProperty("bluex"));
-		int[] yAlive = reader.populateCoorArray(reader.readProperty("bluey"));
-		for (int i=0;i<xAlive.length;i++) { 
-			SegregationCell segcell= grid[xAlive[i]][yAlive[i]];
+		int[] xBlue = reader.populateCoorArray(reader.readProperty("bluex"));
+		int[] yBlue = reader.populateCoorArray(reader.readProperty("bluey"));
+		for (int i=0;i<xBlue.length;i++) { 
+			SegregationCell segcell= grid[xBlue[i]][yBlue[i]];
 			segcell.makeBlue();
 		}	
 	}
