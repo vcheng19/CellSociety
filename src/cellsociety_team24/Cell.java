@@ -21,15 +21,16 @@ public abstract class Cell {
 	
 	/**public Cell(Color c){
 		color = c;
-	}
+	}*/
 	
-	public void setColor(Color c){
-		color = c;
-	}	
 	
 	public Color getColor(){
 		return color;
-	} */
+	} 
+	
+	public void setColor(Color c){
+		myRect.setFill(c);
+	}
 	
 	public int getX(){
 		return myRow;

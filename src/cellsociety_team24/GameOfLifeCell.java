@@ -13,12 +13,12 @@ public class GameOfLifeCell extends Cell {
 	
 	public void makeAlive(){
 		dead = false;
-		myRect.setFill(Color.WHITE);
+		setColor(Color.WHITE);
 	}
 	
 	public void killCell(){
 		dead = true;
-		myRect.setFill(Color.BLACK);
+		setColor(Color.BLACK);
 	}
 	
 	public boolean isDead(){

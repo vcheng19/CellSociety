@@ -44,7 +44,7 @@ public class UserInterface {
 		chooseFile = makeButton("Choose file", event -> openFileChooser(), 30, 40);
 		play = makeButton("Play", event -> mySimulator.start(), 30, 100);
 		pause = makeButton("Pause", event -> mySimulator.stop(), 30, 150);	
-		step = makeButton("Step", event -> mySimulator.step(), 30, 200);
+		step = makeButton("Step", event -> mySimulator.byStep(), 30, 200);
 	}
 	
 	void openFileChooser() { 
@@ -67,6 +67,17 @@ public class UserInterface {
         		gi = new GOLGridInitializer(gr, reader);
         		gi.makeGrid();
         		rule = new GOLRuleEnforcer(gi.getGrid());
+        		break;
+        	case "Segregation":
+        		gi = new SegregationGridInitializer(gr,reader);
+        		gi.makeGrid();
+        		rule = new SegregationRuleEnforcer(gi.getGrid(), Integer.parseInt(reader.readProperty("percentage")));
+        		break;
+        	case "Fire":
+        		gi = new FireGridInitializer(gr,reader);
+        		gi.makeGrid();
+        		int firePercent = Integer.parseInt(reader.readProperty("percentage"));
+        		rule = new FireRuleEnforcer(gi.getGrid(), firePercent);
         		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
