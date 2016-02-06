@@ -26,16 +26,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 			}
 		}
 	}
-	
-//	public void moveShark(int x, int y, int xNew, yNew){
-//		List<int[]> neighbors = new ArrayList<int[]>();
-//		neighbors = getNeighborsFish(x, y); 
-//		myGrid[x][y].updateTurn(); 
-//		if(!neighbors.isEmpty()){
-//			int randomPick = random
-//		}
-//	}
-	
+
 	public void doAction(int x, int y){
 		List<int[]> neighbors = new ArrayList<int[]>();
 		if(myGrid[x][y].isFish()){ //For fish
@@ -53,16 +44,20 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 			if(!neighbors.isEmpty()){
 				int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
 				int [] arrayNeighbors = neighbors.get(randomPick); //Something is going on here
-				
+				move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish());
 			}
 		}
-		if(myGrid[x][y].getTurnAlive() >= 3){//This will be its own method 
-			myGrid[x][y].resetTurn(); 
+		checkIfCanSpawn(x, y, myGrid[x][y].getTurnAlive());
+	}
+	
+	public void checkIfCanSpawn(int x, int y, int turnsAlive){
+		if(turnsAlive >= 3){
+			myGrid[x][y].resetTurn();
 			List<int []> arrayEmptyNeighbors = new ArrayList<int[]>();
 			arrayEmptyNeighbors = getNeighborsOcean(x,y); 
 			if(!arrayEmptyNeighbors.isEmpty()){
-				int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
-				int [] arrayNeighbors = neighbors.get(randomPick); 
+				int randomPick = random.nextInt((arrayEmptyNeighbors.size() - 1)) + 1;
+				int [] arrayNeighbors = arrayEmptyNeighbors.get(randomPick); 
 				spawn(arrayNeighbors[0], arrayNeighbors[1], myGrid[x][y].isFish());
 			}
 		}
