@@ -8,13 +8,14 @@ public class WaTorCell extends Cell{
 	private boolean shark;
 	private boolean ocean; 
 	private int turnAlive; 
-	
+	private int energyLevel;
 	public WaTorCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
 		fish = false;
 		shark = false; 
 		ocean = true; 
 		turnAlive = 0; 
+		energyLevel = 0;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -30,6 +31,7 @@ public class WaTorCell extends Cell{
 		shark = true;
 		ocean = false;
 		myRect.setFill(Color.YELLOW);
+		energyLevel = 2; 
 	}
 	
 	public void makeOcean(){
@@ -49,6 +51,14 @@ public class WaTorCell extends Cell{
 	
 	public boolean isOcean(){
 		return ocean; 
+	}
+	
+	public void updateEnergy(){
+		energyLevel++;
+	}
+	
+	public int getEnergy(){
+		return energyLevel; 
 	}
 	
 	public int getTurnAlive(){
