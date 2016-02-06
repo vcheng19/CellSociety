@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -45,7 +46,14 @@ public class UserInterface {
 		play = makeButton("Play", event -> mySimulator.start(), 30, 100);
 		pause = makeButton("Pause", event -> mySimulator.stop(), 30, 150);	
 		step = makeButton("Step", event -> mySimulator.byStep(), 30, 200);
+		Slider slider = new Slider(0, 4, 1);
+		slider.setShowTickLabels(true);
+		ui.getChildren().add(slider);
+		slider.setLayoutX(UIStartX + 30);
+		slider.setLayoutY(300);
+        //slider.setOnAction(handler(slider));
 	}
+	
 	
 	void openFileChooser() { 
 		FileChooser fc = new FileChooser(); 

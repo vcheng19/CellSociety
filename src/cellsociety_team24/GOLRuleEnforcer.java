@@ -15,7 +15,6 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 				myGrid[i][j] = (GameOfLifeCell) grid[i][j];
 			}
 		}
-		initializeParameters();
 	}
 	
 	public void initializeParameters() { 
