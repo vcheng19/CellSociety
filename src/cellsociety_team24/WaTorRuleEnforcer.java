@@ -37,7 +37,8 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 			neighbors = getNeighbors(x, y, true); 
 			myGrid[x][y].updateTurn();
 			if(!neighbors.isEmpty()){//Moving a fish
-				int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
+//				int randomPick = random.nextInt((neighbors.size() - 1)) + 1;
+				int randomPick = (int) Math.random()*(neighbors.size() - 1);
 				int [] arrayNeighbors = neighbors.get(randomPick);
 				move(x, y, arrayNeighbors[0],arrayNeighbors[1], myGrid[x][y].isFish(), true);
 			}
@@ -75,7 +76,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 			List<int []> arrayEmptyNeighbors = new ArrayList<int[]>();
 			arrayEmptyNeighbors = getNeighbors(x,y, true); 
 			if(!arrayEmptyNeighbors.isEmpty()){
-				int randomPick = random.nextInt((arrayEmptyNeighbors.size() - 1)) + 1;
+				int randomPick = (int) Math.random()*(arrayEmptyNeighbors.size() - 1);
 				int [] arrayNeighbors = arrayEmptyNeighbors.get(randomPick); 
 				spawn(arrayNeighbors[0], arrayNeighbors[1], myGrid[x][y].isFish());
 			}
