@@ -87,6 +87,11 @@ public class UserInterface {
         		int firePercent = Integer.parseInt(reader.readProperty("percentage"));
         		rule = new FireRuleEnforcer(gi.getGrid(), firePercent);
         		break;
+        	case "WaTor":
+        		gi = new WaTorGridInitializer(gr, reader);
+        		gi.makeGrid();
+        		rule = new WaTorRuleEnforcer(gi.getGrid());
+        		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
         		gi.makeGrid();
