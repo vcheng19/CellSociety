@@ -1,10 +1,6 @@
 package cellsociety_team24;
 
 import java.io.File;
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import org.xml.sax.SAXException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -22,6 +18,8 @@ public class UserInterface {
 	private Button pause; 
 	private Button play; 
 	private Button step;
+	private Button reset;
+	private Slider slider; 
 	private Group root;
 	private Group ui = new Group();
 	private final int UIStartX = 600; 
@@ -39,19 +37,58 @@ public class UserInterface {
 		rect.setFill(Color.GREY);
 		ui.getChildren().add(rect);
 		addButtons();
+		addTimeSlider();
 	}
 	
 	void addButtons() { 
 		chooseFile = makeButton("Choose file", event -> openFileChooser(), 30, 40);
-		play = makeButton("Play", event -> mySimulator.start(), 30, 100);
-		pause = makeButton("Pause", event -> mySimulator.stop(), 30, 150);	
-		step = makeButton("Step", event -> mySimulator.byStep(), 30, 200);
-		Slider slider = new Slider(0, 4, 1);
+		play = makeButton("Play", event -> tryButton("Play"), 30, 100);
+		pause = makeButton("Pause", event -> tryButton("Pause"), 30, 150);	
+		step = makeButton("Step", event -> tryButton("Step"), 30, 200);
+		reset =  makeButton("Reset to config", event -> tryButton("Reset"), 30, 250);
+	}
+	
+	void tryButton(String action) { 
+		try { 
+			switch(action) { 
+				case "Play": 
+					mySimulator.start();
+					break;
+				case "Pause": 
+					mySimulator.stop();
+					break;
+				case "Step":
+					mySimulator.byStep();
+					break;
+				case "Reset": 
+					mySimulator.stop();
+					mySimulator = makeSim(root, reader);
+					break;
+				default:
+			}
+		} catch (Exception e) {
+			System.out.println("No simulation loaded yet.");
+		}
+	}
+	
+	void addTimeSlider() { 
+		slider = new Slider(0, 4, 1);
+		slider.setShowTickMarks(true);
 		slider.setShowTickLabels(true);
+		slider.setMajorTickUnit(0.5f);
+		slider.setBlockIncrement(0.5f);
 		ui.getChildren().add(slider);
 		slider.setLayoutX(UIStartX + 30);
-		slider.setLayoutY(300);
-        //slider.setOnAction(handler(slider));
+		slider.setLayoutY(400);
+		slider.setOnMouseClicked(event -> changeSimSpeed(slider.getValue()));
+	}
+	
+	void changeSimSpeed(double x) { 
+		try {
+			mySimulator.adjustSpeed(x);
+		} catch (Exception e) { 
+			System.out.println("No simulation started");
+		}
 	}
 	
 	void openFileChooser() { 
@@ -60,8 +97,8 @@ public class UserInterface {
 		try {
 			reader = new FileReader(selectedFile);
 			mySimulator = makeSim(root, reader);
-		} catch (SAXException | IOException | ParserConfigurationException e) {
-			System.out.println(e.getMessage());
+		} catch (Exception e) {
+			System.out.println("No file selected");
 		}
 	}
 	
@@ -78,18 +115,18 @@ public class UserInterface {
         	case "Segregation":
         		gi = new SegregationGridInitializer(gr,reader);
         		gi.makeGrid();
-        		rule = new SegregationRuleEnforcer(gi.getGrid(), Integer.parseInt(reader.readProperty("percentage")));
+        		rule = new SegregationRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "Fire":
         		gi = new FireGridInitializer(gr,reader);
         		gi.makeGrid();
         		rule = new FireRuleEnforcer(gi.getGrid(), reader);
         		break;
-        	case "WaTor":
-        		gi = new WaTorGridInitializer(gr, reader);
-        		gi.makeGrid();
-        		rule = new WaTorRuleEnforcer(gi.getGrid());
-        		break;
+//        	case "WaTor":
+//        		gi = new WaTorGridInitializer(gr, reader);
+//        		gi.makeGrid();
+//        		rule = new WaTorRuleEnforcer(gi.getGrid(), reader);
+//        		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
         		gi.makeGrid();
