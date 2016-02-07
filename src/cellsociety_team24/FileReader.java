@@ -34,21 +34,7 @@ public class FileReader{
 		String found = doc.getElementsByTagName(property).item(0).getAttributes().item(0).getNodeValue();
 		return found;
 	}
-	
-//	public static void readInProperties(Document doc) { 
-//        sim_type = readProperty("sim_type");
-//        author = readProperty("author");
-//        title = readProperty("title");
-//        dimension = Integer.parseInt(readProperty("dimension"));
-//        overpop = Integer.parseInt(readProperty("overpop"));
-//        underpop = Integer.parseInt(readProperty("underpop"));
-//        liveAgain = Integer.parseInt(readProperty("liveagain"));
-//        String xs = (readProperty("alivex"));
-//        String ys = (readProperty("alivey"));
-//        aliveX = populateCoorArray(xs);
-//        aliveY = populateCoorArray(ys);
-//	}
-//	
+
 	public int[] populateCoorArray(String vals) { 
 		String[] strArray = vals.split(" ");
 		int[] coors = new int[strArray.length];
@@ -56,14 +42,5 @@ public class FileReader{
 		    coors[i] = Integer.parseInt(strArray[i]);
 		}
 		return coors;
-	}
-	
-	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException{ 
-		read();
-//        System.out.println(sim_type);
-//        System.out.println(title);
-//        System.out.println(author);
-//        System.out.println(dimension);
-//        System.out.println(underpop);
 	}
 }

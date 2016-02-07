@@ -4,65 +4,57 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 public class WaTorCell extends Cell{
-	private boolean fish;
-	private boolean shark;
-	private boolean ocean; 
-	private int turnAlive; 
+//	private boolean fish;
+//	private boolean shark;
+//	private boolean ocean; 
+	String type; 
+	private int turnsAlive; 
 	private int energyLevel;
-	public WaTorCell(Group root, double size, int x, int y) {
+	private int sharkEnergy;
+	private int fishEnergy;
+	
+	public WaTorCell(Group root, double size, int x, int y, int sharkEnergy, int fishEnergy) {
 		super(root, size, x, y);
-		fish = false;
-		shark = false; 
-		ocean = true; 
-		turnAlive = 0; 
+		type = "ocean";
+		turnsAlive = 0; 
 		energyLevel = 0;
+		this.sharkEnergy = sharkEnergy; 
 	}
 	
 	public void makeFish(){
-		fish = true;
-		shark = false; 
-		ocean = false; 
+		type = "fish";
 		myRect.setFill(Color.GREEN);
 	}
 	
 	public void makeShark(){
-		fish = false;
-		shark = true;
-		ocean = false;
+		type = "shark";
 		myRect.setFill(Color.YELLOW);
-		energyLevel = 2; 
+		energyLevel = sharkEnergy; 
 	}
 	
 	public void makeOcean(){
-		fish = false;
-		shark = false;
-		ocean = true; 
+		type = "ocean";
 		myRect.setFill(Color.BLUE);
 	}
 	
 	public boolean isFish(){
-		return fish; 
+		return type == "fish"; 
 	}
 	
 	public boolean isShark(){
-		return shark;
+		return type == "shark";
 	}
 	
 	public boolean isOcean(){
-		return ocean; 
+		return type == "ocean"; 
 	}
 	
-	public void updateEnergy(boolean shark, boolean increment){
-		if(shark){
-			if(increment){
-				energyLevel+=2;
-			}
-			else{
-				energyLevel--;
-			}
+	public void updateEnergy(boolean eaten){
+		if(eaten){
+			energyLevel+=fishEnergy;
 		}
 		else{
-			energyLevel = 0; 
+			energyLevel--;
 		}
 	}
 	
@@ -71,14 +63,14 @@ public class WaTorCell extends Cell{
 	}
 	
 	public int getTurnAlive(){
-		return turnAlive; 
+		return turnsAlive; 
 	}
 	
 	public void updateTurn(){
-		turnAlive++;
+		turnsAlive++;
 	}
 	
 	public void resetTurn(){
-		turnAlive = 0;
+		turnsAlive = 0;
 	}
 }
