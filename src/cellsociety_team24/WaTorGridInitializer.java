@@ -5,18 +5,17 @@ import javafx.scene.Group;
 public class WaTorGridInitializer extends GridInitializer{
 	private static WaTorCell[][] grid;
 	private static boolean[][] oceanGrid;
-	private int sharkEnergy; 
-	private int fishEnergy;
+	private static int sharkEnergy; 
+	private static int fishEnergy;
 	
 	public WaTorGridInitializer(Group gr, FileReader fr){
 		super(gr, fr);
-		sharkEnergy = Integer.parseInt(reader.readProperty("sharkenergy"));
-		sharkEnergy = Integer.parseInt(reader.readProperty("fishenergy"));
 	}
 	
 	public void makeGrid(){
 		grid = new WaTorCell[DIMENSION][DIMENSION];
 		oceanGrid = new boolean[DIMENSION][DIMENSION];
+		fishEnergy = Integer.parseInt(reader.readProperty("fishenergy"));
 		for(int i = 0;i<grid.length;i++){
 			for(int j = 0; j < grid[0].length;j++){
 				WaTorCell cell = new WaTorCell(g, WORLD_SIZE/DIMENSION, i, j, sharkEnergy, fishEnergy);
@@ -32,6 +31,7 @@ public class WaTorGridInitializer extends GridInitializer{
 	public void addSharks(){
 		int[] xShark = reader.populateCoorArray(reader.readProperty("sharkx"));
 		int[] yShark = reader.populateCoorArray(reader.readProperty("sharky"));
+		sharkEnergy = Integer.parseInt(reader.readProperty("sharkenergy"));
 		for(int i = 0; i< xShark.length;i++){
 			WaTorCell watorcell = grid[xShark[i]][yShark[i]];
 			oceanGrid[xShark[i]][yShark[i]] = false;
