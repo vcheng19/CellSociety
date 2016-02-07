@@ -12,24 +12,37 @@ public class WaTorCell extends Cell{
 	private int energyLevel;
 	private int sharkEnergy;
 	private int fishEnergy;
+	private boolean didMove;
 	
 	public WaTorCell(Group root, double size, int x, int y, int sharkEnergy, int fishEnergy) {
 		super(root, size, x, y);
 		type = "ocean";
 		turnsAlive = 0; 
 		energyLevel = 0;
+		didMove = false;
 		this.sharkEnergy = sharkEnergy; 
 	}
 	
-	public void makeFish(){
+	public boolean getMoved() { 
+		return didMove;
+	}
+	
+	public void setMoved(boolean moved) { 
+		didMove = moved;
+	}
+	
+	public void makeFish(int energy, int ta){
 		type = "fish";
+		energyLevel = energy;
+		turnsAlive = ta;
 		myRect.setFill(Color.GREEN);
 	}
 	
-	public void makeShark(){
+	public void makeShark(int energy, int ta){
 		type = "shark";
+		energyLevel = energy;
+		turnsAlive = ta;
 		myRect.setFill(Color.YELLOW);
-		energyLevel = sharkEnergy; 
 	}
 	
 	public void makeOcean(){
@@ -62,7 +75,11 @@ public class WaTorCell extends Cell{
 		return energyLevel; 
 	}
 	
-	public int getTurnAlive(){
+	public void setEnergy(int n){
+		energyLevel = n;
+	}
+	
+	public int getTurnsAlive(){
 		return turnsAlive; 
 	}
 	

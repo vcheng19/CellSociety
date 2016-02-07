@@ -15,6 +15,7 @@ public class WaTorGridInitializer extends GridInitializer{
 	public void makeGrid(){
 		grid = new WaTorCell[DIMENSION][DIMENSION];
 		oceanGrid = new boolean[DIMENSION][DIMENSION];
+		sharkEnergy = Integer.parseInt(reader.readProperty("sharkenergy"));
 		fishEnergy = Integer.parseInt(reader.readProperty("fishenergy"));
 		for(int i = 0;i<grid.length;i++){
 			for(int j = 0; j < grid[0].length;j++){
@@ -31,11 +32,13 @@ public class WaTorGridInitializer extends GridInitializer{
 	public void addSharks(){
 		int[] xShark = reader.populateCoorArray(reader.readProperty("sharkx"));
 		int[] yShark = reader.populateCoorArray(reader.readProperty("sharky"));
-		sharkEnergy = Integer.parseInt(reader.readProperty("sharkenergy"));
+//		sharkEnergy = Integer.parseInt(reader.readProperty("sharkenergy"));
+//		System.out.println("hey " + sharkEnergy);
 		for(int i = 0; i< xShark.length;i++){
 			WaTorCell watorcell = grid[xShark[i]][yShark[i]];
 			oceanGrid[xShark[i]][yShark[i]] = false;
-			watorcell.makeShark();
+			watorcell.makeShark(sharkEnergy, 0);
+//			System.out.println("over here " + watorcell.getEnergy());
 		}
 	}
 	
@@ -45,7 +48,7 @@ public class WaTorGridInitializer extends GridInitializer{
 		for(int i = 0; i< xFish.length;i++){
 			WaTorCell watorcell = grid[xFish[i]][yFish[i]];
 			oceanGrid[xFish[i]][yFish[i]] = false;
-			watorcell.makeFish();
+			watorcell.makeFish(fishEnergy, 0);
 		}
 	}
 	
