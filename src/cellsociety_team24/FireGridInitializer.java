@@ -3,11 +3,9 @@ package cellsociety_team24;
 import javafx.scene.Group;
 
 public class FireGridInitializer extends GridInitializer {
-	private static FireCell[][] grid;
 	
 	public FireGridInitializer(Group gr, FileReader fr) {
 		super(gr, fr);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void makeGrid(){
@@ -24,15 +22,11 @@ public class FireGridInitializer extends GridInitializer {
 		addFire();
 	}
 	
-	
 	private void addFire(){
 		int fireX = Integer.parseInt(reader.readProperty("fireX"));
 		int fireY = Integer.parseInt(reader.readProperty("fireY"));
-		FireCell fireCell= grid[fireX][fireY];
+		FireCell fireCell = (FireCell) grid[fireX][fireY];
 		fireCell.makeFire();
 	}
 	
-	public FireCell[][] getGrid(){
-		return grid;
-	}
 }

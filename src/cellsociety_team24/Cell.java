@@ -19,11 +19,6 @@ public abstract class Cell {
 		root.getChildren().add(myRect);
 	}
 	
-	/**public Cell(Color c){
-		color = c;
-	}*/
-	
-	
 	public Color getColor(){
 		return color;
 	} 
@@ -39,5 +34,4 @@ public abstract class Cell {
 	public int getY(){
 		return myCol;
 	}
-
 }

@@ -33,8 +33,6 @@ public class Simulator {
 	}
 
 	public void adjustSpeed(double ratio){
-		//System.out.println(ratio);
-	    //animation.setDelay(Duration.millis(MILLISECOND_DELAY * ratio));
 		animation.setRate(ratio);
 	}
 	

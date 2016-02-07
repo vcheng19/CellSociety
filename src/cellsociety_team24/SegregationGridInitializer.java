@@ -3,11 +3,9 @@ package cellsociety_team24;
 import javafx.scene.Group;
 
 public class SegregationGridInitializer extends GridInitializer {
-	private static SegregationCell[][] grid;
 	
 	SegregationGridInitializer(Group gr, FileReader fr) {
 		super(gr, fr);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void makeGrid() { 
@@ -18,31 +16,25 @@ public class SegregationGridInitializer extends GridInitializer {
 				grid[i][j] = cell;
 			}
 		}
-		makeRed();
-		makeBlue();
+		addRed();
+		addBlue();
 	}
 
-	private void makeRed(){
+	private void addRed(){
 		int[] xRed = reader.populateCoorArray(reader.readProperty("redx"));
 		int[] yRed = reader.populateCoorArray(reader.readProperty("redy"));
 		for (int i=0;i<xRed.length;i++) { 
-			SegregationCell segcell= grid[xRed[i]][yRed[i]];
+			SegregationCell segcell= (SegregationCell) grid[xRed[i]][yRed[i]];
 			segcell.makeRed();
 		}	
 	}
 	
-	private void makeBlue(){
+	private void addBlue(){
 		int[] xBlue = reader.populateCoorArray(reader.readProperty("bluex"));
 		int[] yBlue = reader.populateCoorArray(reader.readProperty("bluey"));
 		for (int i=0;i<xBlue.length;i++) { 
-			SegregationCell segcell= grid[xBlue[i]][yBlue[i]];
+			SegregationCell segcell= (SegregationCell) grid[xBlue[i]][yBlue[i]];
 			segcell.makeBlue();
 		}	
 	}
-	
-	public SegregationCell[][] getGrid() {
-		return grid;
-	}
-	
-
 }

@@ -14,32 +14,13 @@ public abstract class GridInitializer {
 		g = gr; 
 		reader = fr;
 		DIMENSION = Integer.parseInt(reader.readProperty("dimension"));
+		makeGrid();
 	}
-	
-//	public void makeGrid() { 
-//		switch(CELL_TYPE) { 
-//			case "Game of life":
-//				grid = new GameOfLifeCell[DIMENSION][DIMENSION];
-//			default: 
-//				grid = new Cell[DIMENSION][DIMENSION];
-//		}
-//		for (int i=0;i<grid.length;i++) { 
-//			for (int j=0;j<grid[0].length;j++) { 
-//				Cell cell = new GameOfLifeCell(g, WORLD_SIZE/DIMENSION, i, j);
-//				switch(CELL_TYPE) { 
-//					case "Game of life":
-//						cell = new GameOfLifeCell(g, WORLD_SIZE/DIMENSION, i, j);
-//					default: 
-//						cell = new GameOfLifeCell(g, WORLD_SIZE/DIMENSION, i, j);
-//				}
-//				grid[i][j] = cell;
-//			}
-//		}
-//	}
-	public abstract void makeGrid();
 	
 	public Cell[][] getGrid(){
 		return grid;
-	};
+	}
+
+	public abstract void makeGrid();
 	
 }
