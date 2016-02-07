@@ -96,6 +96,7 @@ public class Controls {
 		File selectedFile = fc.showOpenDialog(myStage);
 		try {
 			reader = new FileReader(selectedFile);
+			System.out.println("Help i hate my life");
 			mySimulator = makeSim(root, reader);
 		} catch (Exception e) {
 			System.out.println("No file selected");
@@ -106,6 +107,7 @@ public class Controls {
         GridInitializer gi;
         RuleEnforcer rule;
         String sim_type = reader.readProperty("sim_type");
+        System.out.println(sim_type);
         switch(sim_type) { 
         	case "Game of life":
         		gi = new GOLGridInitializer(gr, reader);
@@ -123,7 +125,9 @@ public class Controls {
         		rule = new FireRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "WaTor":
+        		System.out.println("Help my eyes hurt");
         		gi = new WaTorGridInitializer(gr, reader);
+        		System.out.println("do i make it here");
         		gi.makeGrid();
         		rule = new WaTorRuleEnforcer(gi.getGrid(), reader);
         		break;

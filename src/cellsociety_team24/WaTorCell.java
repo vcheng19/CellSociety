@@ -73,4 +73,5 @@ public class WaTorCell extends Cell{
 	public void resetTurn(){
 		turnsAlive = 0;
 	}
+	
 }
