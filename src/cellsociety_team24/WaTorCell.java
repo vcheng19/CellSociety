@@ -4,23 +4,17 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 public class WaTorCell extends Cell{
-//	private boolean fish;
-//	private boolean shark;
-//	private boolean ocean; 
 	String type; 
 	private int turnsAlive; 
 	private int energyLevel;
-	private int sharkEnergy;
-	private int fishEnergy;
 	private boolean didMove;
 	
-	public WaTorCell(Group root, double size, int x, int y, int sharkEnergy, int fishEnergy) {
+	public WaTorCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
-		type = "ocean";
+		makeOcean();
 		turnsAlive = 0; 
 		energyLevel = 0;
 		didMove = false;
-		this.sharkEnergy = sharkEnergy; 
 	}
 	
 	public boolean getMoved() { 
@@ -47,6 +41,7 @@ public class WaTorCell extends Cell{
 	
 	public void makeOcean(){
 		type = "ocean";
+		energyLevel = 0;
 		myRect.setFill(Color.BLUE);
 	}
 	
@@ -60,15 +55,6 @@ public class WaTorCell extends Cell{
 	
 	public boolean isOcean(){
 		return type == "ocean"; 
-	}
-	
-	public void updateEnergy(boolean eaten){
-		if(eaten){
-			energyLevel+=fishEnergy;
-		}
-		else{
-			energyLevel--;
-		}
 	}
 	
 	public int getEnergy(){
@@ -87,8 +73,7 @@ public class WaTorCell extends Cell{
 		turnsAlive++;
 	}
 	
-	public void resetTurn(){
+	public void resetTurns(){
 		turnsAlive = 0;
 	}
-	
 }

@@ -1,11 +1,4 @@
 package cellsociety_team24;
-import java.io.File;
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
-
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -18,7 +11,7 @@ public class Main extends Application {
     private final int UI_WIDTH = 200;
     
     @Override
-    public void start (Stage s) throws SAXException, IOException, ParserConfigurationException {
+    public void start (Stage s){
         Group root = new Group();
         Scene scene = new Scene(root, WORLD_SIZE + UI_WIDTH, WORLD_SIZE, Color.BLACK);
         Controls ui = new Controls(root, s);

@@ -8,6 +8,7 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 	private static int underPop; 
 	private static int overPop; 
 	private static int liveAgain; 
+	private boolean wrap = false;
 	
 	public GOLRuleEnforcer(Cell[][]grid, FileReader reader){
 		super(grid, reader);
@@ -26,13 +27,7 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 	}
 
 	public void iterateGrid(){
-		copyGrid = new boolean[myGrid.length][myGrid.length];
-		for (int row = 0; row < myGrid.length; row++){
-			for(int col = 0; col < myGrid.length; col++){
-				copyGrid[row][col] = myGrid[row][col].isDead();
-			}
-		}
-		
+		makeCopy(); //To iterate over a reference grid (last gen)
 		for(int r = 0; r < copyGrid.length; r++){
 			for(int c = 0; c < copyGrid.length; c++){
 				boolean copyCell = copyGrid[r][c];
@@ -47,11 +42,22 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 			}
 		}
 	}
+
+	private void makeCopy() {
+		copyGrid = new boolean[myGrid.length][myGrid.length];
+		for (int row = 0; row < myGrid.length; row++){
+			for(int col = 0; col < myGrid.length; col++){
+				copyGrid[row][col] = myGrid[row][col].isDead();
+			}
+		}
+	}
 	
-	public int numNeighbors(Cell cell){
+	
+	
+	private int numNeighbors(Cell cell){
 		int numAliveCells = 0;
-		ArrayList<Cell> myNeighbors = getNeighbors(cell);
-		for( Cell x: myNeighbors){
+		ArrayList<Cell> myNeighbors = getNeighbors(cell, wrap);
+		for (Cell x: myNeighbors){
 			int row= x.getX();
 			int col = x.getY();
 			if(!copyGrid[row][col]){

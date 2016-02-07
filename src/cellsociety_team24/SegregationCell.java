@@ -45,14 +45,9 @@ public class SegregationCell extends Cell {
 		isEmpty = true;
 	}
 	
-	
 	private void setFalse(){
 		isEmpty = false;
 		isRed = false;
 		isBlue = false;
 	}
-	
-	
-	
-
 }

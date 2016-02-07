@@ -109,27 +109,22 @@ public class Controls {
         switch(sim_type) { 
         	case "Game of life":
         		gi = new GOLGridInitializer(gr, reader);
-        		gi.makeGrid();
         		rule = new GOLRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "Segregation":
         		gi = new SegregationGridInitializer(gr,reader);
-        		gi.makeGrid();
         		rule = new SegregationRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "Fire":
         		gi = new FireGridInitializer(gr,reader);
-        		gi.makeGrid();
         		rule = new FireRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "WaTor":
         		gi = new WaTorGridInitializer(gr, reader);
-        		gi.makeGrid();
         		rule = new WaTorRuleEnforcer(gi.getGrid(), reader);
         		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
-        		gi.makeGrid();
         		rule = new GOLRuleEnforcer(gi.getGrid(), reader);
         }
         return new Simulator(gi.getGrid(), rule);
@@ -143,9 +138,5 @@ public class Controls {
         result.setLayoutY(y);
         ui.getChildren().add(result);
         return result;
-    }
-    
-    FileReader getFileInfo() { 
-    	return reader;
     }
 }

@@ -3,7 +3,6 @@ package cellsociety_team24;
 import javafx.scene.Group;
 
 public class GOLGridInitializer extends GridInitializer{
-	private static GameOfLifeCell[][] grid;
 	
 	public GOLGridInitializer(Group gr, FileReader fr) {
 		super(gr, fr);
@@ -24,13 +23,8 @@ public class GOLGridInitializer extends GridInitializer{
 		int[] xAlive = reader.populateCoorArray(reader.readProperty("alivex"));
 		int[] yAlive = reader.populateCoorArray(reader.readProperty("alivey"));
 		for (int i=0;i<xAlive.length;i++) { 
-			GameOfLifeCell golcell= grid[xAlive[i]][yAlive[i]];
+			GameOfLifeCell golcell= (GameOfLifeCell) grid[xAlive[i]][yAlive[i]];
 			golcell.makeAlive();
 		}	
 	}
-	
-	public GameOfLifeCell[][] getGrid() {
-		return grid;
-	}
-
 }
