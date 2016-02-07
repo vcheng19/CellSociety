@@ -21,7 +21,7 @@ public class Main extends Application {
     public void start (Stage s) throws SAXException, IOException, ParserConfigurationException {
         Group root = new Group();
         Scene scene = new Scene(root, WORLD_SIZE + UI_WIDTH, WORLD_SIZE, Color.BLACK);
-        UserInterface ui = new UserInterface(root, s);
+        Controls ui = new Controls(root, s);
         ui.drawInterface();
         s.setTitle("Cell Society");
         s.setScene(scene);

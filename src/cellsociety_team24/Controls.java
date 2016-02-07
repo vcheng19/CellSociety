@@ -11,7 +11,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class UserInterface {
+public class Controls {
 	
 	Simulator mySimulator; 
 	private Button chooseFile; 
@@ -26,7 +26,7 @@ public class UserInterface {
 	Stage myStage;
 	private FileReader reader; 
 	
-	public UserInterface(Group root, Stage s) {
+	public Controls(Group root, Stage s) {
 		this.root = root;
 		root.getChildren().add(ui);
 		myStage = s; 
