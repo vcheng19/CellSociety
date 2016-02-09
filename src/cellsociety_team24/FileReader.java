@@ -19,15 +19,24 @@ public class FileReader{
         DocumentBuilder db = dbf.newDocumentBuilder();
         doc = db.parse(f);
         doc.getDocumentElement().normalize();
+        
+        validateSim();
 	}
 	
-	public static void read() throws ParserConfigurationException, SAXException, IOException { 
-		File xmlFile = new File("xml_files/gol.xml");
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse(xmlFile);
-        doc.getDocumentElement().normalize();
-        //readInProperties(doc);
+//	public static void read() throws ParserConfigurationException, SAXException, IOException { 
+//		File xmlFile = new File("xml_files/gol.xml");
+//		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//        DocumentBuilder db = dbf.newDocumentBuilder();
+//        Document doc = db.parse(xmlFile);
+//        doc.getDocumentElement().normalize();
+//	}
+	
+	public void validateSim() { 
+		try {
+			String s = readProperty("sim_type"); 
+		} catch (Exception e) {
+			System.out.println("No simulation type given");
+		}
 	}
 	
 	public String readProperty(String property) { 
