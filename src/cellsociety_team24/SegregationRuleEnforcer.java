@@ -2,6 +2,8 @@ package cellsociety_team24;
 
 import java.util.ArrayList;
 
+import filereadcheck.FileReader;
+
 public class SegregationRuleEnforcer extends RuleEnforcer {
 	SegregationCell[][] myGrid;
 	private double[][] percentGrid; 

@@ -3,6 +3,8 @@ package cellsociety_team24;
 import java.util.ArrayList;
 import java.util.List;
 
+import filereadcheck.FileReader;
+
 public class WaTorRuleEnforcer extends RuleEnforcer{
 	private WaTorCell[][] myGrid;
 	private static int fishSpawn; 

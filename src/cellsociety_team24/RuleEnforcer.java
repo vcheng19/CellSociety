@@ -2,6 +2,8 @@ package cellsociety_team24;
 
 import java.util.ArrayList;
 
+import filereadcheck.FileReader;
+
 public abstract class RuleEnforcer {
 	public Cell[][] myGrid;
 	public FileReader reader;

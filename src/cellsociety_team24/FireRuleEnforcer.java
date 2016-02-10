@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import filereadcheck.FileReader;
+
 public class FireRuleEnforcer extends RuleEnforcer {
 	private static FireCell[][] myGrid;
 	private int firePercent;

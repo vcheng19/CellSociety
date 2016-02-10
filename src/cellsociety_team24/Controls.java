@@ -1,6 +1,8 @@
 package cellsociety_team24;
 
 import java.io.File;
+
+import filereadcheck.FileReader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;

@@ -1,4 +1,4 @@
-package cellsociety_team24;
+package filereadcheck;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,13 +14,13 @@ import org.xml.sax.SAXException;
 public class FileReader{
 	private static Document doc;
 
-	FileReader(File f) throws SAXException, IOException, ParserConfigurationException { 
+	public FileReader(File f) throws SAXException, IOException, ParserConfigurationException { 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         doc = db.parse(f);
         doc.getDocumentElement().normalize();
         
-        validateSim();
+        //validateSim();
 	}
 	
 //	public static void read() throws ParserConfigurationException, SAXException, IOException { 

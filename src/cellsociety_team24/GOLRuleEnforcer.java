@@ -2,6 +2,8 @@ package cellsociety_team24;
 
 import java.util.ArrayList;
 
+import filereadcheck.FileReader;
+
 public class GOLRuleEnforcer extends RuleEnforcer {
 	private GameOfLifeCell[][] myGrid; 
 	private boolean[][] copyGrid; 
