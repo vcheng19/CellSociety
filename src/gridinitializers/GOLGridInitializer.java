@@ -1,5 +1,7 @@
-package cellsociety_team24;
+package gridinitializers;
 
+import cellclasses.GameOfLifeCell;
+import filereadcheck.FileReader;
 import javafx.scene.Group;
 
 public class GOLGridInitializer extends GridInitializer{

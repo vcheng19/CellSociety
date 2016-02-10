@@ -1,6 +1,10 @@
-package cellsociety_team24;
+package ruleEnforcers;
 
 import java.util.ArrayList;
+
+import cellclasses.Cell;
+import cellclasses.GameOfLifeCell;
+import filereadcheck.FileReader;
 
 public class GOLRuleEnforcer extends RuleEnforcer {
 	private GameOfLifeCell[][] myGrid; 

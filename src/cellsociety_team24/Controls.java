@@ -1,6 +1,13 @@
 package cellsociety_team24;
 
 import java.io.File;
+
+import filereadcheck.FileReader;
+import gridinitializers.FireGridInitializer;
+import gridinitializers.GOLGridInitializer;
+import gridinitializers.GridInitializer;
+import gridinitializers.SegregationGridInitializer;
+import gridinitializers.WaTorGridInitializer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -10,6 +17,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ruleEnforcers.FireRuleEnforcer;
+import ruleEnforcers.GOLRuleEnforcer;
+import ruleEnforcers.RuleEnforcer;
+import ruleEnforcers.SegregationRuleEnforcer;
+import ruleEnforcers.WaTorRuleEnforcer;
 
 public class Controls {
 	

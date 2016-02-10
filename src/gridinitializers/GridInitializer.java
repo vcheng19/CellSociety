@@ -1,11 +1,13 @@
-package cellsociety_team24;
+package gridinitializers;
+import cellclasses.Cell;
+import filereadcheck.FileReader;
 import javafx.scene.Group;
 
 public abstract class GridInitializer {
 
 	FileReader reader;
 	Group g; 
-	int WORLD_SIZE = 600;
+	final int WORLD_SIZE = 600;
 	int DIMENSION; 
 	String CELL_TYPE;
 	public Cell[][] grid;

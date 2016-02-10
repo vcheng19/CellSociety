@@ -1,8 +1,12 @@
-package cellsociety_team24;
+package ruleEnforcers;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
+import cellclasses.Cell;
+import cellclasses.FireCell;
+import filereadcheck.FileReader;
 
 public class FireRuleEnforcer extends RuleEnforcer {
 	private static FireCell[][] myGrid;

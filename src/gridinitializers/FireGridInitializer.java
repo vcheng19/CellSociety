@@ -1,5 +1,7 @@
-package cellsociety_team24;
+package gridinitializers;
 
+import cellclasses.FireCell;
+import filereadcheck.FileReader;
 import javafx.scene.Group;
 
 public class FireGridInitializer extends GridInitializer {
