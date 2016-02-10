@@ -1,8 +1,10 @@
-package cellsociety_team24;
+package ruleEnforcers;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cellclasses.Cell;
+import cellclasses.WaTorCell;
 import filereadcheck.FileReader;
 
 public class WaTorRuleEnforcer extends RuleEnforcer{

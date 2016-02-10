@@ -1,7 +1,8 @@
-package cellsociety_team24;
+package ruleEnforcers;
 
 import java.util.ArrayList;
 
+import cellclasses.Cell;
 import filereadcheck.FileReader;
 
 public abstract class RuleEnforcer {

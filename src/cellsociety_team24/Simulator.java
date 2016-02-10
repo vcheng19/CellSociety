@@ -1,8 +1,10 @@
 package cellsociety_team24;
 
+import cellclasses.Cell;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import ruleEnforcers.RuleEnforcer;
 
 public class Simulator {
 	Cell[][] myGrid;

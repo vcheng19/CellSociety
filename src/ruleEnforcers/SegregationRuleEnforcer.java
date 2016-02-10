@@ -1,7 +1,9 @@
-package cellsociety_team24;
+package ruleEnforcers;
 
 import java.util.ArrayList;
 
+import cellclasses.Cell;
+import cellclasses.SegregationCell;
 import filereadcheck.FileReader;
 
 public class SegregationRuleEnforcer extends RuleEnforcer {

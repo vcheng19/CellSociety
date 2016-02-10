@@ -1,11 +1,12 @@
-package cellsociety_team24;
+package gridinitializers;
 
+import cellclasses.SegregationCell;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
 
 public class SegregationGridInitializer extends GridInitializer {
 	
-	SegregationGridInitializer(Group gr, FileReader fr) {
+	public SegregationGridInitializer(Group gr, FileReader fr) {
 		super(gr, fr);
 	}
 	

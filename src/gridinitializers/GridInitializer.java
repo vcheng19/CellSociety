@@ -1,4 +1,5 @@
-package cellsociety_team24;
+package gridinitializers;
+import cellclasses.Cell;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
 
