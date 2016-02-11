@@ -9,12 +9,23 @@ import filereadcheck.FileReader;
 public abstract class RuleEnforcer {
 	private Cell[][] myGrid;
 	private FileReader reader;
-	private Cell[][] copyGrid;
 	
 	public RuleEnforcer(Cell[][] grid, FileReader fr) {
 		myGrid = grid; 
 		reader = fr;
 		initializeParameters();
+	}
+	
+	public Cell[][] getGrid(){
+		return myGrid;
+	}
+	
+	public Cell[][] setGrid(Cell[][] grid){
+		myGrid = grid;
+	}
+	
+	public FileReader getReader(){
+		return reader;
 	}
 
 	abstract void initializeParameters();
