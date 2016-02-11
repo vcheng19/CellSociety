@@ -1,6 +1,13 @@
 package cellsociety_team24;
 
 import java.io.File;
+
+import filereadcheck.FileReader;
+import gridinitializers.FireGridInitializer;
+import gridinitializers.GOLGridInitializer;
+import gridinitializers.GridInitializer;
+import gridinitializers.SegregationGridInitializer;
+import gridinitializers.WaTorGridInitializer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -10,6 +17,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ruleEnforcers.FireRuleEnforcer;
+import ruleEnforcers.GOLRuleEnforcer;
+import ruleEnforcers.RuleEnforcer;
+import ruleEnforcers.SegregationRuleEnforcer;
+import ruleEnforcers.WaTorRuleEnforcer;
 
 public class Controls {
 	
@@ -96,7 +108,6 @@ public class Controls {
 		File selectedFile = fc.showOpenDialog(myStage);
 		try {
 			reader = new FileReader(selectedFile);
-			System.out.println("Help i hate my life");
 			mySimulator = makeSim(root, reader);
 		} catch (Exception e) {
 			System.out.println("No file selected");
@@ -110,29 +121,22 @@ public class Controls {
         switch(sim_type) { 
         	case "Game of life":
         		gi = new GOLGridInitializer(gr, reader);
-        		gi.makeGrid();
         		rule = new GOLRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "Segregation":
         		gi = new SegregationGridInitializer(gr,reader);
-        		gi.makeGrid();
         		rule = new SegregationRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "Fire":
         		gi = new FireGridInitializer(gr,reader);
-        		gi.makeGrid();
         		rule = new FireRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "WaTor":
-        		System.out.println("Help my eyes hurt");
         		gi = new WaTorGridInitializer(gr, reader);
-        		System.out.println("do i make it here");
-        		gi.makeGrid();
         		rule = new WaTorRuleEnforcer(gi.getGrid(), reader);
         		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
-        		gi.makeGrid();
         		rule = new GOLRuleEnforcer(gi.getGrid(), reader);
         }
         return new Simulator(gi.getGrid(), rule);
@@ -146,9 +150,5 @@ public class Controls {
         result.setLayoutY(y);
         ui.getChildren().add(result);
         return result;
-    }
-    
-    FileReader getFileInfo() { 
-    	return reader;
     }
 }

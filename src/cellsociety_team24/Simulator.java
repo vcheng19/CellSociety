@@ -1,8 +1,10 @@
 package cellsociety_team24;
 
+import cellclasses.Cell;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import ruleEnforcers.RuleEnforcer;
 
 public class Simulator {
 	Cell[][] myGrid;
@@ -33,8 +35,6 @@ public class Simulator {
 	}
 
 	public void adjustSpeed(double ratio){
-		//System.out.println(ratio);
-	    //animation.setDelay(Duration.millis(MILLISECOND_DELAY * ratio));
 		animation.setRate(ratio);
 	}
 	

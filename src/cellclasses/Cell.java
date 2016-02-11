@@ -1,4 +1,4 @@
-package cellsociety_team24;
+package cellclasses;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -35,5 +35,4 @@ public abstract class Cell {
 	public int getY(){
 		return myCol;
 	}
-
 }

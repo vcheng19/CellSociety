@@ -1,4 +1,4 @@
-package cellsociety_team24;
+package cellclasses;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -45,14 +45,9 @@ public class SegregationCell extends Cell {
 		isEmpty = true;
 	}
 	
-	
 	private void setFalse(){
 		isEmpty = false;
 		isRed = false;
 		isBlue = false;
 	}
-	
-	
-	
-
 }
