@@ -10,23 +10,12 @@ public class WaTorGridInitializer extends GridInitializer{
 	
 	public WaTorGridInitializer(Group gr, FileReader fr){
 		super(gr, fr);
+		getEnergies();
+		addSharks(getGrid());
+		addFish(getGrid());
 	}
 	
-	public void makeGrid(){
-		grid = new WaTorCell[DIMENSION][DIMENSION];
-		sharkEnergy = Integer.parseInt(reader.readProperty("sharkenergy"));
-		fishEnergy = Integer.parseInt(reader.readProperty("fishenergy"));
-		for(int i = 0;i<grid.length;i++){
-			for(int j = 0; j < grid[0].length;j++){
-				WaTorCell cell = new WaTorCell(g, WORLD_SIZE/DIMENSION, i, j);
-				grid[i][j] = cell; 
-			}
-		}
-		addSharks();
-		addFish();
-	}
-	
-	public void addSharks(){
+	public void addSharks(Cell[][] grid){
 		int[] xShark = reader.populateCoorArray(reader.readProperty("sharkx"));
 		int[] yShark = reader.populateCoorArray(reader.readProperty("sharky"));
 		for(int i = 0; i< xShark.length;i++){
@@ -35,7 +24,7 @@ public class WaTorGridInitializer extends GridInitializer{
 		}
 	}
 	
-	public void addFish(){
+	public void addFish(Cell[][] grid){
 		int[] xFish = reader.populateCoorArray(reader.readProperty("fishx"));
 		int[] yFish = reader.populateCoorArray(reader.readProperty("fishy"));
 		for(int i = 0; i< xFish.length;i++){
