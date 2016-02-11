@@ -14,6 +14,10 @@ public class FireCell extends Cell {
 		cellType = TREE_CONSTANT;
 	}
 	
+	public checkState(){
+		
+	}
+	
 	public void makeEmpty(){
 		setColor(Color.YELLOW);
 		cellType = 0;
