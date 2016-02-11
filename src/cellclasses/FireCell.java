@@ -14,8 +14,8 @@ public class FireCell extends Cell {
 		cellType = TREE_CONSTANT;
 	}
 	
-	public checkState(){
-		
+	public checkStatus(){
+		return cellType;
 	}
 	
 	public void makeEmpty(){
