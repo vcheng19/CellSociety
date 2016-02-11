@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='us-ascii'?>
+
+<cellsociety>
+	<sim_type value="Segregation"/>
+	<title value="Segregation Simulation"/>
+	<author value="Team 24" />
+	<dimension value="5" /> 
+	<underpop value="2"/>
+	<overpop value="3"/>
+	<percentage value="50"/>
+	<redx value = "0 1 2 3 4 0 1 2"/>
+	<redy value = "0 1 2 3 4 2 3 4"/>
+	<bluex value = "0 1 2 3 4 2 3 4"/>
+	<bluey value = "1 2 3 4 0 0 1 2"/>
+</cellsociety>
+

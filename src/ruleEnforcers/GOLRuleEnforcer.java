@@ -1,6 +1,7 @@
 package ruleEnforcers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cellclasses.Cell;
 import cellclasses.GameOfLifeCell;
@@ -60,7 +61,7 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 	
 	private int numNeighbors(Cell cell){
 		int numAliveCells = 0;
-		ArrayList<Cell> myNeighbors = getNeighbors(cell, wrap);
+		List<Cell> myNeighbors = getNeighbors(cell, wrap);
 		for (Cell x: myNeighbors){
 			int row= x.getX();
 			int col = x.getY();

@@ -1,14 +1,15 @@
 package ruleEnforcers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cellclasses.Cell;
 import filereadcheck.FileReader;
 
 public abstract class RuleEnforcer {
-	public Cell[][] myGrid;
-	public FileReader reader;
-	public Cell[][] copyGrid;
+	private Cell[][] myGrid;
+	private FileReader reader;
+	private Cell[][] copyGrid;
 	
 	public RuleEnforcer(Cell[][] grid, FileReader fr) {
 		myGrid = grid; 
@@ -22,8 +23,8 @@ public abstract class RuleEnforcer {
 
 	//public abstract void updateState(Cell cell);
 
-	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap){
-		ArrayList<Cell> result = new ArrayList<Cell>();
+	public List<Cell> getNeighbors(Cell check, boolean wrap){
+		List<Cell> result = new ArrayList<Cell>();
 		int r = check.getX();
 		int c = check.getY();
 		for(int rChange = -1;rChange < 2;rChange++){
@@ -51,9 +52,9 @@ public abstract class RuleEnforcer {
 		return cor;
 	}
 
-	public ArrayList<Cell> getAdjNeighbors(Cell check, boolean wrap){
-		ArrayList<Cell> result = new ArrayList<Cell>();
-		ArrayList<Cell> allNeighbors= getNeighbors(check, wrap);
+	public List<Cell> getAdjNeighbors(Cell check, boolean wrap){
+		List<Cell> result = new ArrayList<Cell>();
+		List<Cell> allNeighbors= getNeighbors(check, wrap);
 		int myRow = check.getX();
 		int myCol = check.getY();
 		for(Cell x: allNeighbors){
