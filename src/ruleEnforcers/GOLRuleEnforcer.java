@@ -17,12 +17,6 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 	
 	public GOLRuleEnforcer(Cell[][]grid, FileReader reader){
 		super(grid, reader);
-		myGrid = new GameOfLifeCell[grid.length][grid.length];
-		for (int i=0;i<grid.length;i++) { 
-			for (int j=0;j<grid.length;j++) { 
-				myGrid[i][j] = (GameOfLifeCell) grid[i][j];
-			}
-		}
 	}
 	
 	public void initializeParameters() { 
