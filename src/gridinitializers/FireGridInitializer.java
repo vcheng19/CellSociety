@@ -8,23 +8,23 @@ public class FireGridInitializer extends GridInitializer {
 	
 	public FireGridInitializer(Group gr, FileReader fr) {
 		super(gr, fr);
-	}
-	
-	public void makeGrid(){
-		grid = new FireCell[DIMENSION][DIMENSION];
-		for (int i=0;i<grid.length;i++) { 
-			for (int j=0;j<grid[0].length;j++) { 
-				FireCell cell = new FireCell(g, WORLD_SIZE/DIMENSION, i, j);
-				grid[i][j] = cell;
-				if(i == 0 || i == grid.length -1 || j ==0 || j == grid[0].length-1){
-					cell.makeEmpty();
-				}
-			}
-		}
+		makeBorder();
 		addFire();
 	}
 	
+	public void makeBorder(){
+		Cell[][] grid = getGrid();
+		for(Cell x: grid){
+			row = x.getX();
+			col = y.getY();
+			if(row == 0 || col == 0 || row == grid.size() -1 || col == grid.size() -1){
+				x.makeEmpty();
+			}
+		}
+	}
+	
 	private void addFire(){
+		Cell[][] grid = getGrid();
 		int fireX = Integer.parseInt(reader.readProperty("fireX"));
 		int fireY = Integer.parseInt(reader.readProperty("fireY"));
 		FireCell fireCell = (FireCell) grid[fireX][fireY];
