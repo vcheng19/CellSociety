@@ -8,16 +8,6 @@ public class GOLGridInitializer extends GridInitializer{
 	
 	public GOLGridInitializer(Group gr, FileReader fr) {
 		super(gr, fr);
-	}
-	
-	public void makeGrid() { 
-		grid = new GameOfLifeCell[DIMENSION][DIMENSION];
-		for (int i=0;i<grid.length;i++) { 
-			for (int j=0;j<grid[0].length;j++) { 
-				GameOfLifeCell cell = new GameOfLifeCell(g, WORLD_SIZE/DIMENSION, i, j);
-				grid[i][j] = cell;
-			}
-		}
 		addAlive();
 	}
 
