@@ -19,8 +19,8 @@ public abstract class Cell {
 		s.setFill(DEFAULT_COLOR);
 		root.getChildren().add(myRect);
 	}
-	
-	public Color getColor(){
+
+	public Color checkState(){
 		return color;
 	} 
 	
