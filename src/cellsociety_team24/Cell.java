@@ -3,6 +3,7 @@ package cellsociety_team24;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 public abstract class Cell {
 	Color color;
@@ -11,18 +12,13 @@ public abstract class Cell {
 	Rectangle myRect;
 	final static Color DEFAULT_COLOR = Color.BLACK;
 	
-	public Cell(Group root, double size, int x, int y) {
+	public Cell(Group root, Shape s, int x, int y) {
 		myRow = x;
 		myCol = y;
-		myRect = new Rectangle(x*size, y*size, size, size);
-		myRect.setFill(DEFAULT_COLOR);
+		//myRect = new Rectangle(x*size, y*size, size, size);
+		s.setFill(DEFAULT_COLOR);
 		root.getChildren().add(myRect);
 	}
-	
-	/**public Cell(Color c){
-		color = c;
-	}*/
-	
 	
 	public Color getColor(){
 		return color;
