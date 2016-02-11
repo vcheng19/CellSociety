@@ -9,7 +9,6 @@ import cellclasses.FireCell;
 import filereadcheck.FileReader;
 
 public class FireRuleEnforcer extends RuleEnforcer {
-	private static FireCell[][] myGrid;
 	private int firePercent;
 	ArrayList<FireCell> fireCells;
 	private final static int HUNDRED = 100;
@@ -17,17 +16,13 @@ public class FireRuleEnforcer extends RuleEnforcer {
 	
 	public FireRuleEnforcer(Cell[][] grid, FileReader fr) {
 		super(grid, fr);
-		myGrid = new FireCell[grid.length][grid.length];
-		fireCells = new ArrayList<FireCell>();
-		for (int i=0;i<grid.length;i++) { 
-			for (int j=0;j<grid.length;j++) { 
-				myGrid[i][j] = (FireCell) grid[i][j];
-				if(myGrid[i][j].isFire()){
-					fireCells.add(myGrid[i][j]);
-				}
+		fireCells = new ArrayList<Cell>();
+		for (Cell cell: grid){
+			if(cell.isFire()){
+				fireCells.add(cell);
 			}
+			copyGrid = new FireCell[myGrid.length][myGrid.length];
 		}
-		copyGrid = new FireCell[myGrid.length][myGrid.length];
 	}
 	
 	public void initializeParameters() { 
