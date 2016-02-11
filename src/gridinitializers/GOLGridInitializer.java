@@ -12,6 +12,7 @@ public class GOLGridInitializer extends GridInitializer{
 	}
 
 	public void addAlive() { 
+		Cell[][] grid = getGrid();
 		int[] xAlive = reader.populateCoorArray(reader.readProperty("alivex"));
 		int[] yAlive = reader.populateCoorArray(reader.readProperty("alivey"));
 		for (int i=0;i<xAlive.length;i++) { 
