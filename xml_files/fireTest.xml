@@ -5,9 +5,6 @@
 	<title value="Fire Simulation"/>
 	<author value="Team 24" />
 	<dimension value="50" /> 
-	<underpop value="2"/>
-	<overpop value="3"/>
-	<liveagain value="3"/>
 	<percentage value= "55"/>
 	<fireX value="25"/>
 	<fireY value="25"/>
