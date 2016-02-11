@@ -16,7 +16,13 @@ public abstract class GridInitializer {
 		g = gr; 
 		reader = fr;
 		DIMENSION = Integer.parseInt(reader.readProperty("dimension"));
-		makeGrid();
+		grid = new Cell[DIMENSION][DIMENSION];
+		for (int i=0;i<grid.length;i++) { 
+			for (int j=0;j<grid[0].length;j++) { 
+				Cell cell = new Cell(g, WORLD_SIZE/DIMENSION, i, j);
+				grid[i][j] = cell;
+			}
+		}
 	}
 	
 	public int getDimension(){
@@ -35,6 +41,5 @@ public abstract class GridInitializer {
 		return grid;
 	}
 
-	public abstract void makeGrid();
 	
 }
