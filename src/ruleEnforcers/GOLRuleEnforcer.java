@@ -8,7 +8,6 @@ import cellclasses.GameOfLifeCell;
 import filereadcheck.FileReader;
 
 public class GOLRuleEnforcer extends RuleEnforcer {
-	private GameOfLifeCell[][] myGrid; 
 	private boolean[][] copyGrid; 
 	private static int underPop; 
 	private static int overPop; 
