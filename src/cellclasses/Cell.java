@@ -20,7 +20,9 @@ public abstract class Cell {
 		root.getChildren().add(myRect);
 	}
 
-	public Color checkState(){
+	public abstract void checkStatus();
+	
+	public Color getColor(){
 		return color;
 	} 
 	
