@@ -1,0 +1,2 @@
+Need to remove public instance variables in the abstract classes and replace them with getters and setters.
+Need to refactor that one method in Controls class that is too long (25 lines) 
