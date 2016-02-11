@@ -8,7 +8,6 @@ import cellclasses.WaTorCell;
 import filereadcheck.FileReader;
 
 public class WaTorRuleEnforcer extends RuleEnforcer{
-	private WaTorCell[][] myGrid;
 	private static int fishSpawn; 
 	private static int sharkSpawn;
 	private int sharkEnergy;
@@ -17,12 +16,6 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 
 	public WaTorRuleEnforcer(Cell[][] grid, FileReader reader) {
 		super(grid, reader);
-		myGrid = new WaTorCell[grid.length][grid.length];
-		for (int i=0;i<grid.length;i++) { 
-			for (int j=0;j<grid.length;j++) { 
-				myGrid[i][j] = (WaTorCell) grid[i][j];
-			}
-		}
 	}
 
 	public void initializeParameters() { 
