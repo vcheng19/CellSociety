@@ -25,10 +25,13 @@ public class GenerateCoordinates {
 //		gen(50, 1300);
 		System.out.println("");
 //		gen(50, 30);
-		for(int i = 0; i < 100; i++){
-			int randomPick = (int) Math.floor(Math.random() * 8);
-			System.out.println(randomPick);
-		}
+//		for(int i = 0; i < 100; i++){
+//			int randomPick = (int) Math.floor(Math.random() * 8);
+//			System.out.println(randomPick);
+//		}
+//		
+		int cor = -1; 
+		System.out.println(Math.floorMod(-1, 4));
 		
 	}
 }

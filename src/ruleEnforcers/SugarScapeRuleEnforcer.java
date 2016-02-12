@@ -69,6 +69,8 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 		}
 	}
 	
-	public List<SugarScapeCell> getExtendedNeighbors()
+	public List<SugarScapeCell> getExtendedNeighbors(){
+		
+	}
 	
 }

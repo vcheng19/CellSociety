@@ -21,6 +21,9 @@ public class SugarScapeCell extends Cell{
 	private int sugarGrowBackInterval; 
 	private int sugarTick; 
 	
+	//Interaction attributes
+	private boolean occupied; 
+	
 	public SugarScapeCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
 		agent = false;
@@ -29,6 +32,14 @@ public class SugarScapeCell extends Cell{
 	
 	public boolean isGender() {
 		return gender;
+	}
+	
+	public boolean isOccupied(){
+		return occupied;
+	}
+	
+	public boolean setOccupied(){
+		
 	}
 	
 	public void setMoved(){
@@ -43,20 +54,12 @@ public class SugarScapeCell extends Cell{
 		return agent; 
 	}
 	
-	public void setAge(int age){
-		this.age = age; 
-	}
-	
 	public int getAge(){
 		return age; 
 	}
 	
 	public int getMaxAge(){
 		return maxAge; 
-	}
-	
-	public void setAgent(boolean agent) {
-		this.agent = agent;
 	}
 	
 	public void updateAge(){
@@ -88,7 +91,6 @@ public class SugarScapeCell extends Cell{
 		else{
 			sugarAmount--;
 		}
-		if()
 	}
 
 	public void setSugarAmount(int sugarAmount) {

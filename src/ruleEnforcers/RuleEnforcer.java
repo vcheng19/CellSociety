@@ -46,8 +46,11 @@ public abstract class RuleEnforcer {
 	}
 
 	public int wrapCor(int cor) { 
-		if(cor < 0) cor = myGrid.length - 1;
-		else if(cor > myGrid.length - 1) cor = 0;
+		System.out.println(cor);
+		System.out.println(myGrid.length);
+		if(cor < 0) cor = Math.floorMod(cor, myGrid.length);
+		else if(cor > myGrid.length - 1) cor = Math.floorMod(cor, myGrid.length);
+		System.out.println("Wrapped: " + cor);
 		return cor;
 	}
 
