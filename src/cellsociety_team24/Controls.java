@@ -108,10 +108,11 @@ public class Controls {
 		File selectedFile = fc.showOpenDialog(myStage);
 		try {
 			reader = new FileReader(selectedFile);
-			mySimulator = makeSim(root, reader);
 		} catch (Exception e) {
 			System.out.println("No file selected");
 		}
+		reader.validateSim();
+		mySimulator = makeSim(root, reader);
 	}
 	
     public Simulator makeSim(Group gr, FileReader reader) { 
