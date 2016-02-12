@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='us-ascii'?>
 
 <cellsociety>
-	<sim_type value="WaTor"/>
-	<title value="Wa Tor Simulation"/>
-	<author value="Team 24" />
-	<dimension value="4"/> 
-	<fishspawn value="2"/>
-	<sharkspawn value="7"/>
-	<sharkenergy value="2"/>
-	<fishenergy value="2"/>
-	<fishy value="1 0"/>
-	<fishx value="0 0"/>
-	<sharky value="1 0"/>
-	<sharkx value="1 1"/>
+	<sim_type>WaTor</sim_type>
+	<title>Wa Tor Simulation</title>
+	<author>Team 24</author>
+	<dimension>4</dimension> 
+	<fishspawn>2</fishspawn>
+	<sharkspawn>7</sharkspawn>
+	<sharkenergy>2</sharkenergy>
+	<fishenergy>2</fishenergy>
+	<fishy>1 0</fishy>
+	<fishx>0 0</fishx>
+	<sharky>1 0</sharky>
+	<sharkx>1 1</sharkx>
 </cellsociety>
 
