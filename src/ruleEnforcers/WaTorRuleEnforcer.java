@@ -85,7 +85,6 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 				shark.setEnergy(shark.getEnergy() - 1);
 			}
 		}
-
 	}
 
 	public WaTorCell chooseNeighbor(List<WaTorCell> neighbors) { 

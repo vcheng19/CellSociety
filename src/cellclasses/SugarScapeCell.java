@@ -3,17 +3,18 @@ package cellclasses;
 import javafx.scene.Group;
 
 public class SugarScapeCell extends Cell{
-	boolean agent;
+	private boolean agent;
 	//Agent attributes
-	boolean gender; //True if female, false if male 
-	int vision;
-	int sugarMetabolism; 
-	int sugar; 
+	private boolean gender; //True if female, false if male 
+	private int vision;
+	private int sugarMetabolism; 
+	private int sugarAgent;
 	
 	//Sugar attributes 
-	int sugarAmount;
-	int sugarGrowBackRate; 
-	int sugarGrowBackInterval; 
+	private int sugarAmount; 
+	private int sugarGrowBackRate; 
+	private int sugarGrowBackInterval; 
+//	private int sugarTick; 
 	
 	public SugarScapeCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
@@ -21,51 +22,56 @@ public class SugarScapeCell extends Cell{
 		
 	}
 	
-	public boolean isAgent(){
-		return agent; 
-	}
-	
-	public boolean isFemale() {
+	public boolean isGender() {
 		return gender;
 	}
 
-	public int getVision() {
-		return vision;
+	public void setGender(boolean gender) {
+		this.gender = gender;
 	}
 
-	public int getSugarMetabolism() {
-		return sugarMetabolism;
+	public void setAgent(boolean agent) {
+		this.agent = agent;
 	}
 
-	public int getSugar() {
-		return sugar;
+	public void setVision(int vision) {
+		this.vision = vision;
 	}
 
-	public int getSugarAmount() {
-		return sugarAmount;
+	public void setSugarMetabolism(int sugarMetabolism) {
+		this.sugarMetabolism = sugarMetabolism;
 	}
 
-	public int getSugarGrowBackRate() {
-		return sugarGrowBackRate;
+	public void setSugar(int sugarAgent) {
+		this.sugarAgent = sugarAgent;
 	}
 
-	public int getSugarGrowBackInterval() {
-		return sugarGrowBackInterval;
+	public void setSugarAmount(int sugarAmount) {
+		this.sugarAmount = sugarAmount;
+	}
+
+	public void setSugarGrowBackRate(int sugarGrowBackRate) {
+		this.sugarGrowBackRate = sugarGrowBackRate;
+	}
+
+	public void setSugarGrowBackInterval(int sugarGrowBackInterval) {
+		this.sugarGrowBackInterval = sugarGrowBackInterval;
 	}
 	
-	public void eatSugar(){
-		sugar++;
-	}
-	
-	public void generateSugar(){
-		sugarAmount++; 
-	}
-	
-	public void makeAgent(){
+	public void makeAgent(int vision, int sugarAgent, int sugarMetabolism){
+		this.vision = vision; 
+		this.sugarAgent = sugarAgent;
+		this.sugarMetabolism = sugarMetabolism; 
 		agent = true; 
 		int pick = (int) Math.random() * 1;
 		if(pick == 0) gender = true;
 		else gender = false; 
+	}
+	
+	public void makeSugar(int sugarAmount, int sugarGrowBackRate, int sugarGrowBackInterval){
+		this.sugarAmount = sugarAmount;
+		this.sugarGrowBackRate = sugarGrowBackRate;
+		this.sugarGrowBackInterval = sugarGrowBackInterval; 
 	}
 	
 	public void killAgent(){

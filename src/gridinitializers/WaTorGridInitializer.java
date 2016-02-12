@@ -39,8 +39,8 @@ public class WaTorGridInitializer extends GridInitializer{
 		int[] xFish = reader.populateCoorArray(reader.readProperty("fishx"));
 		int[] yFish = reader.populateCoorArray(reader.readProperty("fishy"));
 		for(int i = 0; i< xFish.length;i++){
-			WaTorCell watorcell = (WaTorCell) grid[xFish[i]][yFish[i]];
-			watorcell.makeFish(fishEnergy, 0);
+			WaTorCell watorCell = (WaTorCell) grid[xFish[i]][yFish[i]];
+			watorCell.makeFish(fishEnergy, 0);
 		}
 	}
 	
