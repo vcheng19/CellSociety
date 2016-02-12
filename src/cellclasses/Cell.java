@@ -2,6 +2,7 @@ package cellclasses;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public abstract class Cell {
@@ -9,6 +10,7 @@ public abstract class Cell {
 	private int myRow;
 	private int myCol;
 	Rectangle myRect;
+	Circle myCirc; 
 	final static Color DEFAULT_COLOR = Color.BLACK;
 	
 	public Cell(Group root, double size, int x, int y) {

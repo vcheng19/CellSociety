@@ -7,7 +7,7 @@ import javafx.scene.Group;
 public class SugarScapeGridInitializer extends GridInitializer{
 	private int vision;
 	private int sugarMetabolism;
-	private int sugar; 
+	private int sugarAgent; 
 	private int sugarAmount;
 	private int sugarGrowBackRate;
 	private int sugarGrowBackInterval; 
@@ -31,15 +31,15 @@ public class SugarScapeGridInitializer extends GridInitializer{
 	public void initializeParameters(){
 		vision = Integer.parseInt(reader.readProperty("vision"));
 		sugarMetabolism = Integer.parseInt(reader.readProperty("sugarMetabolism"));
-		sugar = Integer.parseInt(reader.readProperty("sugar"));
+		sugarAgent = Integer.parseInt(reader.readProperty("sugarAgent"));
 		sugarAmount = Integer.parseInt(reader.readProperty("sugarAmount"));
 		sugarGrowBackRate = Integer.parseInt(reader.readProperty("sugarGrowBackRate"));
 		sugarGrowBackInterval = Integer.parseInt(reader.readProperty("sugarGrowBackInterval"));
 	}
 	
 	public void addSugar(){
-		int [] xSugarStats = reader.populateCoorArray(reader.readProperty("sugarStatsX"));
-		int [] ySugarStats = reader.populateCoorArray(reader.readProperty("sugarStatsY")); 
+		int [] xSugarStats = reader.populateCoorArray(reader.readProperty("sugarX"));
+		int [] ySugarStats = reader.populateCoorArray(reader.readProperty("sugarY")); 
 		for (int i = 0; i < xSugarStats.length; i++){
 			SugarScapeCell sugarCell = (SugarScapeCell) grid[xSugarStats[i]][ySugarStats[i]];
 			sugarCell.makeSugar(sugarAmount, sugarGrowBackRate, sugarGrowBackInterval);
@@ -51,7 +51,7 @@ public class SugarScapeGridInitializer extends GridInitializer{
 		int [] yAgent = reader.populateCoorArray(reader.readProperty("agentY")); 
 		for (int i = 0; i < xAgent.length; i++){
 			SugarScapeCell sugarCell = (SugarScapeCell) grid[xAgent[i]][yAgent[i]];
-			sugarCell.makeAgent(vision, sugar, sugarMetabolism);
+			sugarCell.makeAgent(vision, sugarAgent, sugarMetabolism);
 		}
 	}
 }
