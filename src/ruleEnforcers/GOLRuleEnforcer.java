@@ -61,7 +61,7 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 	
 	private int numNeighbors(Cell cell){
 		int numAliveCells = 0;
-		ArrayList<Cell> myNeighbors = getNeighbors(cell, wrap);
+		ArrayList<Cell> myNeighbors = cell.getNeighbors();
 		for (Cell x: myNeighbors){
 			int row= x.getX();
 			int col = x.getY();

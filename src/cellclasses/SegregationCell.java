@@ -12,6 +12,15 @@ public class SegregationCell extends Cell {
 	
 	public SegregationCell(Group root, double size, int x, int y){
 		super(root, size, x, y);
+		setUp();
+	}
+	
+	public SegregationCell(int x, int y){
+		super(x,y);
+		setUp();
+	}
+	
+	private void setUp(){
 		isEmpty = true;
 		isRed = false;
 		isBlue = false;
