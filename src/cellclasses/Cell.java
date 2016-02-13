@@ -1,7 +1,6 @@
 package cellclasses;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -29,7 +28,6 @@ public abstract class Cell {
 		myRow = x;
 		myCol = y;
 		myShape = s;
-		//myRect = new Rectangle(x*size, y*size, size, size);
 		s.setFill(DEFAULT_COLOR);
 		root.getChildren().add(myShape);
 	}

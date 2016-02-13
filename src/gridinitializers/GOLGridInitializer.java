@@ -20,13 +20,11 @@ public class GOLGridInitializer extends GridInitializer{
 		grid = new GameOfLifeCell[DIMENSION][DIMENSION];
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid[0].length;j++) { 
-				//GameOfLifeCell cell = new GameOfLifeCell(g, WORLD_SIZE/DIMENSION, i, j);
 				GameOfLifeCell cell = new GameOfLifeCell(i, j);
 				grid[i][j] = cell;
 			}
 		}
 		Grid thisGrid = new HexagonGrid(grid, WORLD_SIZE/DIMENSION, g);
-		//System.out.println(WORLD_SIZE/DIMENSION);
 		boolean wrap = true;
 		thisGrid.createCells(wrap);
 		addAttributes();

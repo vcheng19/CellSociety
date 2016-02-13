@@ -19,6 +19,10 @@ public class ForagingAntCell extends Cell{
 		hasEaten = false; 
 	}
 	
+	public ForagingAntCell(int x, int y){
+		super(x,y);
+	}
+	
 	public void addAnt() { 
 		numAnts++; 
 	}

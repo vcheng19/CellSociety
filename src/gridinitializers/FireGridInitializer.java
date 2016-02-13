@@ -36,6 +36,13 @@ public class FireGridInitializer extends GridInitializer {
 		addFire();
 	}
 	
+	private void addFire(){
+		int fireX = Integer.parseInt(reader.readProperty("fireX"));
+		int fireY = Integer.parseInt(reader.readProperty("fireY"));
+		FireCell fireCell = (FireCell) grid[fireX][fireY];
+		fireCell.makeFire();
+	}
+	
 	private void makeBorder(){
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid[0].length;j++) { 

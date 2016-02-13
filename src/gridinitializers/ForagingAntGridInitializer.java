@@ -1,6 +1,7 @@
 package gridinitializers;
 
 import cellclasses.ForagingAntCell;
+import cellclasses.SegregationCell;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
 
@@ -22,6 +23,17 @@ public class ForagingAntGridInitializer extends GridInitializer {
 				ForagingAntCell cell = new ForagingAntCell(g, WORLD_SIZE/DIMENSION, i, j);
 				grid[i][j] = cell;
 				if (doConfigCell(nestXTag, nestYTag, i, j)) cell.makeNest(initAnts); 
+				if (doConfigCell(foodXTag, foodYTag, i, j)) cell.makeFood();
+			}
+		}
+	}
+	
+	public void addAttributes() { 
+		for (int i=0;i<grid.length;i++) { 
+			for (int j=0;j<grid[0].length;j++) { 
+				ForagingAntCell cell = new ForagingAntCell(i, j);
+				grid[i][j] = cell;
+				if (doConfigCell(nestXTag, nestYTag, i, j)) cell.makeNest(initAnts);
 				if (doConfigCell(foodXTag, foodYTag, i, j)) cell.makeFood();
 			}
 		}

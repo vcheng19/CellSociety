@@ -1,6 +1,5 @@
 package cellclasses;
 
-import java.util.concurrent.Callable;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
