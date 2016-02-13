@@ -17,6 +17,7 @@ public abstract class Cell {
 	Shape myShape;
 	private ArrayList<Cell> myNeighbors;
 	final static Color DEFAULT_COLOR = Color.BLACK;
+	public boolean didMove; 
 	
 	public Cell(int x, int y){
 		myRow = x;
@@ -44,6 +45,10 @@ public abstract class Cell {
 	public Color getColor(){
 		return color;
 	} 
+	
+	public void setMoved(boolean moved) { 
+		didMove = moved;
+	}
 	
 	public void setColor(Color c){
 		myShape.setFill(c);

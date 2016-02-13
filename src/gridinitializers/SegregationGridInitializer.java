@@ -28,7 +28,6 @@ public class SegregationGridInitializer extends GridInitializer {
 			}
 		}
 		Grid thisGrid = new HexagonGrid(grid, WORLD_SIZE/DIMENSION, g);
-		//System.out.println(WORLD_SIZE/DIMENSION);
 		boolean wrap = false;
 		thisGrid.createCells(wrap);
 		addAttributes();
@@ -44,23 +43,4 @@ public class SegregationGridInitializer extends GridInitializer {
 			}
 		}
 	}
-
-//	private void addRed(){
-//		int[] xRed = reader.populateCoorArray(reader.readProperty("redx"));
-//		int[] yRed = reader.populateCoorArray(reader.readProperty("redy"));
-//		for (int i=0;i<xRed.length;i++) { 
-//			SegregationCell segcell= (SegregationCell) grid[xRed[i]][yRed[i]];
-//			segcell.makeRed();
-//		}	
-//	}
-//	
-//	private void addBlue(){
-//		int[] xBlue = reader.populateCoorArray(reader.readProperty("bluex"));
-//		int[] yBlue = reader.populateCoorArray(reader.readProperty("bluey"));
-//		for (int i=0;i<xBlue.length;i++) { 
-//			SegregationCell segcell= (SegregationCell) grid[xBlue[i]][yBlue[i]];
-//			segcell.makeBlue();
-//		}	
-
-//	}
 }
