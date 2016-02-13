@@ -28,6 +28,8 @@ public class SegregationGridInitializer extends GridInitializer {
 			}
 		}
 		Grid thisGrid = new HexagonGrid(grid, WORLD_SIZE/DIMENSION, g);
+		//thisGrid.setGrid(grid);
+		
 		//System.out.println(WORLD_SIZE/DIMENSION);
 		boolean wrap = false;
 		thisGrid.createCells(wrap);

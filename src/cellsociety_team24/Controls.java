@@ -119,6 +119,7 @@ public class Controls {
         GridInitializer gi;
         RuleEnforcer rule;
         String sim_type = reader.readProperty("sim_type");
+        //makeGridShape()
         switch(sim_type) { 
         	case "Game of life":
         		gi = new GOLGridInitializer(gr, reader);
@@ -143,6 +144,9 @@ public class Controls {
         return new Simulator(gi.getGrid(), rule);
     }
 	
+    //switches
+    
+    
     private Button makeButton (String label, EventHandler<ActionEvent> handler, int x, int y) {
         Button result = new Button();
         result.setText(label);

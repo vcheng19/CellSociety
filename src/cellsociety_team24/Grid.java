@@ -22,7 +22,19 @@ public abstract class Grid {
 		root = root1;
 	}
 	
+	public Grid(double cellSize1, Group root1){
+		//myGrid = new ArrayList<Cell>();
+		//mySize = size;
+		//myGrid = grid;
+		cellSize = cellSize1;
+		root = root1;
+	}
+	
 	public abstract void createCells(boolean wrap);
+	
+	public void setGrid(Cell[][] grid){
+		myGrid = grid;
+	}
 	
 //	public void createCells(int yBound){
 //		for(int i = 0; i< mySize; i++){
