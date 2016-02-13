@@ -78,23 +78,53 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 				agent.killAgent(agent); 
 				return;
 			}
-			List<SugarScapeCell> sugarNeighbors = getSugarNeighbors(agent, true);
+			List<SugarScapeCell> sugarNeighbors = getNeighbors(agent, true, false);
 			if(sugarNeighbors.size() != 0){
 				SugarScapeCell swap = chooseNeighbor(sugarNeighbors);
 				agent.moveAgent(agent, swap);
 			}
+			List<SugarScapeCell> agentNeighbors = getNeighbors(agent, true, true);
+			if(agentNeighbors.size() != 0){
+				reproduceAgent(agent, chooseNeighbor(agentNeighbors));
+			}
 		}
 	}
 	
-	public List<SugarScapeCell> getSugarNeighbors(Cell agent, boolean wrap){
+	public List<SugarScapeCell> getNeighbors(Cell agent, boolean wrap, boolean repro){
 		List<SugarScapeCell> neighborList = new ArrayList<SugarScapeCell>();
+		SugarScapeCell curCell = (SugarScapeCell) agent; 
 		for(Cell cell: getAdjNeighbors(agent, true, vision)){
 			SugarScapeCell checkedCell = (SugarScapeCell) cell;
-			if(!checkedCell.isOccupied()){
+			if(!checkedCell.isOccupied() && !repro){
 				neighborList.add(checkedCell); 
 			}
+			else if((checkedCell.getGender() == !curCell.getGender()) && checkedCell.getAge() <= checkedCell.getFertileLimit()){
+				neighborList.add(checkedCell);
+			}
+			
 		}
 		return neighborList;
+	}
+	
+	public void reproduceAgent(SugarScapeCell mom, SugarScapeCell dad){
+		int babyVision = (mom.getVision() + dad.getVision()) / 2; 
+		int babySugarAgent = (mom.getSugarAgent() / 2) + (dad.getSugarAgent() / 2); 
+		mom.setSugar(mom.getSugarAgent() / 2);
+		dad.setSugar(dad.getSugarAgent() / 2);
+		int babySugarMetabolism = (mom.getSugarMetabolism() + dad.getSugarMetabolism()) / 2;
+		int babyMaxAge = (mom.getMaxAge() + dad.getMaxAge()) / 2;
+		int babyFertileLimit = (mom.getFertileLimit() + dad.getFertileLimit()) / 2;
+		List<SugarScapeCell> momNeighbors = getNeighbors(mom, true, true);
+		List<SugarScapeCell> dadNeighbors = getNeighbors(dad, true, true);
+		List<SugarScapeCell> allNeighbors = new ArrayList<SugarScapeCell>(momNeighbors);
+		allNeighbors.addAll(dadNeighbors); 
+		List<SugarScapeCell> emptyNeighbors = new ArrayList<SugarScapeCell>(); 
+		for(SugarScapeCell cell: allNeighbors){
+			if(!cell.isOccupied()) emptyNeighbors.add(cell);
+		}
+		SugarScapeCell birth = chooseNeighbor(emptyNeighbors);
+		birth.makeAgent(babyVision, babySugarAgent, babySugarMetabolism, babyMaxAge, babyFertileLimit);
+		birth.setMoved(true);
 	}
 	
 	public SugarScapeCell chooseNeighbor(List<SugarScapeCell> neighbors){

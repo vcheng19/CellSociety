@@ -14,14 +14,15 @@ public class SugarScapeCell extends Cell{
 	private int sugarAgent;//yes
 	private int age; 
 	private int maxAge; 
-
+	private int fertileLimit; 
 	//Sugar attributes 
 	private int sugarAmount; //Yes
 	private int sugarAmountMax; //Yes
 	private int sugarGrowBackRate; //Yes
 	private int sugarGrowBackInterval; //Yes
 	private int sugarTick; 
-	
+	private final static int ONE_THIRD = 1/3; 
+	private final static int TWO_THIRD = 2/3;
 	//Interaction attributes
 	private boolean occupied; 
 	
@@ -35,12 +36,16 @@ public class SugarScapeCell extends Cell{
 		agent = state; 
 	}
 	
-	public boolean isGender() {
+	public boolean getGender() {
 		return gender;
 	}
 	
 	public boolean isOccupied(){
 		return occupied;
+	}
+	
+	public int getFertileLimit(){
+		return fertileLimit; 
 	}
 	
 	public void setOccupied(boolean move){
@@ -123,10 +128,10 @@ public class SugarScapeCell extends Cell{
 				sugarAmount = sugarAmountMax;
 				myRect.setFill(Color.ORANGE);
 			}
-			else if(sugarAmount >= (sugarAmountMax - (sugarAmountMax *(1/3)))){
+			else if(sugarAmount >= (sugarAmountMax - (sugarAmountMax *(ONE_THIRD)))){
 				myRect.setFill(Color.GOLD);
 			}
-			else if(sugarAmount >= (sugarAmountMax - (sugarAmountMax *(2/3)))){
+			else if(sugarAmount >= (sugarAmountMax - (sugarAmountMax *(TWO_THIRD)))){
 				myRect.setFill(Color.BISQUE);
 			}
 			sugarTick = 0; 
@@ -153,11 +158,12 @@ public class SugarScapeCell extends Cell{
 		this.sugarGrowBackInterval = sugarGrowBackInterval;
 	}
 	
-	public void makeAgent(int vision, int sugarAgent, int sugarMetabolism, int maxAge){
+	public void makeAgent(int vision, int sugarAgent, int sugarMetabolism, int maxAge, int fertileLimit){
 		this.vision = vision; 
 		this.sugarAgent = sugarAgent;
 		this.sugarMetabolism = sugarMetabolism; 
 		this.maxAge = maxAge; 
+		this.fertileLimit = fertileLimit; 
 		agent = true; 
 		myCirc.setFill(Color.BLACK);
 		int pick = (int) Math.random() * 1;
