@@ -1,33 +1,27 @@
 package filereadcheck;
+import java.util.ResourceBundle;
 
-import com.sun.xml.internal.txw2.Document;
+import org.w3c.dom.Node;
 
-public class FileErrorCheck {
-	// take resource file for the error messages
+public abstract class FileErrorCheck {
+	FileReader reader; 
+	final String ERROR_RESOURCES = "resources/ErrorMsgs";
+	ResourceBundle myResources = ResourceBundle.getBundle(ERROR_RESOURCES); 
+	final String dim_tag = "dimension"; 
 	
-
-	public FileErrorCheck(Document doc) {
-		
+	public FileErrorCheck(FileReader fr) {
+		reader = fr; 
 	}
 	
-	public void validateSim() { 
-		// check for sim type
-		
+	public void validateParam(String property) { 
+		int n = Integer.parseInt(reader.readProperty(property));
+		if (n <= 0) { 
+			Node p = reader.retrievePropertyNode(property);
+			p.getParentNode().removeChild(p); 
+			fillParam(property);
+		} 
 	}
 	
-	// we want to edit specific tags for specific simulations... 
-	// extend for each simulation or use switch cases? 
-	public void fillParam() { 
-		// if param not given
-		// append param value to xml file 
-		
-		
-	}
-	
-	public void validateParams() {
-		
-		
-	}
-	
-
+	public abstract void checkParams(); 
+	public abstract void fillParam(String s);
 }
