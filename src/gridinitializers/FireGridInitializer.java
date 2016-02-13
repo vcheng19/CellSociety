@@ -28,9 +28,12 @@ public class FireGridInitializer extends GridInitializer {
 		Grid thisGrid = new SquareGrid(grid, WORLD_SIZE/DIMENSION, g, true);
 		boolean wrap = false;
 		thisGrid.createCells(wrap);
+		addAttributes();
+	}
+	
+	public void addAttributes(){
 		makeBorder();
 		addFire();
-
 	}
 	
 	private void makeBorder(){
