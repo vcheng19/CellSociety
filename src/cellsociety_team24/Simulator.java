@@ -4,6 +4,7 @@ import cellclasses.Cell;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import ruleEnforcers.FireRuleEnforcer;
 import ruleEnforcers.RuleEnforcer;
 
 public class Simulator {
@@ -51,5 +52,14 @@ public class Simulator {
 		if(!isPlaying){
 			myRule.iterateGrid();
 		}
+	}
+	
+	public void retrieveGrid() { 
+		System.out.println(ash(myRule));
+	}
+	
+	public boolean ash(RuleEnforcer re) { 
+		System.out.println("it is what it is");
+		return FireRuleEnforcer.class.isInstance(re);
 	}
 }

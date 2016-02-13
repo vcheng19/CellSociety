@@ -8,6 +8,7 @@ import filereadcheck.FileReader;
 public class ForagingAntRuleEnforcer extends RuleEnforcer{
 	private static ForagingAntCell[][] myGrid;
 	ForagingAntCell home; 
+	ForagingAntCell food; 
 	private double SELECT_K; 
 	private double SELECT_N;
 	private int BIRTHRATE;
@@ -23,6 +24,9 @@ public class ForagingAntRuleEnforcer extends RuleEnforcer{
 				myGrid[i][j] = (ForagingAntCell) grid[i][j];
 				if (myGrid[i][j].isType("nest")) { 
 					home = myGrid[i][j];
+				} 
+				if (myGrid[i][j].isType("food")) { 
+					food = myGrid[i][j];
 				}
 			}
 		}
@@ -53,9 +57,13 @@ public class ForagingAntRuleEnforcer extends RuleEnforcer{
 	
 	public void determineMove(ForagingAntCell curCell) {
 		ForagingAntCell moveToCell = chooseAntsNeighbor(curCell);
-		if (!moveToCell.equals(home)) {
+		if ((!moveToCell.equals(home)) && (!moveToCell.equals(home))) {
 			moveAnt(curCell, moveToCell);
-		} else {
+		}
+		//else if() { 
+		//	
+		//}
+		else {
 			moveToCell.addAnt();
 			curCell.makeFloor();
 			curCell.setMoved(true);
@@ -88,9 +96,7 @@ public class ForagingAntRuleEnforcer extends RuleEnforcer{
 		}
 		return nextPos;
 	}
-	
 	// implement probability thing 
 	
 	// make the ants be born at every step - where tho? 
-
 }

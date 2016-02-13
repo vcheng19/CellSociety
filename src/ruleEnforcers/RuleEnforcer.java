@@ -20,7 +20,6 @@ public abstract class RuleEnforcer {
 
 	public abstract void iterateGrid();
 
-	//public abstract void updateState(Cell cell);
 
 	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap){
 		ArrayList<Cell> result = new ArrayList<Cell>();
@@ -81,5 +80,8 @@ public abstract class RuleEnforcer {
 			}
 		}
 	}
-
+	
+	public Cell[][] getGrid() { 
+		return myGrid;
+	}
 }

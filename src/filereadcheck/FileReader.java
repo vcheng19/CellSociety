@@ -20,13 +20,15 @@ public class FileReader{
 	static ResourceBundle myResources = ResourceBundle.getBundle(ERROR_RESOURCES); 
 	private static final String[] validSims = {"Fire", "Game of life", "WaTor", "Segregation"
 			, "Foraging Ant"};
-	DocumentBuilder db;
+	private DocumentBuilder db;
+	private FileWriter writer; 
 
 	public FileReader(File f) throws ParserConfigurationException, SAXException, IOException  { 
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         db = dbf.newDocumentBuilder();
         doc = db.parse(f);
         doc.getDocumentElement().normalize();
+        writer = new FileWriter(this);
 	}
 	
 	public void validateSim(){ 
@@ -83,17 +85,12 @@ public class FileReader{
 		return found;
 	}
 	
-	public void writeProperty(String property, String val) { 
-		Node cell = doc.getElementsByTagName("cellsociety").item(0);
-		Node prop = doc.createElement(property); 
-		prop.appendChild(doc.createTextNode(val));
-		cell.appendChild(prop);
-		System.out.println(String.format(myResources.getString("BadParam"), val + "", property));
-
+	public Document getDoc() { 
+		return doc;
 	}
 	
-	public Node retrievePropertyNode(String property) { 
-		return doc.getElementsByTagName(property).item(0);
+	public FileWriter getWriter() { 
+		return writer;
 	}
 
 	public int[] populateCoorArray(String vals) { 
