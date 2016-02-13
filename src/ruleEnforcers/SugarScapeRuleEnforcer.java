@@ -44,11 +44,11 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 			for(int c = 0; c < myGrid.length; c++){
 				SugarScapeCell curCell = myGrid[r][c];
 				if(!curCell.didMove()){
-					if(curCell.getAgent()){//Is agent
-						//Do agent stuff
+					if(curCell.isAgent()){
+						doAgentAction(curCell);
 					}
 					else{
-						//Do sugar stuff
+						doSugarAction(curCell);
 					}
 				}
 			}
@@ -57,20 +57,42 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 	
 	public void doSugarAction(SugarScapeCell sugar){
 		sugar.updateSugarTick();
-		if(sugar.getSugarTick() == sugarGrowBackInterval){
+		if(sugar.getAge() == sugar.getMaxAge()){
+			sugar.killAgent(); 
+		}
+		if(sugar.getSugarTick() == sugarGrowBackInterval || sugar.getSugarAgent() > sugar.getSugarMetabolism()){
 			sugar.updateSugarAmount(true); 
 		}
+		List<SugarScapeCell> sugarNeighbors = getSugarNeighbors(sugar, true);
+		SugarScapeCell swap = chooseNeighbor(sugarNeighbors);
+		sugar.moveAgent(sugar, swap);
+		sugar.updateAge();
 	}
 	
 	public void doAgentAction(SugarScapeCell agent){
 		agent.updateAge();
 		if(agent.getAge() == agent.getMaxAge()){
 			agent.killAgent(); 
+			return;
 		}
 	}
 	
-	public List<SugarScapeCell> getExtendedNeighbors(){
-		
+	public List<SugarScapeCell> getSugarNeighbors(Cell agent, boolean wrap){
+		List<SugarScapeCell> neighborList = new ArrayList<SugarScapeCell>();
+		for(Cell cell: getAdjNeighbors(agent, true, vision)){
+			SugarScapeCell checkedCell = (SugarScapeCell) cell;
+			if(!checkedCell.isOccupied()){
+				neighborList.add(checkedCell); 
+			}
+		}
+		return neighborList;
 	}
+	
+	public SugarScapeCell chooseNeighbor(List<SugarScapeCell> neighbors){
+		int randomPick = (int) (Math.floor(Math.random() * (neighbors.size() -1)));
+		SugarScapeCell ne = neighbors.get(randomPick); 
+		return ne;
+	}
+	
 	
 }

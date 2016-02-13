@@ -38,8 +38,16 @@ public class SugarScapeCell extends Cell{
 		return occupied;
 	}
 	
-	public boolean setOccupied(){
-		
+	public void setOccupied(){
+		occupied = !occupied;
+	}
+	
+	public int getVision(){
+		return vision; 
+	}
+	
+	public void setVision(int vision){
+		this.vision = vision; 
 	}
 	
 	public void setMoved(){
@@ -50,12 +58,21 @@ public class SugarScapeCell extends Cell{
 		return moved;
 	}
 	
-	public boolean getAgent(){
+	public boolean isAgent(){
 		return agent; 
+	}
+	
+	private void setAge(int age) {
+		this.age = age; 
+		
 	}
 	
 	public int getAge(){
 		return age; 
+	}
+	
+	public void setMaxAge(int maxAge){
+		this.maxAge = maxAge; 
 	}
 	
 	public int getMaxAge(){
@@ -68,6 +85,14 @@ public class SugarScapeCell extends Cell{
 
 	public void setSugarMetabolism(int sugarMetabolism) {
 		this.sugarMetabolism = sugarMetabolism;
+	}
+	
+	public int getSugarAgent(){
+		return sugarAgent;
+	}
+	
+	public int getSugarMetabolism(){
+		return sugarMetabolism; 
 	}
 
 	public void setSugar(int sugarAgent) {
@@ -82,6 +107,10 @@ public class SugarScapeCell extends Cell{
 		return sugarTick;
 	}
 	
+	public int getSugarAmount(){
+		return sugarAmount; 
+	}
+	
 	public void updateSugarAmount(boolean increase){
 		if(increase){	
 			sugarAmount += sugarGrowBackRate;
@@ -89,13 +118,17 @@ public class SugarScapeCell extends Cell{
 			sugarTick = 0; 
 		}
 		else{
-			sugarAmount--;
+			sugarAmount = 0;
+			myRect.setFill(Color.BLUE);
 		}
 	}
 
 	public void setSugarAmount(int sugarAmount) {
 		this.sugarAmount = sugarAmount;
-		
+	}
+	
+	public void eatSugar(int sugarConsumed){
+		sugarAgent += sugarConsumed; 
 	}
 
 	public void setSugarGrowBackRate(int sugarGrowBackRate) {
@@ -127,11 +160,25 @@ public class SugarScapeCell extends Cell{
 	
 	public void killAgent(){
 		agent = false; 
+		occupied = false; 
+		vision = 0;
 		age = 0; 
 		maxAge = 0; 
 		sugarAgent = 0; 
 		sugarMetabolism = 0; 
+		myRect.setFill(Color.BLACK);
 	}
 	
+	public void moveAgent(SugarScapeCell agent, SugarScapeCell destination){
+		destination.setOccupied();
+		destination.setSugarAmount(agent.getSugarAgent());
+		destination.setVision(agent.getVision()); 
+		destination.setAge(agent.getAge()); 
+		destination.setMaxAge(agent.getMaxAge());
+		destination.eatSugar(destination.getSugarAmount()); 
+		agent.killAgent();
+		myRect.setFill(Color.PURPLE);
+	}
+
 
 }

@@ -9,7 +9,7 @@ public abstract class RuleEnforcer {
 	public Cell[][] myGrid;
 	public FileReader reader;
 	public Cell[][] copyGrid;
-	
+	private int range;
 	public RuleEnforcer(Cell[][] grid, FileReader fr) {
 		myGrid = grid; 
 		reader = fr;
@@ -22,13 +22,13 @@ public abstract class RuleEnforcer {
 
 	//public abstract void updateState(Cell cell);
 
-	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap){
+	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap, int range){
 		ArrayList<Cell> result = new ArrayList<Cell>();
 		int r = check.getX();
 		int c = check.getY();
-		for(int rChange = -1;rChange < 2;rChange++){
+		for(int rChange = -range;rChange <= range;rChange++){
 			int rNew = r + rChange;
-			for (int cChange = -1;cChange < 2;cChange++){
+			for (int cChange = -range;cChange <= range;cChange++){
 				int cNew = c + cChange;
 				if( !(rChange == 0 && cChange == 0)){
 					if(rNew >= 0 && rNew < myGrid.length && cNew >= 0 && cNew < myGrid.length){
@@ -54,9 +54,9 @@ public abstract class RuleEnforcer {
 		return cor;
 	}
 
-	public ArrayList<Cell> getAdjNeighbors(Cell check, boolean wrap){
+	public ArrayList<Cell> getAdjNeighbors(Cell check, boolean wrap, int range){
 		ArrayList<Cell> result = new ArrayList<Cell>();
-		ArrayList<Cell> allNeighbors= getNeighbors(check, wrap);
+		ArrayList<Cell> allNeighbors= getNeighbors(check, wrap, range);
 		int myRow = check.getX();
 		int myCol = check.getY();
 		for(Cell x: allNeighbors){

@@ -58,7 +58,7 @@ public class SegregationRuleEnforcer extends RuleEnforcer {
 		percentGrid = new double[myGrid.length][myGrid.length];
 		for (int row = 0; row < myGrid.length; row++){
 			for(int col = 0; col < myGrid.length; col++){
-				ArrayList<Cell> myNeighbors = getNeighbors(myGrid[row][col], wrap);
+				ArrayList<Cell> myNeighbors = getNeighbors(myGrid[row][col], wrap, 1);
 				int total = 0;
 				int numColor = 0;
 				if(!myGrid[row][col].isEmpty()){
