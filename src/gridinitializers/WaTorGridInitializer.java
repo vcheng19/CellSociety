@@ -1,6 +1,10 @@
 package gridinitializers;
 
 import cellclasses.WaTorCell;
+import cellsociety_team24.Grid;
+import cellsociety_team24.HexagonGrid;
+import cellsociety_team24.SquareGrid;
+import cellsociety_team24.TriangleGrid;
 import filereadcheck.FileReader;
 import javafx.scene.Group; 
 
@@ -18,12 +22,27 @@ public class WaTorGridInitializer extends GridInitializer{
 		fishEnergy = Integer.parseInt(reader.readProperty("fishenergy"));
 		for(int i = 0;i<grid.length;i++){
 			for(int j = 0; j < grid[0].length;j++){
-				WaTorCell cell = new WaTorCell(g, WORLD_SIZE/DIMENSION, i, j);
+				//WaTorCell cell = new WaTorCell(g, WORLD_SIZE/DIMENSION, i, j);
+				WaTorCell cell = new WaTorCell(i, j);
 				grid[i][j] = cell; 
 			}
 		}
+		Grid thisGrid = new TriangleGrid(grid, WORLD_SIZE/DIMENSION, g, true);
+		boolean wrap = true;
+		thisGrid.createCells(wrap);
+		makeOcean();
 		addSharks();
 		addFish();
+	}
+	
+	private void makeOcean(){
+		for(int i = 0;i<grid.length;i++){
+			for(int j = 0; j < grid[0].length;j++){
+				//WaTorCell cell = new WaTorCell(g, WORLD_SIZE/DIMENSION, i, j);
+				WaTorCell cell = (WaTorCell) grid[i][j];
+				cell.makeOcean();
+			}
+		}
 	}
 	
 	public void addSharks(){

@@ -12,6 +12,15 @@ public class WaTorCell extends Cell{
 	public WaTorCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
 		makeOcean();
+
+	}
+	
+	public WaTorCell(int x, int y){
+		super(x,y);
+		setUp();
+	}
+	
+	private void setUp(){
 		turnsAlive = 0; 
 		energyLevel = 0;
 		didMove = false;

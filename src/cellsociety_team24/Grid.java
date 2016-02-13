@@ -62,9 +62,9 @@ public abstract class Grid {
 	//this is the finite rectangular neighbors
 	//also works for triangular fun fact
 	//
-	public ArrayList<Cell> getAdjNeighbors(Cell check, boolean wrap){
-		return getNeighbors(check, wrap);
-	}
+//	public ArrayList<Cell> getAdjNeighbors(Cell check, boolean wrap){
+//		return getNeighbors(check, wrap);
+//	}
 	
 	public ArrayList<Cell> getCardinalNeighbors(Cell check, boolean wrap){
 		ArrayList<Cell> result = new ArrayList<Cell>();

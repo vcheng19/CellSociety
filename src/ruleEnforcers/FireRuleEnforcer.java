@@ -49,7 +49,7 @@ public class FireRuleEnforcer extends RuleEnforcer {
 	
 	private Set<FireCell> catchOnFire(Set<FireCell> cellsToFire){
 		for(FireCell fire: fireCells){
-			ArrayList<Cell> myNeighbors = getAdjNeighbors(fire, wrap);
+			ArrayList<Cell> myNeighbors = fire.getNeighbors();
 			for(Cell x: myNeighbors){
 				FireCell neighbor = (FireCell) x;
 				if(neighbor.isTree()){

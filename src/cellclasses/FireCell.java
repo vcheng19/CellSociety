@@ -10,6 +10,14 @@ public class FireCell extends Cell {
 	
 	public FireCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
+		makeTree();
+	}
+	
+	public FireCell(int x, int y){
+		super(x,y);
+	}
+	
+	public void makeTree(){
 		setColor(Color.GREEN);
 		cellType = TREE_CONSTANT;
 	}

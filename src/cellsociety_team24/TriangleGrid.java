@@ -14,6 +14,11 @@ public class TriangleGrid extends Grid{
 		super(grid, cellSize, root);
 	}
 	
+	public TriangleGrid(Cell[][] grid, int cellSize, Group root, boolean adj) {
+		super(grid, cellSize, root);
+		// TODO Auto-generated constructor stub
+	}
+	
 	public void createCells(boolean wrap){   //make setShape method in Cell class
 		Cell[][] myGrid = getGrid();
         for (int i = 0; i < myGrid.length;i++){
