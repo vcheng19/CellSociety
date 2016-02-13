@@ -34,6 +34,8 @@ public abstract class GridInitializer {
 		return false;
 	}
 	
+	public abstract void addAttributes();
+	
 	public abstract void makeGrid();
 	
 }

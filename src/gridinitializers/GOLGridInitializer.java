@@ -32,7 +32,7 @@ public class GOLGridInitializer extends GridInitializer{
 		addAttributes();
 	}
 	
-	private void addAttributes(){
+	public void addAttributes(){
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid[0].length;j++) { 
 				//GameOfLifeCell cell = new GameOfLifeCell(g, WORLD_SIZE/DIMENSION, i, j);
