@@ -24,14 +24,10 @@ public class HexagonGrid extends Grid {
 				double side = height1/Math.sqrt(3);
 				//System.out.println(side);
 				double iIncrement = Math.sqrt(side*side - height1*height1/4);
-				System.out.println(iIncrement);
+				//System.out.println(iIncrement);
 				
 				//System.out.println(i +  "    " + j);
 				Polygon hexagon = new Polygon();
-				
-				if(i == 0){
-					hexagon.setFill(Color.PURPLE);
-				}
 
 				double len1 = i*cellSize;
 				double len2 = len1 + iIncrement;
@@ -56,33 +52,93 @@ public class HexagonGrid extends Grid {
 					    len3, wid3,
 					    len2, wid3 });
 				
+				
 				x.setToRoot(root, hexagon);				//could possibly refactor this
-				ArrayList<Cell> neighbors = getNeighbors(x,false);
+				ArrayList<Cell> neighbors = myGetNeighbors(x,false);
 				x.setNeighbors(neighbors); 
+				
+//			if(j == myGrid.length -1){
+//				x.setColor(Color.MISTYROSE);
+//			}
 			}
         }
 	}
 	
-	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap){
+//	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap){
+//		ArrayList<Cell> result = new ArrayList<Cell>();
+//		int r = check.getX();
+//		int c = check.getY();
+//		//System.out.println(r + "    " + c);
+//		for(int rChange = -1;rChange < 2;rChange++){
+//			int rNew = r + rChange;
+//			for (int cChange = -1;cChange < 2;cChange++){
+//				int cNew = c + cChange;
+//				if( !(rChange == 0 && cChange == 0)){
+//					if(rNew >= 0 && rNew < myGrid.length && cNew >= 0 && cNew < myGrid.length){
+//						result.add(myGrid[rNew][cNew]);	
+//					}
+//					else if(wrap){
+//						rNew = wrapCor(rNew);
+//						cNew = wrapCor(cNew);
+//						result.add(myGrid[rNew][cNew]);	
+//					}
+//				}
+//			}
+//		}
+//		return result;
+//	}
+	
+	public ArrayList<Cell> myGetNeighbors(Cell check, boolean wrap){
+		///when j == 0, even cols act as square adj while the odd cols act as box normal
+		//when j === last row;	even is normal box, odd box adj
+		//when i == last col; we take everything but the left corner (norm box minus bottom left corner)
+		//when i==0; everything  but bottom right corner
+		//in the middle odd columns skip we just skip the first two corners (both top corners)
+
+		
 		ArrayList<Cell> result = new ArrayList<Cell>();
+		ArrayList<Cell> allNeighbors = new ArrayList<Cell>();
 		int r = check.getX();
 		int c = check.getY();
-		for(int rChange = -1;rChange <= 1;rChange++){
-			int rNew = r + rChange;
-			for (int cChange = -1;cChange < 2;cChange++){
-				int cNew = c + cChange;
-				if( !(rChange == 0 && cChange == 0)){
-					if(rNew >= 0 && rNew < myGrid.length && cNew >= 0 && cNew < myGrid.length){
-						result.add(myGrid[rNew][cNew]);	
-					}
-					else if(wrap){
-						rNew = wrapCor(rNew);
-						cNew = wrapCor(cNew);
-						result.add(myGrid[rNew][cNew]);	
-					}
+		
+		if(c==0){
+			if(r%2 == 0){
+				return getCardinalNeighbors(check, wrap);
+			}
+			else{
+				return getNeighbors(check, wrap);
+			}
+		}
+		else if(c == myGrid.length -1){
+			if(r%2 == 0){
+				return getNeighbors(check,wrap);
+			}
+			else{
+				return getCardinalNeighbors(check, wrap);
+			}
+		}
+
+		
+		if(r%2 == 0){
+			allNeighbors = getNeighbors(check, wrap);
+			for(Cell x: allNeighbors){
+				if(!(x.getY() == c+1 && x.getX() == r )){
+					result.add(x);
 				}
 			}
 		}
+		else{
+			allNeighbors = getNeighbors(check, wrap);
+			for(Cell x: allNeighbors){
+				if(x.getY() == c-1 && x.getX() != r ){
+				}
+				else{
+					result.add(x);
+				}
+			}
+	}
+		
+		
 		return result;
 	}
 	

@@ -66,10 +66,28 @@ public abstract class Grid {
 		return getNeighbors(check, wrap);
 	}
 	
+	public ArrayList<Cell> getCardinalNeighbors(Cell check, boolean wrap){
+		ArrayList<Cell> result = new ArrayList<Cell>();
+		ArrayList<Cell> allNeighbors = getNeighbors(check, wrap);
+
+		int myRow = check.getX();
+		int myCol = check.getY();
+		for(Cell x: allNeighbors){
+			int row = x.getX();
+			int col = x.getY();
+			if( row == myRow || col == myCol){
+				Cell adjCell = x;
+				result.add(adjCell);
+			}
+		}
+		return result;
+	}
+	
 	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap){
 		ArrayList<Cell> result = new ArrayList<Cell>();
 		int r = check.getX();
 		int c = check.getY();
+		//System.out.println(r + "    " + c);
 		for(int rChange = -1;rChange < 2;rChange++){
 			int rNew = r + rChange;
 			for (int cChange = -1;cChange < 2;cChange++){

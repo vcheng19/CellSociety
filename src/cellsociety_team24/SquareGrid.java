@@ -30,6 +30,7 @@ public class SquareGrid extends Grid {
 		Cell[][] myGrid = getGrid();
 		for (Cell[] cellArray: myGrid){
 			for(Cell x: cellArray){
+				//System.out.println(x.getX() + "   " + x.getY());
 				Rectangle myRect = new Rectangle(x.getX()*cellSize, x.getY()*cellSize, cellSize, cellSize);
 				
 				
@@ -42,28 +43,15 @@ public class SquareGrid extends Grid {
 		
 	}
 	
-	public void createNeighbors(Cell cell){
-		ArrayList<Cell> neighbors = getAdjNeighbors(cell); 
-		cell.setNeighbors(neighbors); 		//not too good to set stuff but couldnt figure out better way
-	}
+	
+	
+//	public void createNeighbors(Cell cell){
+//		ArrayList<Cell> neighbors = getAdjNeighbors(cell); 
+//		cell.setNeighbors(neighbors); 		//not too good to set stuff but couldnt figure out better way
+//	}
 	
 	//how do I diferrentiate b/w whether I want adjNeighbors or real neighbors tho
 	
 	//move the adjacent neighbors here bc only squares have adj
-	public ArrayList<Cell> getAdjNeighbors(Cell check){
-		ArrayList<Cell> result = new ArrayList<Cell>();
-		ArrayList<Cell> allNeighbors= getNeighbors(check, false);
-		int myRow = check.getX();
-		int myCol = check.getY();
-		for(Cell x: allNeighbors){
-			int row = x.getX();
-			int col = x.getY();
-			if( row == myRow || col == myCol){
-				Cell adjCell = x;
-				result.add(adjCell);
-			}
-		}
-		return result;
-	}
 
 }

@@ -21,6 +21,7 @@ public class TriangleGrid extends Grid{
 				
 				//System.out.println(i +  "    " + j);
 				Cell x = myGrid[i][j];
+				//System.out.println(x.getX() + "   " + x.getY());
 				Polygon triangle = new Polygon();
 
 				double len1 = i*cellSize;
