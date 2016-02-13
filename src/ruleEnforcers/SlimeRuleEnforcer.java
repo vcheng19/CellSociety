@@ -17,6 +17,9 @@ public class SlimeRuleEnforcer extends RuleEnforcer {
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid.length;j++) { 
 				myGrid[i][j] = (SlimeCell) grid[i][j];
+				if(myGrid[i][j].isSlime()){
+					mySlimes.add(myGrid[i][j]);
+				}
 			}
 		}
 	}
@@ -31,6 +34,7 @@ public class SlimeRuleEnforcer extends RuleEnforcer {
 	@Override
 	public void iterateGrid() {
 		// TODO Auto-generated method stub
+		
 		
 		
 	}

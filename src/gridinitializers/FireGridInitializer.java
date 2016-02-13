@@ -10,6 +10,8 @@ import filereadcheck.FileReader;
 import javafx.scene.Group;
 
 public class FireGridInitializer extends GridInitializer {
+	private final String fireXTag = "fireX";
+	private final String fireYTag = "fireY"; 
 	
 	public FireGridInitializer(Group gr, FileReader fr) {
 		super(gr, fr);
@@ -23,7 +25,6 @@ public class FireGridInitializer extends GridInitializer {
 				grid[i][j] = cell;
 			}
 		}
-
 		Grid thisGrid = new SquareGrid(grid, WORLD_SIZE/DIMENSION, g, true);
 		boolean wrap = false;
 		thisGrid.createCells(wrap);
@@ -33,13 +34,6 @@ public class FireGridInitializer extends GridInitializer {
 	public void addAttributes(){
 		makeBorder();
 		addFire();
-	}
-	
-	private void addFire(){
-		int fireX = Integer.parseInt(reader.readProperty("fireX"));
-		int fireY = Integer.parseInt(reader.readProperty("fireY"));
-		FireCell fireCell = (FireCell) grid[fireX][fireY];
-		fireCell.makeFire();
 	}
 	
 	private void makeBorder(){

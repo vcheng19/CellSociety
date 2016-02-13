@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='us-ascii'?>
 
 <cellsociety>
-	<sim_type value="Fire"/>
-	<title value="Fire Simulation"/>
-	<author value="Team 24" />
-	<dimension value="50" /> 
-	<percentage value= "55"/>
-	<fireX value="25"/>
-	<fireY value="25"/>
+	<sim_type>Fire</sim_type>
+	<title>Fire Simulation"</title>
+	<author>Team 24</author>
+	<dimension>50</dimension> 
+	<percentage>55</percentage>
+	<fireX>25</fireX>
+	<fireY>25</fireY>
 </cellsociety>
 

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='us-ascii'?>
+
+<cellsociety>
+	<sim_type>Foraging Ant</sim_type>
+	<title>Foraging Ant Simulation</title>
+	<author>Team 24</author>
+	<dimension>100</dimension> 
+	<initantsnest>2</initantsnest>
+	<birthrate>2</birthrate>
+	<maxph>1000</maxph>
+	<selectk>1</selectk>
+	<selectn>10</selectn>
+	<nestx>70</nestx>
+	<nesty>70</nesty>
+	<foodx>20</foodx>
+	<foody>20</foody>
+</cellsociety>
