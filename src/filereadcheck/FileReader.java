@@ -18,7 +18,8 @@ public class FileReader{
 	FileErrorCheck errorChecker; 
 	final static String ERROR_RESOURCES = "resources/ErrorMsgs";
 	static ResourceBundle myResources = ResourceBundle.getBundle(ERROR_RESOURCES); 
-	private static final String[] validSims = {"Fire", "Game of life", "WaTor", "Segregation"};
+	private static final String[] validSims = {"Fire", "Game of life", "WaTor", "Segregation"
+			, "Foraging Ant"};
 	DocumentBuilder db;
 
 	public FileReader(File f) throws ParserConfigurationException, SAXException, IOException  { 
@@ -55,6 +56,8 @@ public class FileReader{
 			return new SegregationFileErrorCheck(this); 
 		case "WaTor": 
 			return new WaTorFileErrorCheck(this); 
+		case "Foraging Ant": 
+			return new ForagingAntFileErrorCheck(this); 
 		default: 
 			return new GOLFileErrorCheck(this); 
 		}
@@ -85,6 +88,8 @@ public class FileReader{
 		Node prop = doc.createElement(property); 
 		prop.appendChild(doc.createTextNode(val));
 		cell.appendChild(prop);
+		System.out.println(String.format(myResources.getString("BadParam"), val + "", property));
+
 	}
 	
 	public Node retrievePropertyNode(String property) { 

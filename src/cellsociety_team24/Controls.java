@@ -4,6 +4,7 @@ import java.io.File;
 
 import filereadcheck.FileReader;
 import gridinitializers.FireGridInitializer;
+import gridinitializers.ForagingAntGridInitializer;
 import gridinitializers.GOLGridInitializer;
 import gridinitializers.GridInitializer;
 import gridinitializers.SegregationGridInitializer;
@@ -18,6 +19,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ruleEnforcers.FireRuleEnforcer;
+import ruleEnforcers.ForagingAntRuleEnforcer;
 import ruleEnforcers.GOLRuleEnforcer;
 import ruleEnforcers.RuleEnforcer;
 import ruleEnforcers.SegregationRuleEnforcer;
@@ -135,6 +137,10 @@ public class Controls {
         	case "WaTor":
         		gi = new WaTorGridInitializer(gr, reader);
         		rule = new WaTorRuleEnforcer(gi.getGrid(), reader);
+        		break;
+        	case "Foraging Ant": 
+        		gi = new ForagingAntGridInitializer(gr, reader); 
+        		rule = new ForagingAntRuleEnforcer(gi.getGrid(), reader); 
         		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
