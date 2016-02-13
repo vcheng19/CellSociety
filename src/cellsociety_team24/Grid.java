@@ -22,7 +22,7 @@ public abstract class Grid {
 		root = root1;
 	}
 	
-	public abstract void createCells();
+	public abstract void createCells(boolean wrap);
 	
 //	public void createCells(int yBound){
 //		for(int i = 0; i< mySize; i++){
@@ -110,6 +110,6 @@ public abstract class Grid {
 	public int wrapCor(int cor) { 
 		if(cor < 0) cor = myGrid.length - 1;
 		else if(cor > myGrid.length - 1) cor = 0;
-		return cor;
+		return cor; 
 	}
 }

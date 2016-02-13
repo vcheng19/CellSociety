@@ -26,7 +26,7 @@ public class SquareGrid extends Grid {
 //		
 //	}
 	
-	public void createCells(){
+	public void createCells(boolean wrap){
 		Cell[][] myGrid = getGrid();
 		for (Cell[] cellArray: myGrid){
 			for(Cell x: cellArray){
@@ -36,7 +36,7 @@ public class SquareGrid extends Grid {
 				
 				x.setToRoot(root, myRect);
 				//ArrayList<Cell> neighbors = new ArrayList<Cell>();
-				ArrayList<Cell> neighbors = getNeighbors(x,false);
+				ArrayList<Cell> neighbors = getNeighbors(x,wrap);
 				x.setNeighbors(neighbors); 		//not too good to set stuff but couldnt figure out better way
 			}
 		}

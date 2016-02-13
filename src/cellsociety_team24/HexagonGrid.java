@@ -14,7 +14,7 @@ public class HexagonGrid extends Grid {
 		super(grid, cellSize, root);
 	}
 	
-	public void createCells(){   //make setShape method in Cell class
+	public void createCells(boolean wrap){   //make setShape method in Cell class
 		Cell[][] myGrid = getGrid();
         for (int i = 0; i < myGrid.length;i++){
 			for(int j = 0; j < myGrid.length;j++){
@@ -54,7 +54,7 @@ public class HexagonGrid extends Grid {
 				
 				
 				x.setToRoot(root, hexagon);				//could possibly refactor this
-				ArrayList<Cell> neighbors = myGetNeighbors(x,false);
+				ArrayList<Cell> neighbors = myGetNeighbors(x,wrap);
 				x.setNeighbors(neighbors); 
 				
 //			if(j == myGrid.length -1){
@@ -101,25 +101,7 @@ public class HexagonGrid extends Grid {
 		int r = check.getX();
 		int c = check.getY();
 		
-		if(c==0){
-			if(r%2 == 0){
-				return getCardinalNeighbors(check, wrap);
-			}
-			else{
-				return getNeighbors(check, wrap);
-			}
-		}
-		else if(c == myGrid.length -1){
-			if(r%2 == 0){
-				return getNeighbors(check,wrap);
-			}
-			else{
-				return getCardinalNeighbors(check, wrap);
-			}
-		}
-
-		
-		if(r%2 == 0){
+		if(r%2 != 0){			//check this logic
 			allNeighbors = getNeighbors(check, wrap);
 			for(Cell x: allNeighbors){
 				if(!(x.getY() == c+1 && x.getX() == r )){
@@ -136,10 +118,33 @@ public class HexagonGrid extends Grid {
 					result.add(x);
 				}
 			}
-	}
+		}	
+		
+//		if(!wrap){
+//			if(c==0){
+//				if(r%2 == 0){
+//					return getCardinalNeighbors(check, wrap);
+//				}
+//				else{
+//					return getNeighbors(check, wrap);
+//				}
+//			}
+//			else if(c == myGrid.length -1){
+//				if(r%2 == 0){
+//					return getNeighbors(check,wrap);
+//				}
+//				else{
+//					return getCardinalNeighbors(check, wrap);
+//				}
+//			}
+//		}
+
+		
+
 		
 		
 		return result;
 	}
+	
 	
 }

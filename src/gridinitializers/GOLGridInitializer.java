@@ -25,7 +25,8 @@ public class GOLGridInitializer extends GridInitializer{
 		}
 		Grid thisGrid = new HexagonGrid(grid, WORLD_SIZE/DIMENSION, g);
 		//System.out.println(WORLD_SIZE/DIMENSION);
-		thisGrid.createCells();
+		boolean wrap = false;
+		thisGrid.createCells(wrap);
 		addAlive();
 	}
 

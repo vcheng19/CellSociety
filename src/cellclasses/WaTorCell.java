@@ -29,20 +29,20 @@ public class WaTorCell extends Cell{
 		type = "fish";
 		energyLevel = energy;
 		turnsAlive = ta;
-		myRect.setFill(Color.GREEN);
+		myShape.setFill(Color.GREEN);
 	}
 	
 	public void makeShark(int energy, int ta){
 		type = "shark";
 		energyLevel = energy;
 		turnsAlive = ta;
-		myRect.setFill(Color.YELLOW);
+		myShape.setFill(Color.YELLOW);
 	}
 	
 	public void makeOcean(){
 		type = "ocean";
 		energyLevel = 0;
-		myRect.setFill(Color.BLUE);
+		myShape.setFill(Color.BLUE);
 	}
 	
 	public boolean isFish(){

@@ -14,7 +14,7 @@ public class TriangleGrid extends Grid{
 		super(grid, cellSize, root);
 	}
 	
-	public void createCells(){   //make setShape method in Cell class
+	public void createCells(boolean wrap){   //make setShape method in Cell class
 		Cell[][] myGrid = getGrid();
         for (int i = 0; i < myGrid.length;i++){
 			for(int j = 0; j < myGrid.length;j++){
@@ -39,7 +39,7 @@ public class TriangleGrid extends Grid{
 				}
 				
 				x.setToRoot(root, triangle);
-				ArrayList<Cell> neighbors = getNeighbors(x,false);
+				ArrayList<Cell> neighbors = getNeighbors(x,wrap);
 				x.setNeighbors(neighbors); 
 			}
         }
