@@ -10,15 +10,26 @@ public class ForagingAntCell extends Cell{
 	private int foodPh; 
 	private int homePh; 
 	private int numAnts; 
+	private boolean hasEaten; 
 	
 	public ForagingAntCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
 		setColor(Color.BEIGE);
 		numAnts = 0; 
+		hasEaten = false; 
 	}
 	
 	public void addAnt() { 
+		numAnts++; 
+	}
+	
+	public int getAnts() { 
+		return numAnts; 
+	}
+	
+	public void makeAnt() { 
 		type = "ant"; 
+		setColor(Color.BLACK);
 		numAnts++; 
 	}
 	
@@ -63,6 +74,12 @@ public class ForagingAntCell extends Cell{
 		return homePh; 
 	}
 	
+	public boolean hasFood() { 
+		return hasEaten; 
+	}
 	
+	public void setHasEaten(boolean eaten) { 
+		hasEaten = eaten; 
+	}
 
 }

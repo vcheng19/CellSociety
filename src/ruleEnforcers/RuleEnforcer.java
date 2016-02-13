@@ -65,10 +65,19 @@ public abstract class RuleEnforcer {
 		}
 		return result;
 	}
+	
 	public void createCopyGrid(){
 		for (int row = 0; row < myGrid.length; row++){
 			for(int col = 0; col < myGrid.length; col++){
 				copyGrid[row][col] = myGrid[row][col];
+			}
+		}
+	}
+	
+	public void resetMovedGrid() { 
+		for (int r=0;r<myGrid.length;r++) { 
+			for (int c=0;c<myGrid.length;c++) { 
+				myGrid[r][c].setMoved(false);
 			}
 		}
 	}

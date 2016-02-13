@@ -10,6 +10,7 @@ public abstract class Cell {
 	private int myCol;
 	Rectangle myRect;
 	final static Color DEFAULT_COLOR = Color.BLACK;
+	public boolean didMove; 
 	
 	public Cell(Group root, double size, int x, int y) {
 		myRow = x;
@@ -22,6 +23,10 @@ public abstract class Cell {
 	public Color getColor(){
 		return color;
 	} 
+	
+	public void setMoved(boolean moved) { 
+		didMove = moved;
+	}
 	
 	public void setColor(Color c){
 		myRect.setFill(c);
