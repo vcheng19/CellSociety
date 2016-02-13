@@ -58,7 +58,7 @@ public class SugarScapeGridInitializer extends GridInitializer{
 		int [] yAgent = reader.populateCoorArray(reader.readProperty("agentY")); 
 		for (int i = 0; i < xAgent.length; i++){
 			SugarScapeCell sugarCell = (SugarScapeCell) grid[xAgent[i]][yAgent[i]];
-			int maxAge = (int) (Math.random() * 2) + 1;
+			int maxAge = (int) (Math.random() * 59) + 1;
 			sugarCell.makeAgent(vision, sugarAgent, sugarMetabolism, maxAge);
 //			sugarGrid[xAgent[i]][yAgent[i]] = false;
 		}

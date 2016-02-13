@@ -21,7 +21,7 @@ public abstract class Cell {
 		mySize = size; 
 		myRoot = root; 
 		myRect = new Rectangle(x*size, y*size, size, size);
-		myCirc = new Circle(x*size, y*size, size/5);
+		myCirc = new Circle(x*size, y*size, size/4);
 		myRect.setFill(DEFAULT_COLOR);
 		myCirc.setFill(TRANS);
 		myRoot.getChildren().add(myRect);

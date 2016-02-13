@@ -66,7 +66,7 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 	
 	public void doSugarAction(SugarScapeCell sugar){
 		sugar.updateSugarTick();
-		if(sugar.getSugarTick() == sugarGrowBackInterval || sugar.getSugarAgent() > sugar.getSugarMetabolism()){
+		if(sugar.getSugarTick() == sugarGrowBackInterval){
 			sugar.updateSugarAmount(true); 
 		}
 	}
@@ -74,7 +74,7 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 	public void doAgentAction(SugarScapeCell agent){
 		if(!agent.didMove()){
 			agent.updateAge();
-			if(agent.getAge() == agent.getMaxAge()){
+			if(agent.getAge() == agent.getMaxAge() || agent.getSugarAgent() > agent.getSugarMetabolism()){
 				agent.killAgent(agent); 
 				return;
 			}
