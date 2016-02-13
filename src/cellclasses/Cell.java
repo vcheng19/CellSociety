@@ -10,15 +10,22 @@ public abstract class Cell {
 	private int myRow;
 	private int myCol;
 	Rectangle myRect;
-	Circle myCirc; 
+	Circle myCirc;
+	private Group myRoot; 
+	private double mySize; 
 	final static Color DEFAULT_COLOR = Color.BLACK;
-	
+	final static Color TRANS = new Color(0, 0,0, 0 );
 	public Cell(Group root, double size, int x, int y) {
 		myRow = x;
 		myCol = y;
+		mySize = size; 
+		myRoot = root; 
 		myRect = new Rectangle(x*size, y*size, size, size);
+		myCirc = new Circle(x*size, y*size, size/5);
 		myRect.setFill(DEFAULT_COLOR);
-		root.getChildren().add(myRect);
+		myCirc.setFill(TRANS);
+		myRoot.getChildren().add(myRect);
+		myRoot.getChildren().add(myCirc);
 	}
 	
 	public Color getColor(){

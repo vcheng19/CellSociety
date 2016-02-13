@@ -57,22 +57,21 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 	
 	public void doSugarAction(SugarScapeCell sugar){
 		sugar.updateSugarTick();
-		if(sugar.getAge() == sugar.getMaxAge()){
-			sugar.killAgent(); 
-		}
 		if(sugar.getSugarTick() == sugarGrowBackInterval || sugar.getSugarAgent() > sugar.getSugarMetabolism()){
 			sugar.updateSugarAmount(true); 
 		}
 		List<SugarScapeCell> sugarNeighbors = getSugarNeighbors(sugar, true);
-		SugarScapeCell swap = chooseNeighbor(sugarNeighbors);
-		sugar.moveAgent(sugar, swap);
+		if(sugarNeighbors.size() != 0){
+			SugarScapeCell swap = chooseNeighbor(sugarNeighbors);
+			sugar.moveAgent(sugar, swap);
+		}
 		sugar.updateAge();
 	}
 	
 	public void doAgentAction(SugarScapeCell agent){
 		agent.updateAge();
 		if(agent.getAge() == agent.getMaxAge()){
-			agent.killAgent(); 
+			agent.killAgent(agent); 
 			return;
 		}
 	}
@@ -89,7 +88,9 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 	}
 	
 	public SugarScapeCell chooseNeighbor(List<SugarScapeCell> neighbors){
-		int randomPick = (int) (Math.floor(Math.random() * (neighbors.size() -1)));
+		System.out.println("Neighbors: " + neighbors.size());
+		int randomPick = (int) (Math.floor(Math.random() * (neighbors.size() - 1)));
+		System.out.println("Random: " + randomPick);
 		SugarScapeCell ne = neighbors.get(randomPick); 
 		return ne;
 	}

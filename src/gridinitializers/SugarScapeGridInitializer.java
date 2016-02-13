@@ -11,6 +11,7 @@ public class SugarScapeGridInitializer extends GridInitializer{
 	private int sugarAmount;
 	private int sugarGrowBackRate;
 	private int sugarGrowBackInterval; 
+	private boolean[][] sugarGrid; 
 	
 	public SugarScapeGridInitializer(Group gr, FileReader fr){
 		super(gr, fr); 
@@ -24,12 +25,16 @@ public class SugarScapeGridInitializer extends GridInitializer{
 			for(int j = 0; j < grid[0].length; j++){
 				SugarScapeCell cell = new SugarScapeCell(g, WORLD_SIZE/DIMENSION, i, j); 
 				grid[i][j] = cell; 
+				cell.makeSugar(sugarAmount, sugarGrowBackRate, sugarGrowBackInterval); 
 			}
 		}
+		addSugar();
+		addAgent();
 	}
 	
 	public void initializeParameters(){
 		vision = Integer.parseInt(reader.readProperty("vision"));
+		System.out.println(vision);
 		sugarMetabolism = Integer.parseInt(reader.readProperty("sugarMetabolism"));
 		sugarAgent = Integer.parseInt(reader.readProperty("sugarAgent"));
 		sugarAmount = Integer.parseInt(reader.readProperty("sugarAmount"));
@@ -37,13 +42,15 @@ public class SugarScapeGridInitializer extends GridInitializer{
 		sugarGrowBackInterval = Integer.parseInt(reader.readProperty("sugarGrowBackInterval"));
 	}
 	
-	public void addSugar(){
-		int [] xSugarStats = reader.populateCoorArray(reader.readProperty("sugarX"));
-		int [] ySugarStats = reader.populateCoorArray(reader.readProperty("sugarY")); 
-		for (int i = 0; i < xSugarStats.length; i++){
-			SugarScapeCell sugarCell = (SugarScapeCell) grid[xSugarStats[i]][ySugarStats[i]];
-			sugarCell.makeSugar(sugarAmount, sugarGrowBackRate, sugarGrowBackInterval);
+	public void addSugar(){ 
+//		System.out.println("add sugar");
+		for (int i = 0; i < grid.length; i++){
+			for(int j = 0; j < grid.length; j++){
+				SugarScapeCell sugarCell = (SugarScapeCell) grid[i][j];
+				sugarCell.makeSugar(sugarAmount, sugarGrowBackRate, sugarGrowBackInterval);
+			}
 		}
+//		System.out.println("hey again");
 	}
 	
 	public void addAgent(){
@@ -52,6 +59,7 @@ public class SugarScapeGridInitializer extends GridInitializer{
 		for (int i = 0; i < xAgent.length; i++){
 			SugarScapeCell sugarCell = (SugarScapeCell) grid[xAgent[i]][yAgent[i]];
 			sugarCell.makeAgent(vision, sugarAgent, sugarMetabolism);
+//			sugarGrid[xAgent[i]][yAgent[i]] = false;
 		}
 	}
 }

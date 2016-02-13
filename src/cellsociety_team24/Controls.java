@@ -7,6 +7,7 @@ import gridinitializers.FireGridInitializer;
 import gridinitializers.GOLGridInitializer;
 import gridinitializers.GridInitializer;
 import gridinitializers.SegregationGridInitializer;
+import gridinitializers.SugarScapeGridInitializer;
 import gridinitializers.WaTorGridInitializer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +22,7 @@ import ruleEnforcers.FireRuleEnforcer;
 import ruleEnforcers.GOLRuleEnforcer;
 import ruleEnforcers.RuleEnforcer;
 import ruleEnforcers.SegregationRuleEnforcer;
+import ruleEnforcers.SugarScapeRuleEnforcer;
 import ruleEnforcers.WaTorRuleEnforcer;
 
 public class Controls {
@@ -134,6 +136,10 @@ public class Controls {
         	case "WaTor":
         		gi = new WaTorGridInitializer(gr, reader);
         		rule = new WaTorRuleEnforcer(gi.getGrid(), reader);
+        		break;
+        	case "SugarScape":
+        		gi = new SugarScapeGridInitializer(gr, reader);
+        		rule = new SugarScapeRuleEnforcer(gi.getGrid(), reader);
         		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);

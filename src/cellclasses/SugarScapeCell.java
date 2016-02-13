@@ -2,23 +2,24 @@ package cellclasses;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 public class SugarScapeCell extends Cell{
 	private boolean agent;
 	private boolean moved; 
 	//Agent attributes
 	private boolean gender; //True if female, false if male 
-	private int vision;
-	private int sugarMetabolism; 
-	private int sugarAgent;
+	private int vision; //yes
+	private int sugarMetabolism;//yes 
+	private int sugarAgent;//yes
 	private int age; 
 	private int maxAge; 
-	
+//	private Circle myCirc; 
 	//Sugar attributes 
-	private int sugarAmount; 
-	private int sugarAmountMax; 
-	private int sugarGrowBackRate; 
-	private int sugarGrowBackInterval; 
+	private int sugarAmount; //Yes
+	private int sugarAmountMax; //Yes
+	private int sugarGrowBackRate; //Yes
+	private int sugarGrowBackInterval; //Yes
 	private int sugarTick; 
 	
 	//Interaction attributes
@@ -26,8 +27,12 @@ public class SugarScapeCell extends Cell{
 	
 	public SugarScapeCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
-		agent = false;
+		agent = false; 
 		moved = false;
+	}
+	
+	public void setState(boolean state){
+		agent = state; 
 	}
 	
 	public boolean isGender() {
@@ -144,6 +149,7 @@ public class SugarScapeCell extends Cell{
 		this.sugarAgent = sugarAgent;
 		this.sugarMetabolism = sugarMetabolism; 
 		agent = true; 
+		myCirc.setFill(Color.WHITE);
 		int pick = (int) Math.random() * 1;
 		if(pick == 0) gender = true;
 		else gender = false; 
@@ -158,15 +164,15 @@ public class SugarScapeCell extends Cell{
 		myRect.setFill(Color.RED);
 	}
 	
-	public void killAgent(){
-		agent = false; 
-		occupied = false; 
-		vision = 0;
-		age = 0; 
-		maxAge = 0; 
-		sugarAgent = 0; 
-		sugarMetabolism = 0; 
-		myRect.setFill(Color.BLACK);
+	public void killAgent(SugarScapeCell agent){
+		agent.setState(false); 
+		agent.setOccupied(); 
+		agent.setVision(0);
+		agent.setAge(0); 
+		agent.setMaxAge(0); 
+		agent.setSugar(0); 
+		agent.setSugarMetabolism(0); 
+		myCirc.setFill(TRANS);
 	}
 	
 	public void moveAgent(SugarScapeCell agent, SugarScapeCell destination){
@@ -176,9 +182,7 @@ public class SugarScapeCell extends Cell{
 		destination.setAge(agent.getAge()); 
 		destination.setMaxAge(agent.getMaxAge());
 		destination.eatSugar(destination.getSugarAmount()); 
-		agent.killAgent();
-		myRect.setFill(Color.PURPLE);
+		destination.myCirc.setFill(TRANS);
+		agent.killAgent(agent);
 	}
-
-
 }
