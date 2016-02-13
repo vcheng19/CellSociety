@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import cellclasses.Cell;
 import javafx.scene.Group;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public class TriangleGrid extends Grid{
 	//private static final double HALFWAY = .5;

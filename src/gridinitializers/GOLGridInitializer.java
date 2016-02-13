@@ -2,6 +2,7 @@ package gridinitializers;
 
 import cellclasses.GameOfLifeCell;
 import cellsociety_team24.Grid;
+import cellsociety_team24.HexagonGrid;
 import cellsociety_team24.SquareGrid;
 import cellsociety_team24.TriangleGrid;
 import filereadcheck.FileReader;
@@ -22,7 +23,7 @@ public class GOLGridInitializer extends GridInitializer{
 				grid[i][j] = cell;
 			}
 		}
-		Grid thisGrid = new TriangleGrid(grid, WORLD_SIZE/DIMENSION, g);
+		Grid thisGrid = new HexagonGrid(grid, WORLD_SIZE/DIMENSION, g);
 		//System.out.println(WORLD_SIZE/DIMENSION);
 		thisGrid.createCells();
 		addAlive();
