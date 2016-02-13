@@ -14,7 +14,7 @@ public abstract class Cell {
 	private Group myRoot; 
 	private double mySize; 
 	final static Color DEFAULT_COLOR = Color.BLACK;
-	final static Color TRANS = new Color(0, 0,0, 0 );
+	final static Color TRANS = new Color(0, 0, 0, 0);
 	public Cell(Group root, double size, int x, int y) {
 		myRow = x;
 		myCol = y;

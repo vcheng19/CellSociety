@@ -14,7 +14,7 @@ public class SugarScapeCell extends Cell{
 	private int sugarAgent;//yes
 	private int age; 
 	private int maxAge; 
-//	private Circle myCirc; 
+
 	//Sugar attributes 
 	private int sugarAmount; //Yes
 	private int sugarAmountMax; //Yes
@@ -43,8 +43,8 @@ public class SugarScapeCell extends Cell{
 		return occupied;
 	}
 	
-	public void setOccupied(){
-		occupied = !occupied;
+	public void setOccupied(boolean move){
+		occupied = move;
 	}
 	
 	public int getVision(){
@@ -55,8 +55,8 @@ public class SugarScapeCell extends Cell{
 		this.vision = vision; 
 	}
 	
-	public void setMoved(){
-		moved = !moved; 
+	public void setMoved(boolean move){
+		moved = move; 
 	}
 	
 	public boolean didMove(){
@@ -144,10 +144,11 @@ public class SugarScapeCell extends Cell{
 		this.sugarGrowBackInterval = sugarGrowBackInterval;
 	}
 	
-	public void makeAgent(int vision, int sugarAgent, int sugarMetabolism){
+	public void makeAgent(int vision, int sugarAgent, int sugarMetabolism, int maxAge){
 		this.vision = vision; 
 		this.sugarAgent = sugarAgent;
 		this.sugarMetabolism = sugarMetabolism; 
+		this.maxAge = maxAge; 
 		agent = true; 
 		myCirc.setFill(Color.WHITE);
 		int pick = (int) Math.random() * 1;
@@ -166,7 +167,7 @@ public class SugarScapeCell extends Cell{
 	
 	public void killAgent(SugarScapeCell agent){
 		agent.setState(false); 
-		agent.setOccupied(); 
+		agent.setOccupied(false); 
 		agent.setVision(0);
 		agent.setAge(0); 
 		agent.setMaxAge(0); 
@@ -176,13 +177,15 @@ public class SugarScapeCell extends Cell{
 	}
 	
 	public void moveAgent(SugarScapeCell agent, SugarScapeCell destination){
-		destination.setOccupied();
+		destination.setState(true);
+		destination.setOccupied(true);
+		destination.setMoved(true);
 		destination.setSugarAmount(agent.getSugarAgent());
 		destination.setVision(agent.getVision()); 
 		destination.setAge(agent.getAge()); 
 		destination.setMaxAge(agent.getMaxAge());
 		destination.eatSugar(destination.getSugarAmount()); 
-		destination.myCirc.setFill(TRANS);
 		agent.killAgent(agent);
+		destination.myCirc.setFill(Color.WHITE);
 	}
 }
