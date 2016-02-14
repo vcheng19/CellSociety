@@ -5,15 +5,15 @@ import javafx.scene.paint.Color;
 
 public class ForagingAntCell extends Cell{
 	
-	String type; 
-	boolean antHasFood; 
+	private String type; 
+	private boolean antHasFood; 
 	private int foodPh; 
 	private int homePh; 
 	private int numAnts; 
 	private boolean hasEaten; 
 	
-	public ForagingAntCell(Group root, double size, int x, int y) {
-		super(root, size, x, y);
+	public ForagingAntCell(int x, int y) {
+		super(x, y);
 		setColor(Color.BEIGE);
 		numAnts = 0; 
 		hasEaten = false; 

@@ -1,6 +1,6 @@
 package ruleEnforcers;
 
-import java.util.ArrayList;
+import java.util.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,9 +11,8 @@ import filereadcheck.FileReader;
 public class FireRuleEnforcer extends RuleEnforcer {
 	private static FireCell[][] myGrid;
 	private int firePercent;
-	ArrayList<FireCell> fireCells;
+	private ArrayList<FireCell> fireCells;
 	private final static int HUNDRED = 100;
-	private boolean wrap = false;
 	
 	public FireRuleEnforcer(Cell[][] grid, FileReader fr) {
 		super(grid, fr);
@@ -27,11 +26,10 @@ public class FireRuleEnforcer extends RuleEnforcer {
 				}
 			}
 		}
-		copyGrid = new FireCell[myGrid.length][myGrid.length];
 	}
 	
 	public void initializeParameters() { 
-		firePercent = Integer.parseInt(reader.readProperty("percentage"));
+		firePercent = Integer.parseInt(getReader().readProperty("percentage"));
 	}
 	
 	public void iterateGrid(){
@@ -49,7 +47,7 @@ public class FireRuleEnforcer extends RuleEnforcer {
 	
 	private Set<FireCell> catchOnFire(Set<FireCell> cellsToFire){
 		for(FireCell fire: fireCells){
-			ArrayList<Cell> myNeighbors = fire.getNeighbors();
+			List<Cell> myNeighbors = fire.getNeighbors();
 			for(Cell x: myNeighbors){
 				FireCell neighbor = (FireCell) x;
 				if(neighbor.isTree()){

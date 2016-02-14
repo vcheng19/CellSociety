@@ -1,17 +1,16 @@
 package ruleEnforcers;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import cellclasses.Cell;
 import cellclasses.SegregationCell;
 import filereadcheck.FileReader;
 
 public class SegregationRuleEnforcer extends RuleEnforcer {
-	SegregationCell[][] myGrid;
+	private SegregationCell[][] myGrid;
 	private double[][] percentGrid; 
 	private double myPercent;
-//	private boolean wrap = false;
-	ArrayList<SegregationCell> emptyCells;
+	private ArrayList<SegregationCell> emptyCells;
 	
 	public SegregationRuleEnforcer(Cell[][] grid, FileReader fr) {
 		super(grid, fr);
@@ -28,7 +27,7 @@ public class SegregationRuleEnforcer extends RuleEnforcer {
 	}
 	
 	public void initializeParameters() { 
-		myPercent = Integer.parseInt(reader.readProperty("percentage"))/100.0;
+		myPercent = Integer.parseInt(getReader().readProperty("percentage"))/100.0;
 	}
 	
 	public void iterateGrid(){
@@ -58,7 +57,7 @@ public class SegregationRuleEnforcer extends RuleEnforcer {
 		percentGrid = new double[myGrid.length][myGrid.length];
 		for (int row = 0; row < myGrid.length; row++){
 			for(int col = 0; col < myGrid.length; col++){
-				ArrayList<Cell> myNeighbors =myGrid[row][col].getNeighbors();
+				List<Cell> myNeighbors =myGrid[row][col].getNeighbors();
 				int total = 0;
 				int numColor = 0;
 				if(!myGrid[row][col].isEmpty()){

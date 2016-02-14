@@ -10,6 +10,9 @@ import gridinitializers.ForagingAntGridInitializer;
 import gridinitializers.GOLGridInitializer;
 import gridinitializers.GridInitializer;
 import gridinitializers.SegregationGridInitializer;
+
+import gridinitializers.SugarScapeGridInitializer;
+
 import gridinitializers.SlimeGridInitializer;
 import gridinitializers.WaTorGridInitializer;
 import javafx.event.ActionEvent;
@@ -26,12 +29,15 @@ import ruleEnforcers.ForagingAntRuleEnforcer;
 import ruleEnforcers.GOLRuleEnforcer;
 import ruleEnforcers.RuleEnforcer;
 import ruleEnforcers.SegregationRuleEnforcer;
+
+import ruleEnforcers.SugarScapeRuleEnforcer;
+
 import ruleEnforcers.SlimeRuleEnforcer;
 import ruleEnforcers.WaTorRuleEnforcer;
 
 public class Controls {
 	
-	Simulator mySimulator; 
+	private Simulator mySimulator; 
 	private Button chooseFile; 
 	private Button pause; 
 	private Button play; 
@@ -42,7 +48,7 @@ public class Controls {
 	private Group root;
 	private Group ui = new Group();
 	private final int UIStartX = 600; 
-	Stage myStage;
+	private Stage myStage;
 	private FileReader reader; 
 	private FileWriter writer; 
 	
@@ -157,6 +163,10 @@ public class Controls {
         	case "WaTor":
         		gi = new WaTorGridInitializer(thisGrid,gr, reader, isWrapped);
         		rule = new WaTorRuleEnforcer(gi.getGrid(), reader);
+        		break;
+        	case "SugarScape":
+        		gi = new SugarScapeGridInitializer(thisGrid, gr, reader, isWrapped);
+        		rule = new SugarScapeRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "Foraging Ant": 
         		gi = new ForagingAntGridInitializer(thisGrid,gr, reader, isWrapped); 

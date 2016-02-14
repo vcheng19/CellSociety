@@ -1,6 +1,6 @@
 package gridinitializers;
 
-import cellclasses.SlimeCell;
+import cellclasses.*;
 import cellsociety_team24.Grid;
 import cellsociety_team24.HexagonGrid;
 import filereadcheck.FileReader;
@@ -15,7 +15,7 @@ public class SlimeGridInitializer extends GridInitializer {
 	
 	@Override
 	public void makeGrid() {
-		grid = new SlimeCell[DIMENSION][DIMENSION];
+		Cell[][] grid = new SlimeCell[getDimension()][getDimension()];
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid[0].length;j++) { 
 				//GameOfLifeCell cell = new GameOfLifeCell(g, WORLD_SIZE/DIMENSION, i, j);
@@ -23,16 +23,17 @@ public class SlimeGridInitializer extends GridInitializer {
 				grid[i][j] = cell;
 			}
 		}
-		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g);
+		getThisGrid().setValues(grid, getWorldSize()/getDimension(), getGroup());
 		//System.out.println(WORLD_SIZE/DIMENSION);
-		thisGrid.createCells(wrap);
-		addAttributes();
+		getThisGrid().createCells(getWrap(), 1);
+		addAttributes(grid);
+		setGrid(grid);
 	}
 
 	@Override
-	public void addAttributes() {
+	public void addAttributes(Cell[][] grid) {
 		// TODO Auto-generated method stub
-		int numberSlime = Integer.parseInt(reader.readProperty("numSlimeCells"));
+		int numberSlime = Integer.parseInt(getReader().readProperty("numSlimeCells"));
 		int count = 0;
 		while(count < numberSlime){
 			int x = (int) Math.floor(Math.random() * grid.length);

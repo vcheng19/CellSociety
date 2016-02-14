@@ -6,14 +6,13 @@ import javafx.scene.Group;
 
 public abstract class GridInitializer {
 
-	FileReader reader;
-	Group g; 
-	final int WORLD_SIZE = 600;
-	int DIMENSION; 
-	String CELL_TYPE;
-	public Cell[][] grid;
-	public Grid thisGrid;
-	boolean wrap;
+	private FileReader reader;
+	private Group g; 
+	private final int WORLD_SIZE = 600;
+	private int DIMENSION; 
+	private Cell[][] grid;
+	private Grid thisGrid;
+	private boolean wrap;
 	
 	GridInitializer (Grid thisGrid1, Group gr, FileReader fr, boolean isWrapped) { 
 		g = gr; 
@@ -28,6 +27,34 @@ public abstract class GridInitializer {
 		return grid;
 	}
 	
+	public Grid getThisGrid(){
+		return thisGrid; 
+	}
+	
+	public int getDimension(){
+		return DIMENSION;
+	}
+	
+	public int getWorldSize(){
+		return WORLD_SIZE;
+	}
+	
+	public void setGrid(Cell[][] gridOther){
+		grid = gridOther; 
+	}
+	
+	public boolean getWrap(){
+		return wrap;
+	}
+	
+	public Group getGroup(){
+		return g;
+	}
+	
+	public FileReader getReader(){
+		return reader;
+	}
+	
 	public boolean doConfigCell(String typeX, String typeY, int x, int y) { 
 		int[] xs = reader.populateCoorArray(reader.readProperty(typeX));
 		int[] ys = reader.populateCoorArray(reader.readProperty(typeY));
@@ -39,7 +66,7 @@ public abstract class GridInitializer {
 		return false;
 	}
 	
-	public abstract void addAttributes();
+	public abstract void addAttributes(Cell[][] grid);
 	
 	public abstract void makeGrid();
 	

@@ -5,6 +5,8 @@
 	<title>Segregation Simulation</title>
 	<author>Team 24</author>
 	<dimension>50</dimension> 
+	<grid_type>Triangle</grid_type>
+	<edge_type>Toroidal</edge_type> 
 	<underpop>2</underpop>
 	<overpop>3</overpop>
 	<percentage>50</percentage>
