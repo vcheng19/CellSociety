@@ -19,7 +19,7 @@ public class FileReader{
 	final static String ERROR_RESOURCES = "resources/ErrorMsgs";
 	static ResourceBundle myResources = ResourceBundle.getBundle(ERROR_RESOURCES); 
 	private static final String[] validSims = {"Fire", "Game of life", "WaTor", "Segregation"
-			, "Foraging Ant"};
+			, "Foraging Ant", "Slime"};
 	private DocumentBuilder db;
 	private FileWriter writer; 
 

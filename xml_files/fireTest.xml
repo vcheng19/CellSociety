@@ -5,8 +5,8 @@
 	<title>Fire Simulation"</title>
 	<author>Team 24</author>
 	<dimension>50</dimension> 
-	<percentage>55</percentage>
-	<fireX>25</fireX>
-	<fireY>25</fireY>
+	<percentage>100</percentage>
+	<fireX>24</fireX>
+	<fireY>24</fireY>
 </cellsociety>
 

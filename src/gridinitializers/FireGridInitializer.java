@@ -25,7 +25,7 @@ public class FireGridInitializer extends GridInitializer {
 				grid[i][j] = cell;
 			}
 		}
-		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g);
+		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g, true);
 		thisGrid.createCells(wrap);
 		addAttributes();
 	}
@@ -33,6 +33,13 @@ public class FireGridInitializer extends GridInitializer {
 	public void addAttributes(){
 		makeBorder();
 		addFire();
+	}
+	
+	private void addFire(){
+		int fireX = Integer.parseInt(reader.readProperty("fireX"));
+		int fireY = Integer.parseInt(reader.readProperty("fireY"));
+		FireCell fireCell = (FireCell) grid[fireX][fireY];
+		fireCell.makeFire();
 	}
 	
 	private void makeBorder(){

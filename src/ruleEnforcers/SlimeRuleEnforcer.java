@@ -44,7 +44,9 @@ public class SlimeRuleEnforcer extends RuleEnforcer {
 	@Override
 	public void iterateGrid() {
 		// TODO Auto-generated method stub
-		for(SlimeCell cell: mySlimes){
+		ArrayList<SlimeCell> temp = new ArrayList<SlimeCell>();
+		for(int i = mySlimes.size()-1;i > 0; i--){
+			SlimeCell cell = mySlimes.get(i);
 			int patchValue = patchNum(cell);
 			if(patchValue >= sniffThreshhold){
 				ArrayList<SlimeCell> myNeighbors = myGetNeighbors(cell,false, wiggleAngle);
@@ -54,12 +56,16 @@ public class SlimeRuleEnforcer extends RuleEnforcer {
 			}
 			else{
 				ArrayList<SlimeCell> myNeighbors = myGetNeighbors(cell,false, wiggleAngle);
-				moveCell(chooseDestination(myNeighbors,cell), cell);
+				if(myNeighbors.size() > 0){
+					moveCell(chooseDestination(myNeighbors,cell), cell);
+				}
 			}
-			
-			
-			
 		}
+		
+//		for(SlimeCell slime: mySlimes){
+//			ArrayList<SlimeCell> neighbors = myGetNeighbors(slime, false, );
+//			
+//		}
 		
 		
 	}
@@ -68,21 +74,22 @@ public class SlimeRuleEnforcer extends RuleEnforcer {
 		randomCell.makeSlime();
 		cell.makeEmpty();
 		mySlimes.add(randomCell);
+		mySlimes.remove(cell);
 	}
 	
 	private SlimeCell chooseDestination(ArrayList<SlimeCell> posCells, Cell cell){
 		//look at wiggleBias
-		for(SlimeCell x: posCells){
-			if(x.getX() == cell.getX() && wiggleBias == 0){
-				return x;
-			}
-			if(wiggleBias < 0 && x.getX() == cell.getX() -1 ){
-				return x;
-			}
-			if(wiggleBias > 0 && x.getX() == cell.getX() +1 ){
-				return x;
-			}
-		}
+//		for(SlimeCell x: posCells){
+//			if(x.getX() == cell.getX() && wiggleBias == 0){
+//				return x;
+//			}
+//			if(wiggleBias < 0 && x.getX() == cell.getX() -1 ){
+//				return x;
+//			}
+//			if(wiggleBias > 0 && x.getX() == cell.getX() +1 ){
+//				return x;
+//			}
+//		}
 		int random = (int)(Math.random()*posCells.size());
 		return posCells.get(random);
 	}
@@ -91,11 +98,11 @@ public class SlimeRuleEnforcer extends RuleEnforcer {
 		ArrayList<Cell> allNeighbors = cell.getNeighbors();
 		ArrayList<SlimeCell> allVisibleNeighbors = new ArrayList<SlimeCell>();
 		ArrayList<SlimeCell> results = new ArrayList<SlimeCell>();
-		allVisibleNeighbors.add((SlimeCell)allNeighbors.get(1));
+//		allVisibleNeighbors.add((SlimeCell)allNeighbors.get(1));
 		for(int i = 0; i < threshhold;i++){
-			if(i != 1 && i != 6){
-				allVisibleNeighbors.add((SlimeCell)allNeighbors.get(1));
-			}
+//			if(i != 1 && i != 6){
+				allVisibleNeighbors.add((SlimeCell)allNeighbors.get(i));
+//			}
 		}
 			
 		for(SlimeCell slime: allVisibleNeighbors){

@@ -136,7 +136,6 @@ public class Controls {
 	}
 	
     public Simulator makeSim(Group gr, FileReader reader) { 
-    	System.out.println("MAde it here?");
         GridInitializer gi;
         RuleEnforcer rule;
         String sim_type = reader.readProperty("sim_type");
@@ -175,7 +174,7 @@ public class Controls {
     }
     
     private boolean chooseEdgeType(){
-    	String edge_type = "Toroidal";
+    	String edge_type = reader.readProperty("edge_type");
     	switch(edge_type){
     		case "Finite":
     			return false;
@@ -188,7 +187,7 @@ public class Controls {
 	
     private Grid chooseGridShape(){
     	Grid thisGrid;
-        String grid_type = "Hexagon";
+        String grid_type = reader.readProperty("grid_type");
         switch(grid_type){
         case "Square":
         	thisGrid = new SquareGrid();
