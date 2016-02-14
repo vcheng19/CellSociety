@@ -12,8 +12,8 @@ public class GOLGridInitializer extends GridInitializer{
 	private final String aliveXTag = "alivex"; 
 	private final String aliveYTag = "alivey"; 
 	
-	public GOLGridInitializer(Group gr, FileReader fr) {
-		super(gr, fr);
+	public GOLGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean w) {
+		super(thisGrid, gr, fr, w);
 	}
 	
 	public void makeGrid() { 
@@ -25,9 +25,9 @@ public class GOLGridInitializer extends GridInitializer{
 				grid[i][j] = cell;
 			}
 		}
-		Grid thisGrid = new HexagonGrid(grid, WORLD_SIZE/DIMENSION, g);
+		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g);
 		//System.out.println(WORLD_SIZE/DIMENSION);
-		boolean wrap = true;
+		System.out.println(wrap);
 		thisGrid.createCells(wrap);
 		addAttributes();
 	}

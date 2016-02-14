@@ -10,6 +10,7 @@ import gridinitializers.ForagingAntGridInitializer;
 import gridinitializers.GOLGridInitializer;
 import gridinitializers.GridInitializer;
 import gridinitializers.SegregationGridInitializer;
+import gridinitializers.SlimeGridInitializer;
 import gridinitializers.WaTorGridInitializer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,6 +26,7 @@ import ruleEnforcers.ForagingAntRuleEnforcer;
 import ruleEnforcers.GOLRuleEnforcer;
 import ruleEnforcers.RuleEnforcer;
 import ruleEnforcers.SegregationRuleEnforcer;
+import ruleEnforcers.SlimeRuleEnforcer;
 import ruleEnforcers.WaTorRuleEnforcer;
 
 public class Controls {
@@ -137,34 +139,73 @@ public class Controls {
         GridInitializer gi;
         RuleEnforcer rule;
         String sim_type = reader.readProperty("sim_type");
+        Grid thisGrid = chooseGridShape();
+        boolean isWrapped = chooseEdgeType();
         switch(sim_type) { 
         	case "Game of life":
-        		gi = new GOLGridInitializer(gr, reader);
+        		gi = new GOLGridInitializer(thisGrid, gr, reader, isWrapped);
         		rule = new GOLRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "Segregation":
-        		gi = new SegregationGridInitializer(gr,reader);
+        		gi = new SegregationGridInitializer(thisGrid,gr,reader, isWrapped);
         		rule = new SegregationRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "Fire":
-        		gi = new FireGridInitializer(gr,reader);
+        		gi = new FireGridInitializer(thisGrid,gr,reader, isWrapped);
         		rule = new FireRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "WaTor":
-        		gi = new WaTorGridInitializer(gr, reader);
+        		gi = new WaTorGridInitializer(thisGrid,gr, reader, isWrapped);
         		rule = new WaTorRuleEnforcer(gi.getGrid(), reader);
         		break;
         	case "Foraging Ant": 
-        		gi = new ForagingAntGridInitializer(gr, reader); 
+        		gi = new ForagingAntGridInitializer(thisGrid,gr, reader, isWrapped); 
         		rule = new ForagingAntRuleEnforcer(gi.getGrid(), reader); 
         		break;
+        	case "Slime":
+        		gi = new SlimeGridInitializer(thisGrid,gr, reader, isWrapped); 
+        		rule = new SlimeRuleEnforcer(gi.getGrid(), reader); 
+        		break;
         	default: 
-        		gi = new GOLGridInitializer(gr, reader);
+        		gi = new GOLGridInitializer(thisGrid, gr, reader, isWrapped);
         		rule = new GOLRuleEnforcer(gi.getGrid(), reader);
         }
         return new Simulator(gi.getGrid(), rule);
     }
+    
+    private boolean chooseEdgeType(){
+    	String edge_type = reader.readProperty("edge_type");
+    	switch(edge_type){
+    		case "Finite":
+    			return false;
+    		case "Toroidal":
+    			return true;
+    		default:
+    			return false;
+    	}
+    }
 	
+    private Grid chooseGridShape(){
+    	Grid thisGrid;
+        String grid_type = reader.readProperty("grid_type");
+        switch(grid_type){
+        case "Square":
+        	thisGrid = new SquareGrid();
+        	break;
+        case "Triangle":
+        	thisGrid = new TriangleGrid();
+        	break;
+        case "Hexagon":
+        	thisGrid = new HexagonGrid();
+        	break;
+        default:
+        	thisGrid = new SquareGrid();
+        }
+        
+        return thisGrid;
+    }
+    
+    
     private Button makeButton (String label, EventHandler<ActionEvent> handler, int x, int y) {
         Button result = new Button();
         result.setText(label);

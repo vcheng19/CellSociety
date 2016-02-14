@@ -2,6 +2,8 @@
 
 <cellsociety>
 	<sim_type>Game of life</sim_type>
+	<grid_type>Hexagon</grid_type>
+	<edge_type>Toroidal</edge_type>
 	<title>Game of Life Simulation</title>
 	<author>Team 24</author>
 	<dimension>40</dimension> 
