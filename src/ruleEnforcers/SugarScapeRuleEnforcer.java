@@ -80,12 +80,12 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 			}
 			List<SugarScapeCell> sugarNeighbors = getNeighbors(agent, true, false);
 			if(sugarNeighbors.size() != 0){
-				SugarScapeCell swap = chooseNeighbor(sugarNeighbors);
+				SugarScapeCell swap = (SugarScapeCell) chooseNeighbor(sugarNeighbors);
 				agent.moveAgent(agent, swap);
 			}
 			List<SugarScapeCell> agentNeighbors = getNeighbors(agent, true, true);
 			if(agentNeighbors.size() != 0){
-				reproduceAgent(agent, chooseNeighbor(agentNeighbors));
+				reproduceAgent(agent, (SugarScapeCell)chooseNeighbor(agentNeighbors));
 			}
 		}
 	}
@@ -93,7 +93,7 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 	public List<SugarScapeCell> getNeighbors(Cell agent, boolean wrap, boolean repro){
 		List<SugarScapeCell> neighborList = new ArrayList<SugarScapeCell>();
 		SugarScapeCell curCell = (SugarScapeCell) agent; 
-		for(Cell cell: getAdjNeighbors(agent, true, vision)){
+		for(Cell cell: agent.getNeighbors()){
 			SugarScapeCell checkedCell = (SugarScapeCell) cell;
 			if(!checkedCell.isOccupied() && !repro){
 				neighborList.add(checkedCell); 
@@ -122,14 +122,14 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 		for(SugarScapeCell cell: allNeighbors){
 			if(!cell.isOccupied()) emptyNeighbors.add(cell);
 		}
-		SugarScapeCell birth = chooseNeighbor(emptyNeighbors);
+		SugarScapeCell birth = (SugarScapeCell) chooseNeighbor(emptyNeighbors);
 		birth.makeAgent(babyVision, babySugarAgent, babySugarMetabolism, babyMaxAge, babyFertileLimit);
 		birth.setMoved(true);
 	}
 	
-	public SugarScapeCell chooseNeighbor(List<SugarScapeCell> neighbors){
+	public Cell chooseNeighbor(List<SugarScapeCell> neighbors){
 		int randomPick = (int) (Math.floor(Math.random() * (neighbors.size() - 1)));
-		SugarScapeCell ne = neighbors.get(randomPick); 
+		Cell ne = neighbors.get(randomPick); 
 		return ne;
 	}
 	

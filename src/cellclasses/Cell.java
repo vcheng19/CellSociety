@@ -41,16 +41,22 @@ public abstract class Cell {
 		myRow = x;
 		myCol = y;
 		myShape = new Rectangle(x*size, y*size, size, size);
-		myCirc = new Circle((x*size) + size/2, (y*size) - size/2, size/4);
-		myCirc.setFill(TRANS);
+//		myCirc = new Circle((x*size) + size/2, (y*size) - size/2, size/8);
+//		myCirc.setFill(TRANS);
 		myShape.setFill(DEFAULT_COLOR);
 		root.getChildren().add(myShape);
-		root.getChildren().add(myCirc);
+//		root.getChildren().add(myCirc);
 	}
 	
 	public Color getColor(){
 		return color;
 	} 
+	
+	public void makeCircle(Group root, double size, int x, int y){
+		myCirc = new Circle((x*size) + size/2, (y*size) - size/2, size/8);
+		myCirc.setFill(TRANS);
+		root.getChildren().add(myCirc);
+	}
 	
 	public void setMoved(boolean moved) { 
 		didMove = moved;

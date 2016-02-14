@@ -1,5 +1,6 @@
 package gridinitializers;
 import cellclasses.Cell;
+import cellsociety_team24.Grid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
 
@@ -11,11 +12,15 @@ public abstract class GridInitializer {
 	int DIMENSION; 
 	String CELL_TYPE;
 	public Cell[][] grid;
+	public Grid thisGrid;
+	boolean wrap;
 	
-	GridInitializer (Group gr, FileReader fr) { 
+	GridInitializer (Grid thisGrid1, Group gr, FileReader fr, boolean isWrapped) { 
 		g = gr; 
 		reader = fr;
 		DIMENSION = Integer.parseInt(reader.readProperty("dimension"));
+		thisGrid = thisGrid1;
+		wrap = isWrapped;
 		makeGrid();
 	}
 	

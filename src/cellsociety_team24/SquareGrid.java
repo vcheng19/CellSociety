@@ -9,10 +9,17 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public class SquareGrid extends Grid {
-	private boolean adjacent;
+	
+	public SquareGrid(){
+		
+	}
+	
+	public SquareGrid(double cellSize1, Group root1){
+		super(cellSize1, root1);
+	}
 
 	public SquareGrid(Cell[][] grid, int cellSize, Group root, boolean adj) {
-		super(grid, cellSize, root);
+		super(grid, cellSize, root, adj);
 		// TODO Auto-generated constructor stub
 		adjacent = adj;
 	}
@@ -33,11 +40,11 @@ public class SquareGrid extends Grid {
 //		
 //	}
 	
-	public void setAdjacency(boolean adj){
-		adjacent = adj;
-	}
+//	public void setAdjacency(boolean adj){
+//		adjacent = adj;
+//	}
 	
-	public void createCells(boolean wrap){
+	public void createCells(boolean wrap, int range){
 		Cell[][] myGrid = getGrid();
 		for (Cell[] cellArray: myGrid){
 			for(Cell x: cellArray){
@@ -48,10 +55,10 @@ public class SquareGrid extends Grid {
 				x.setToRoot(root, myRect);
 				ArrayList<Cell> neighbors = new ArrayList<Cell>();
 				if(adjacent){
-					neighbors = getCardinalNeighbors(x,wrap);
+					neighbors = getCardinalNeighbors(x, wrap, range);
 				}
 				else{
-					neighbors = getNeighbors(x,wrap);
+					neighbors = getNeighbors(x, wrap, range);
 				}
 				x.setNeighbors(neighbors); 		//not too good to set stuff but couldnt figure out better way
 			}

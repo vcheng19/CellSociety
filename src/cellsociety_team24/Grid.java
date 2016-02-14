@@ -13,6 +13,11 @@ public abstract class Grid {
 	int mySize; 
 	double cellSize;
 	Group root;
+	boolean adjacent;
+	
+	public Grid(){
+		
+	}
 	
 	public Grid(Cell[][] grid, double cellSize1, Group root1){
 		//myGrid = new ArrayList<Cell>();
@@ -22,21 +27,36 @@ public abstract class Grid {
 		root = root1;
 	}
 	
-	public abstract void createCells(boolean wrap);
+	public Grid(Cell[][] grid, double cellSize1, Group root1, boolean adj){
+		//myGrid = new ArrayList<Cell>();
+		//mySize = size;
+		adjacent = adj;
+		myGrid = grid;
+		cellSize = cellSize1;
+		root = root1;
+	}
 	
-//	public void createCells(int yBound){
-//		for(int i = 0; i< mySize; i++){
-//			for(int j = 0; i < yBound; j++){
-//				Shape shape = new Rectangle(i*mySize, i*mySize, mySize, mySize);
-//				Cell c = new Cell(root, shape, i, j);
-//				myGrid.add(c);
-//			}
-//		}
-//		
-//		createNeighbors();
-//	}
-//	
-	//public abstract void createNeighbors();
+	public Grid(double cellSize1, Group root1){
+		cellSize = cellSize1;
+		root = root1;
+	}
+	
+	
+	public abstract void createCells(boolean wrap, int range);
+	
+	public void setValues(Cell[][] grid, double cellSize1, Group root1, boolean adj1){
+		myGrid = grid;
+		cellSize = cellSize1;
+		root = root1;
+		adjacent = adj1;
+	}
+	
+	public void setValues(Cell[][] grid, double cellSize1, Group root1){
+		myGrid = grid;
+		cellSize = cellSize1;
+		root = root1;
+	}
+	
 	
 	public int getYBound(){  //override this for the hexagon
 		return mySize;
@@ -50,25 +70,20 @@ public abstract class Grid {
 		return root;
 	}
 	
-	public void createNeighbors(){
-		for (Cell[] cellArray: myGrid){
-			for(Cell x: cellArray){
-				ArrayList<Cell> neighbors = getNeighbors(x, false);
-				x.setNeighbors(neighbors); 		//not too good to set stuff but couldnt figure out better way
-			}
-		}
-	}
-	
-	//this is the finite rectangular neighbors
-	//also works for triangular fun fact
-	//
-//	public ArrayList<Cell> getAdjNeighbors(Cell check, boolean wrap){
-//		return getNeighbors(check, wrap);
+//	public void createNeighbors(){
+//		for (Cell[] cellArray: myGrid){
+//			for(Cell x: cellArray){
+//				ArrayList<Cell> neighbors = getNeighbors(x, false, 1);
+//				x.setNeighbors(neighbors); 
+//			}
+//		}
 //	}
+//	
+//	public abstract void createNeighbors(boolean wrap, int range);
 	
-	public ArrayList<Cell> getCardinalNeighbors(Cell check, boolean wrap){
+	public ArrayList<Cell> getCardinalNeighbors(Cell check, boolean wrap, int range){
 		ArrayList<Cell> result = new ArrayList<Cell>();
-		ArrayList<Cell> allNeighbors = getNeighbors(check, wrap);
+		ArrayList<Cell> allNeighbors = getNeighbors(check, wrap, range);
 
 		int myRow = check.getX();
 		int myCol = check.getY();
@@ -83,14 +98,14 @@ public abstract class Grid {
 		return result;
 	}
 	
-	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap){
+	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap, int range){
 		ArrayList<Cell> result = new ArrayList<Cell>();
 		int r = check.getX();
 		int c = check.getY();
 		//System.out.println(r + "    " + c);
-		for(int rChange = -1;rChange < 2;rChange++){
+		for(int rChange = -range;rChange <= range;rChange++){
 			int rNew = r + rChange;
-			for (int cChange = -1;cChange < 2;cChange++){
+			for (int cChange = -range;cChange <=range;cChange++){
 				int cNew = c + cChange;
 				if( !(rChange == 0 && cChange == 0)){
 					if(rNew >= 0 && rNew < myGrid.length && cNew >= 0 && cNew < myGrid.length){

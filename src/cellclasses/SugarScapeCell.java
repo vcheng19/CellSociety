@@ -8,18 +8,18 @@ public class SugarScapeCell extends Cell{
 	private boolean agent;
 	private boolean moved; 
 	//Agent attributes
-	private boolean gender; //True if female, false if male 
-	private int vision; //yes
-	private int sugarMetabolism;//yes 
-	private int sugarAgent;//yes
+	private boolean gender; 
+	private int vision; 
+	private int sugarMetabolism; 
+	private int sugarAgent;
 	private int age; 
 	private int maxAge; 
 	private int fertileLimit; 
 	//Sugar attributes 
-	private int sugarAmount; //Yes
-	private int sugarAmountMax; //Yes
-	private int sugarGrowBackRate; //Yes
-	private int sugarGrowBackInterval; //Yes
+	private int sugarAmount;
+	private int sugarAmountMax;
+	private int sugarGrowBackRate; 
+	private int sugarGrowBackInterval; 
 	private int sugarTick; 
 	private final static int ONE_THIRD = 1/3; 
 	private final static int TWO_THIRD = 2/3;

@@ -4,6 +4,8 @@
 	<sim_type>SugarScape</sim_type>
 	<title>SugarScape Simulation</title>
 	<author>Team 24</author>
+	<grid_type>Hexagon</grid_type>
+	<edge_type>Toroidal</edge_type>
 	<dimension>40</dimension> 
 	<vision>2</vision>
 	<sugarMetabolism>20</sugarMetabolism>

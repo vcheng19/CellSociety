@@ -16,8 +16,8 @@ public class WaTorGridInitializer extends GridInitializer{
 	private final String fishXTag = "fishx";
 	private final String fishYTag = "fishy"; 
 	
-	public WaTorGridInitializer(Group gr, FileReader fr){
-		super(gr, fr);
+	public WaTorGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean isWrapped){
+		super(thisGrid,gr, fr, isWrapped);
 	}
 	
 	public void makeGrid(){
@@ -31,8 +31,7 @@ public class WaTorGridInitializer extends GridInitializer{
 				grid[i][j] = cell; 
 			}
 		}
-		Grid thisGrid = new TriangleGrid(grid, WORLD_SIZE/DIMENSION, g, true);
-		boolean wrap = true;
+		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g, true);
 		thisGrid.createCells(wrap);
 //		makeOcean();
 //		addSharks();
