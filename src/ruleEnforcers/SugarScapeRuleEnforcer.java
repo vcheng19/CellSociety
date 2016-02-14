@@ -28,6 +28,7 @@ public class SugarScapeRuleEnforcer extends RuleEnforcer{
 	@Override
 	void initializeParameters() {
 		// TODO Auto-generated method stub
+		FileReader reader = getReader();
 		vision = Integer.parseInt(reader.readProperty("vision"));
 		sugarMetabolism = Integer.parseInt(reader.readProperty("sugarMetabolism"));
 		sugarAgent = Integer.parseInt(reader.readProperty("sugarAgent"));

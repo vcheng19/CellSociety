@@ -7,8 +7,8 @@ import filereadcheck.FileReader;
 
 public class ForagingAntRuleEnforcer extends RuleEnforcer{
 	private static ForagingAntCell[][] myGrid;
-	ForagingAntCell home; 
-	ForagingAntCell food; 
+	private ForagingAntCell home; 
+	private ForagingAntCell food; 
 	private double SELECT_K; 
 	private double SELECT_N;
 	private int BIRTHRATE;
@@ -30,10 +30,10 @@ public class ForagingAntRuleEnforcer extends RuleEnforcer{
 				}
 			}
 		}
-		copyGrid = new ForagingAntCell[myGrid.length][myGrid.length];
 	}
 
 	void initializeParameters() {
+		FileReader reader = getReader();
 		SELECT_K = Integer.parseInt(reader.readProperty("selectk")) / 1000; 
 		SELECT_N = Integer.parseInt(reader.readProperty("selectn"));
 		BIRTHRATE = Integer.parseInt(reader.readProperty("birthrate"));
@@ -78,7 +78,7 @@ public class ForagingAntRuleEnforcer extends RuleEnforcer{
 	}
 	
 	public ForagingAntCell chooseAntsNeighbor (ForagingAntCell antCell) { 
-		List<Cell> allNeighbors = getAdjNeighbors(antCell, wrap, 1); 
+		List<Cell> allNeighbors = antCell.getNeighbors();
 		ForagingAntCell nextPos = antCell;
 		double max_probability = 0; 
 		for (Cell cell: allNeighbors) { 

@@ -13,25 +13,6 @@ public abstract class Grid {
 	
 	public Grid(){}
 	
-//	public Grid(Cell[][] grid, double cellSize1, Group root1){
-//		myGrid = grid;
-//		cellSize = cellSize1;
-//		root = root1;
-//	}
-//	
-//	public Grid(Cell[][] grid, double cellSize1, Group root1, boolean adj){
-//		adjacent = adj;
-//		myGrid = grid;
-//		cellSize = cellSize1;
-//		root = root1;
-//	}
-//	
-//	public Grid(double cellSize1, Group root1){
-//		cellSize = cellSize1;
-//		root = root1;
-//	}
-//	
-	
 	public abstract void createCells(boolean wrap, int range);
 	
 	public void setValues(Cell[][] grid, double cellSize1, Group root1, boolean adj1){
@@ -85,7 +66,6 @@ public abstract class Grid {
 		ArrayList<Cell> result = new ArrayList<Cell>();
 		int r = check.getX();
 		int c = check.getY();
-		//System.out.println(r + "    " + c);
 		for(int rChange = -range;rChange <= range;rChange++){
 			int rNew = r + rChange;
 			for (int cChange = -range;cChange <=range;cChange++){

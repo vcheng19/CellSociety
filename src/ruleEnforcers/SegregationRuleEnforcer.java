@@ -7,11 +7,10 @@ import cellclasses.SegregationCell;
 import filereadcheck.FileReader;
 
 public class SegregationRuleEnforcer extends RuleEnforcer {
-	SegregationCell[][] myGrid;
+	private SegregationCell[][] myGrid;
 	private double[][] percentGrid; 
 	private double myPercent;
-//	private boolean wrap = false;
-	ArrayList<SegregationCell> emptyCells;
+	private ArrayList<SegregationCell> emptyCells;
 	
 	public SegregationRuleEnforcer(Cell[][] grid, FileReader fr) {
 		super(grid, fr);
@@ -28,7 +27,7 @@ public class SegregationRuleEnforcer extends RuleEnforcer {
 	}
 	
 	public void initializeParameters() { 
-		myPercent = Integer.parseInt(reader.readProperty("percentage"))/100.0;
+		myPercent = Integer.parseInt(getReader().readProperty("percentage"))/100.0;
 	}
 	
 	public void iterateGrid(){

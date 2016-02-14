@@ -17,8 +17,8 @@ public class HexagonGrid extends Grid {
 				Cell x = myGrid[i][j];
 				double cellSize = getCellSize();
 				double height1 = cellSize;
-				double side = height1/Math.sqrt(3);
-				double iIncrement = Math.sqrt(side*side - height1*height1/4);
+				double side = height1/Math.sqrt(3);								//these numbers are with the Hexagon Side Relation Formula. DO NOT CHANGE
+				double iIncrement = Math.sqrt(side*side - height1*height1/4);   //this too
 				Polygon hexagon = new Polygon();
 
 				double len1 = i*cellSize;

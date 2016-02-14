@@ -1,41 +1,26 @@
 package cellsociety_team24;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import cellclasses.Cell;
 import javafx.scene.Group;
 import javafx.scene.shape.Polygon;
 
 public class TriangleGrid extends Grid{
-	//private static final double HALFWAY = .5;
 	
-	public TriangleGrid(){
-		
-	}
+	private final static int ROTATE_AMOUNT = 180;
 	
-	public TriangleGrid(double cellSize1, Group root1){
-		super(cellSize1, root1);
-	}
-	
-	public TriangleGrid(Cell[][] grid, double cellSize, Group root){
-		super(grid, cellSize, root);
-	}
-	
-	public TriangleGrid(Cell[][] grid, int cellSize, Group root, boolean adj) {
-		super(grid, cellSize, root, adj);
-		// TODO Auto-generated constructor stub
-	}
+	public TriangleGrid(){}
 	
 	public void createCells(boolean wrap, int range){   //make setShape method in Cell class
 		Cell[][] myGrid = getGrid();
         for (int i = 0; i < myGrid.length;i++){
 			for(int j = 0; j < myGrid.length;j++){
-				
-				//System.out.println(i +  "    " + j);
 				Cell x = myGrid[i][j];
-				//System.out.println(x.getX() + "   " + x.getY());
 				Polygon triangle = new Polygon();
-				//double side = Math.sqrt(cellSize*cellSize*4/3);
+				
+				double cellSize = getCellSize();
+				Group root = getRoot();
 				
 				double len1 = i*cellSize;
 				double len2 = (i+1)*cellSize;
@@ -48,15 +33,14 @@ public class TriangleGrid extends Grid{
 					    len3, wid1 });
 				
 				if(j%2 == i%2){
-					triangle.setRotate(180);
+					triangle.setRotate(ROTATE_AMOUNT);
 				}
 				
 				x.setToRoot(root, triangle);
-				ArrayList<Cell> neighbors = getNeighbors(x, wrap, range);
+				List<Cell> neighbors = getNeighbors(x, wrap, range);
 				x.setNeighbors(neighbors); 
 			}
         }
-		//createNeighbors();
 	}
 
 

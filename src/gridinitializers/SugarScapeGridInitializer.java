@@ -1,6 +1,6 @@
 package gridinitializers;
 
-import cellclasses.SugarScapeCell;
+import cellclasses.*;
 import cellsociety_team24.Grid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
@@ -23,7 +23,7 @@ public class SugarScapeGridInitializer extends GridInitializer{
 
 	@Override
 	public void makeGrid() {
-		grid = new SugarScapeCell[DIMENSION][DIMENSION];
+		Cell[][]grid = new SugarScapeCell[getDimension()][getDimension()];
 		initializeParameters(); 
 		for(int i = 0; i < grid.length; i++){
 			for(int j = 0; j < grid[0].length; j++){
@@ -31,12 +31,14 @@ public class SugarScapeGridInitializer extends GridInitializer{
 				grid[i][j] = cell; 
 			}
 		}
-		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g, true);
-		thisGrid.createCells(wrap, vision);
-		addAttributes();
+		getThisGrid().setValues(grid, getWorldSize()/getDimension(), getGroup(), true);
+		getThisGrid().createCells(getWrap(), vision);
+		addAttributes(grid);
+		setGrid(grid);
 	}
 	
 	public void initializeParameters(){
+		FileReader reader = getReader();
 		vision = Integer.parseInt(reader.readProperty("vision"));
 		sugarMetabolism = Integer.parseInt(reader.readProperty("sugarMetabolism"));
 		sugarAgent = Integer.parseInt(reader.readProperty("sugarAgent"));
@@ -45,12 +47,12 @@ public class SugarScapeGridInitializer extends GridInitializer{
 		sugarGrowBackInterval = Integer.parseInt(reader.readProperty("sugarGrowBackInterval"));
 	}
 	
-	public void addAttributes(){
+	public void addAttributes(Cell[][]grid){
 		for(int i = 0; i < grid.length; i++){
 			for(int j = 0; j < grid.length; j++){
 				SugarScapeCell cell = (SugarScapeCell) grid[i][j];
 				cell.makeSugar(sugarAmount, sugarGrowBackRate, sugarGrowBackInterval); 
-				cell.makeCircle(g, WORLD_SIZE/DIMENSION, i, j);
+				cell.makeCircle(getGroup(), getWorldSize()/getDimension(), i, j);
 				if(doConfigCell(agentXTag, agentYTag, i, j)){
 					int maxAge = (int) (Math.random() * 59) + 1 + lowerBoundAge; 
 					cell.makeAgent(vision, sugarAgent, sugarMetabolism, maxAge, maxAge = fertileLimitCutoff);
