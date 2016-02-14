@@ -12,7 +12,6 @@ public abstract class Cell {
 	Color color;
 	private int myRow;
 	private int myCol;
-	//Rectangle myRect;
 	Shape myShape;
 	private ArrayList<Cell> myNeighbors;
 	final static Color DEFAULT_COLOR = Color.BLACK;

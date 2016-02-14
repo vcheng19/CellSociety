@@ -1,21 +1,26 @@
 package cellsociety_team24;
 
 import java.io.File;
-
 import cellclasses.Cell;
 import filereadcheck.FileReader;
-import filereadcheck.FileWriter;
 import gridinitializers.FireGridInitializer;
 import gridinitializers.ForagingAntGridInitializer;
 import gridinitializers.GOLGridInitializer;
 import gridinitializers.GridInitializer;
 import gridinitializers.SegregationGridInitializer;
 import gridinitializers.WaTorGridInitializer;
+import information.FireInformation;
+import information.ForagingAntsInformation;
+import information.GOLInformation;
+import information.SegregationInformation;
+import information.SimulationInformation;
+import information.WaTorInformation;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -40,9 +45,9 @@ public class Controls {
 	private Group root;
 	private Group ui = new Group();
 	private final int UIStartX = 600; 
+	private final int playPauseStepY = 100;
 	Stage myStage;
 	private FileReader reader; 
-	private FileWriter writer; 
 	
 	public Controls(Group root, Stage s) {
 		this.root = root;
@@ -51,7 +56,7 @@ public class Controls {
 	}
 	
 	void drawInterface() { 
-		Rectangle rect = new Rectangle(600, 0, 200, 600);
+		Rectangle rect = new Rectangle(UIStartX, 0, 200, UIStartX);
 		rect.setFill(Color.GREY);
 		ui.getChildren().add(rect);
 		addButtons();
@@ -59,13 +64,12 @@ public class Controls {
 	}
 	
 	void addButtons() { 
-		chooseFile = makeButton("Choose file", event -> openFileChooser(), 30, 40);
-		play = makeButton("Play", event -> tryButton("Play"), 30, 100);
-		pause = makeButton("Pause", event -> tryButton("Pause"), 30, 150);	
-		step = makeButton("Step", event -> tryButton("Step"), 30, 200);
-		reset =  makeButton("Reset to config", event -> tryButton("Reset"), 30, 250);
-		saveGrid =  makeButton("Save Config in XML", event -> saveGridXML(), 30, 300);
-		
+		chooseFile = makeButton("Choose file", event -> openFileChooser(), 40, 40);
+		play = makeButton("Play", event -> tryButton("Play"), 20, playPauseStepY);
+		pause = makeButton("Pause", event -> tryButton("Pause"), 80, playPauseStepY);	
+		step = makeButton("Step", event -> tryButton("Step"), 140, playPauseStepY);
+		reset =  makeButton("Reset to config", event -> tryButton("Reset"), 50, playPauseStepY + 60);
+		saveGrid =  makeButton("Save Config in XML", event -> saveGridXML(), 30, playPauseStepY + 150);
 	}
 	
 	void tryButton(String action) { 
@@ -93,8 +97,33 @@ public class Controls {
 	
 	void saveGridXML() { 
 		mySimulator.stop();
-		mySimulator.retrieveGrid();
-		
+		Cell[][] curGrid = mySimulator.retrieveGrid();
+		writeInfoToFile(reader.readProperty("sim_type"), curGrid);
+	}
+	
+	public void writeInfoToFile(String sim_type, Cell[][] grid) { 
+		SimulationInformation info;
+		switch(sim_type) { 
+    	case "Game of life":
+    		info = new GOLInformation(grid);
+    		break;
+    	case "Segregation":
+    		info = new SegregationInformation(grid);
+    		break;
+    	case "Fire":
+    		info = new FireInformation(grid);
+    		break;
+    	case "WaTor":
+    		info = new WaTorInformation(grid);
+    		break;
+    	case "Foraging Ant": 
+    		info = new ForagingAntsInformation(grid);
+    		break;
+    	default: 
+    		info = new GOLInformation(grid);
+		}
+		info.populateData();
+		info.writeToXML(reader.getWriter());
 	}
 	
 	void addTimeSlider() { 
