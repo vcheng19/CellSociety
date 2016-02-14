@@ -37,7 +37,7 @@ import ruleEnforcers.WaTorRuleEnforcer;
 
 public class Controls {
 	
-	Simulator mySimulator; 
+	private Simulator mySimulator; 
 	private Button chooseFile; 
 	private Button pause; 
 	private Button play; 
@@ -48,7 +48,7 @@ public class Controls {
 	private Group root;
 	private Group ui = new Group();
 	private final int UIStartX = 600; 
-	Stage myStage;
+	private Stage myStage;
 	private FileReader reader; 
 	private FileWriter writer; 
 	

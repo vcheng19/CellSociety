@@ -1,46 +1,36 @@
 package cellsociety_team24;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import cellclasses.Cell;
 import javafx.scene.Group;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public abstract class Grid {
-	//ArrayList<Cell> myGrid;
-	Cell[][] myGrid;
-	int mySize; 
-	double cellSize;
-	Group root;
-	boolean adjacent;
+	private Cell[][] myGrid;
+	private double cellSize;
+	private Group root;
+	private boolean adjacent;
 	
-	public Grid(){
-		
-	}
+	public Grid(){}
 	
-	public Grid(Cell[][] grid, double cellSize1, Group root1){
-		//myGrid = new ArrayList<Cell>();
-		//mySize = size;
-		myGrid = grid;
-		cellSize = cellSize1;
-		root = root1;
-	}
-	
-	public Grid(Cell[][] grid, double cellSize1, Group root1, boolean adj){
-		//myGrid = new ArrayList<Cell>();
-		//mySize = size;
-		adjacent = adj;
-		myGrid = grid;
-		cellSize = cellSize1;
-		root = root1;
-	}
-	
-	public Grid(double cellSize1, Group root1){
-		cellSize = cellSize1;
-		root = root1;
-	}
-	
+//	public Grid(Cell[][] grid, double cellSize1, Group root1){
+//		myGrid = grid;
+//		cellSize = cellSize1;
+//		root = root1;
+//	}
+//	
+//	public Grid(Cell[][] grid, double cellSize1, Group root1, boolean adj){
+//		adjacent = adj;
+//		myGrid = grid;
+//		cellSize = cellSize1;
+//		root = root1;
+//	}
+//	
+//	public Grid(double cellSize1, Group root1){
+//		cellSize = cellSize1;
+//		root = root1;
+//	}
+//	
 	
 	public abstract void createCells(boolean wrap, int range);
 	
@@ -58,10 +48,6 @@ public abstract class Grid {
 	}
 	
 	
-	public int getYBound(){  //override this for the hexagon
-		return mySize;
-	}
-	
 	public Cell[][] getGrid(){
 		return myGrid;
 	}
@@ -70,20 +56,17 @@ public abstract class Grid {
 		return root;
 	}
 	
-//	public void createNeighbors(){
-//		for (Cell[] cellArray: myGrid){
-//			for(Cell x: cellArray){
-//				ArrayList<Cell> neighbors = getNeighbors(x, false, 1);
-//				x.setNeighbors(neighbors); 
-//			}
-//		}
-//	}
-//	
-//	public abstract void createNeighbors(boolean wrap, int range);
+	public boolean getAdj(){
+		return adjacent;
+	}
 	
-	public ArrayList<Cell> getCardinalNeighbors(Cell check, boolean wrap, int range){
+	public double getCellSize(){
+		return cellSize;
+	}
+	
+	public List<Cell> getCardinalNeighbors(Cell check, boolean wrap, int range){
 		ArrayList<Cell> result = new ArrayList<Cell>();
-		ArrayList<Cell> allNeighbors = getNeighbors(check, wrap, range);
+		List<Cell> allNeighbors = getNeighbors(check, wrap, range);
 
 		int myRow = check.getX();
 		int myCol = check.getY();
@@ -98,7 +81,7 @@ public abstract class Grid {
 		return result;
 	}
 	
-	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap, int range){
+	public List<Cell> getNeighbors(Cell check, boolean wrap, int range){
 		ArrayList<Cell> result = new ArrayList<Cell>();
 		int r = check.getX();
 		int c = check.getY();

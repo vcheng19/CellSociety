@@ -14,7 +14,7 @@ public abstract class Cell {
 	private int myCol;
 	private final static Color TRANS = new Color(0, 0, 0, 0);
 	private Shape myShape;
-	private ArrayList<Cell> myNeighbors;
+	private List<Cell> myNeighbors;
 	private final static Color DEFAULT_COLOR = Color.BLACK;
 	private boolean didMove; 
 	
@@ -63,7 +63,7 @@ public abstract class Cell {
 		return myCol;
 	}
 	
-	public void setNeighbors(ArrayList<Cell> neighbors){
+	public void setNeighbors(List<Cell> neighbors){
 		myNeighbors = neighbors;
 	}
 	
