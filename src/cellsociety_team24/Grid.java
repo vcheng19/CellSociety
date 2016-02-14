@@ -13,6 +13,11 @@ public abstract class Grid {
 	int mySize; 
 	double cellSize;
 	Group root;
+	boolean adjacent;
+	
+	public Grid(){
+		
+	}
 	
 	public Grid(Cell[][] grid, double cellSize1, Group root1){
 		//myGrid = new ArrayList<Cell>();
@@ -22,33 +27,36 @@ public abstract class Grid {
 		root = root1;
 	}
 	
-	public Grid(double cellSize1, Group root1){
+	public Grid(Cell[][] grid, double cellSize1, Group root1, boolean adj){
 		//myGrid = new ArrayList<Cell>();
 		//mySize = size;
-		//myGrid = grid;
+		adjacent = adj;
+		myGrid = grid;
 		cellSize = cellSize1;
 		root = root1;
 	}
 	
-	public abstract void createCells(boolean wrap);
-	
-	public void setGrid(Cell[][] grid){
-		myGrid = grid;
+	public Grid(double cellSize1, Group root1){
+		cellSize = cellSize1;
+		root = root1;
 	}
 	
-//	public void createCells(int yBound){
-//		for(int i = 0; i< mySize; i++){
-//			for(int j = 0; i < yBound; j++){
-//				Shape shape = new Rectangle(i*mySize, i*mySize, mySize, mySize);
-//				Cell c = new Cell(root, shape, i, j);
-//				myGrid.add(c);
-//			}
-//		}
-//		
-//		createNeighbors();
-//	}
-//	
-	//public abstract void createNeighbors();
+	
+	public abstract void createCells(boolean wrap);
+	
+	public void setValues(Cell[][] grid, double cellSize1, Group root1, boolean adj1){
+		myGrid = grid;
+		cellSize = cellSize1;
+		root = root1;
+		adjacent = adj1;
+	}
+	
+	public void setValues(Cell[][] grid, double cellSize1, Group root1){
+		myGrid = grid;
+		cellSize = cellSize1;
+		root = root1;
+	}
+	
 	
 	public int getYBound(){  //override this for the hexagon
 		return mySize;
@@ -66,17 +74,11 @@ public abstract class Grid {
 		for (Cell[] cellArray: myGrid){
 			for(Cell x: cellArray){
 				ArrayList<Cell> neighbors = getNeighbors(x, false);
-				x.setNeighbors(neighbors); 		//not too good to set stuff but couldnt figure out better way
+				x.setNeighbors(neighbors); 
 			}
 		}
 	}
 	
-	//this is the finite rectangular neighbors
-	//also works for triangular fun fact
-	//
-//	public ArrayList<Cell> getAdjNeighbors(Cell check, boolean wrap){
-//		return getNeighbors(check, wrap);
-//	}
 	
 	public ArrayList<Cell> getCardinalNeighbors(Cell check, boolean wrap){
 		ArrayList<Cell> result = new ArrayList<Cell>();

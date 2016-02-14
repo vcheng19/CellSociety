@@ -1,10 +1,12 @@
 package cellclasses;
 
+import java.util.ArrayList;
+
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 public class SlimeCell extends Cell {
-	boolean slime;
+	boolean slime;  //might not need this
 	
 	public SlimeCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
@@ -23,14 +25,24 @@ public class SlimeCell extends Cell {
 	
 	public void makeSlime(){
 		setColor(Color.DARKRED);
+		slime = true;
 	}
 	
 	public void makeWhite(){
 		setColor(Color.WHITE);
+		slime = false;
 	}
 	
 	public void makeGreen(){
 		setColor(Color.CHARTREUSE);
+		slime = false;
 	}
+	
+	public void makeEmpty(){
+		setColor(Color.BLACK);
+		slime = false;
+	}
+	
+	
 
 }

@@ -9,8 +9,16 @@ import javafx.scene.shape.Polygon;
 
 public class HexagonGrid extends Grid {
 	
+	public HexagonGrid(){
+		
+	}
+	
+	public HexagonGrid(double cellSize1, Group root1){
+		super(cellSize1, root1);
+	}
+	
 	public HexagonGrid(Cell[][] grid, int cellSize, Group root, boolean adj) {
-		super(grid, cellSize, root);
+		super(grid, cellSize, root, adj);
 		// TODO Auto-generated constructor stub
 	}
 	

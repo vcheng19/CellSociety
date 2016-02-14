@@ -9,13 +9,20 @@ import javafx.scene.shape.Polygon;
 public class TriangleGrid extends Grid{
 	//private static final double HALFWAY = .5;
 	
-
+	public TriangleGrid(){
+		
+	}
+	
+	public TriangleGrid(double cellSize1, Group root1){
+		super(cellSize1, root1);
+	}
+	
 	public TriangleGrid(Cell[][] grid, double cellSize, Group root){
 		super(grid, cellSize, root);
 	}
 	
 	public TriangleGrid(Cell[][] grid, int cellSize, Group root, boolean adj) {
-		super(grid, cellSize, root);
+		super(grid, cellSize, root, adj);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -28,10 +35,11 @@ public class TriangleGrid extends Grid{
 				Cell x = myGrid[i][j];
 				//System.out.println(x.getX() + "   " + x.getY());
 				Polygon triangle = new Polygon();
-
+				//double side = Math.sqrt(cellSize*cellSize*4/3);
+				
 				double len1 = i*cellSize;
 				double len2 = (i+1)*cellSize;
-				double len3 = (i+2)*cellSize;
+				double len3 = (2 +i)*cellSize;
 				double wid1 = j*cellSize;
 				double wid2 = (j+1)*cellSize;
 				triangle.getPoints().addAll(new Double[]{

@@ -59,7 +59,9 @@ public class FileReader{
 		case "WaTor": 
 			return new WaTorFileErrorCheck(this); 
 		case "Foraging Ant": 
-			return new ForagingAntFileErrorCheck(this); 
+			return new ForagingAntFileErrorCheck(this);
+		case "Slime":
+			return new SlimeFileErrorCheck(this);
 		default: 
 			return new GOLFileErrorCheck(this); 
 		}

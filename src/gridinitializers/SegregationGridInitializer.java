@@ -15,8 +15,8 @@ public class SegregationGridInitializer extends GridInitializer {
 	private final String n2TagX = "bluex"; 
 	private final String n2TagY = "bluey"; 
 	
-	public SegregationGridInitializer(Group gr, FileReader fr) {
-		super(gr, fr);
+	public SegregationGridInitializer(Grid thisGrid,Group gr, FileReader fr, boolean w) {
+		super(thisGrid,gr, fr, w);
 	}
 	
 	public void makeGrid() { 
@@ -27,11 +27,10 @@ public class SegregationGridInitializer extends GridInitializer {
 				grid[i][j] = cell;
 			}
 		}
-		Grid thisGrid = new HexagonGrid(grid, WORLD_SIZE/DIMENSION, g);
+		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g);
 		//thisGrid.setGrid(grid);
 		
 		//System.out.println(WORLD_SIZE/DIMENSION);
-		boolean wrap = false;
 		thisGrid.createCells(wrap);
 		addAttributes();
 	}
