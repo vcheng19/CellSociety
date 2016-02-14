@@ -13,8 +13,8 @@ public class FireGridInitializer extends GridInitializer {
 	private final String fireXTag = "fireX";
 	private final String fireYTag = "fireY"; 
 	
-	public FireGridInitializer(Group gr, FileReader fr) {
-		super(gr, fr);
+	public FireGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean w) {
+		super(thisGrid, gr, fr, w);
 	}
 	
 	public void makeGrid(){
@@ -25,8 +25,7 @@ public class FireGridInitializer extends GridInitializer {
 				grid[i][j] = cell;
 			}
 		}
-		Grid thisGrid = new SquareGrid(grid, WORLD_SIZE/DIMENSION, g, true);
-		boolean wrap = false;
+		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g, true);
 		thisGrid.createCells(wrap);
 		addAttributes();
 	}

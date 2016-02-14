@@ -1,7 +1,11 @@
 package gridinitializers;
 
 import cellclasses.ForagingAntCell;
+<<<<<<< HEAD
 import cellclasses.SegregationCell;
+=======
+import cellsociety_team24.Grid;
+>>>>>>> 15e7675d6c31567242b975ebc3603c803177d388
 import filereadcheck.FileReader;
 import javafx.scene.Group;
 
@@ -12,8 +16,8 @@ public class ForagingAntGridInitializer extends GridInitializer {
 	private final String foodYTag = "foody"; 
 	private final int initAnts = Integer.parseInt(reader.readProperty("initantsnest"));
 	
-	public ForagingAntGridInitializer(Group gr, FileReader fr) {
-		super(gr, fr);
+	public ForagingAntGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean w) {
+		super(thisGrid, gr, fr, w);
 	}
 	
 	public void makeGrid() {
@@ -37,6 +41,12 @@ public class ForagingAntGridInitializer extends GridInitializer {
 				if (doConfigCell(foodXTag, foodYTag, i, j)) cell.makeFood();
 			}
 		}
+	}
+
+	@Override
+	public void addAttributes() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='us-ascii'?>
+
+<cellsociety>
+	<sim_type>Slime</sim_type>
+	<grid_type>Square</grid_type>
+	<edge_type>Finite</edge_type>
+	<title>Slime Simulation</title>
+	<author>Team 24</author>
+	<dimension>50</dimension> 
+	<numSlimeCells>55</numSlimeCells>
+	<sniffThreshhold>1</sniffThreshhold>
+	<sniffAngle>45</sniffAngle>
+	<wiggleAngle>45</wiggleAngle>
+	<wiggleBias>0</wiggleBias>
+</cellsociety>

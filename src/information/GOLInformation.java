@@ -21,6 +21,7 @@ public class GOLInformation extends SimulationInformation {
 
 	public void record(Cell cell, int[] point) {
 		GameOfLifeCell cur = (GameOfLifeCell) cell; 
+		System.out.println(cur.isDead());
 		if (!cur.isDead()) { 
 			ArrayList<int[]> curList = coors.get("alive");
 			curList.add(point);
