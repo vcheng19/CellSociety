@@ -1,8 +1,5 @@
 package cellclasses;
 
-import java.util.ArrayList;
-
-import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 public class SlimeCell extends Cell {

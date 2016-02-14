@@ -27,7 +27,7 @@ public class SugarScapeGridInitializer extends GridInitializer{
 		initializeParameters(); 
 		for(int i = 0; i < grid.length; i++){
 			for(int j = 0; j < grid[0].length; j++){
-				SugarScapeCell cell = new SugarScapeCell(g, WORLD_SIZE/DIMENSION, i, j); 
+				SugarScapeCell cell = new SugarScapeCell(i, j); 
 				grid[i][j] = cell; 
 			}
 		}

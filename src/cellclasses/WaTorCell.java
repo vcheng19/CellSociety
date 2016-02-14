@@ -1,19 +1,12 @@
 package cellclasses;
 
-import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 public class WaTorCell extends Cell{
-	String type; 
+	private String type; 
 	private int turnsAlive; 
 	private int energyLevel;
 	private boolean didMove;
-	
-	public WaTorCell(Group root, double size, int x, int y) {
-		super(root, size, x, y);
-		makeOcean();
-
-	}
 	
 	public WaTorCell(int x, int y){
 		super(x,y);

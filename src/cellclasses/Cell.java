@@ -5,11 +5,9 @@ import java.util.*;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public abstract class Cell {
-//	Group myRoot;
 	private Color color;
 	private Circle myCirc; 
 	private int myRow;
@@ -33,14 +31,6 @@ public abstract class Cell {
 	
 	public Color getDefault(){
 		return DEFAULT_COLOR;
-	}
-	
-	public Cell(Group root, double size, int x, int y) {
-		myRow = x;
-		myCol = y;
-		myShape = new Rectangle(x*size, y*size, size, size);
-		myShape.setFill(DEFAULT_COLOR);
-		root.getChildren().add(myShape);
 	}
 	
 	public Color getColor(){

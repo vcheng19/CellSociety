@@ -1,8 +1,6 @@
 package cellclasses;
 
-import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 public class SugarScapeCell extends Cell{
 	private boolean agent;
@@ -25,13 +23,11 @@ public class SugarScapeCell extends Cell{
 	private final static int TWO_THIRD = 2/3;
 	//Interaction attributes
 	private boolean occupied; 
-	
-	public SugarScapeCell(Group root, double size, int x, int y) {
-		super(root, size, x, y);
-		agent = false; 
-		moved = false;
+
+	public SugarScapeCell(int i, int j) {
+		super(i,j);
 	}
-	
+
 	public void setState(boolean state){
 		agent = state; 
 	}
