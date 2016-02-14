@@ -4,7 +4,9 @@
 	<sim_type>Fire</sim_type>
 	<title>Fire Simulation</title>
 	<author>Team 24</author>
-	<dimension>50</dimension> 
+	<dimension>50</dimension>
+	<grid_type>Hexagon</grid_type>
+	<edge_type>Toroidal</edge_type> 
 	<percentage>100</percentage>
 	<fireX>24</fireX>
 	<fireY>24</fireY>

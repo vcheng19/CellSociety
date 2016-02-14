@@ -32,10 +32,7 @@ public class WaTorGridInitializer extends GridInitializer{
 			}
 		}
 		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g, true);
-		thisGrid.createCells(wrap);
-//		makeOcean();
-//		addSharks();
-//		addFish();
+		thisGrid.createCells(wrap, 1);
 		addAttributes();
 		
 	}
@@ -51,33 +48,33 @@ public class WaTorGridInitializer extends GridInitializer{
 	}
 	}
 	
-	private void makeOcean(){
-		for(int i = 0;i<grid.length;i++){
-			for(int j = 0; j < grid[0].length;j++){
-				//WaTorCell cell = new WaTorCell(g, WORLD_SIZE/DIMENSION, i, j);
-				WaTorCell cell = (WaTorCell) grid[i][j];
-				cell.makeOcean();
-			}
-		}
-	}
+//	private void makeOcean(){
+//		for(int i = 0;i<grid.length;i++){
+//			for(int j = 0; j < grid[0].length;j++){
+//				//WaTorCell cell = new WaTorCell(g, WORLD_SIZE/DIMENSION, i, j);
+//				WaTorCell cell = (WaTorCell) grid[i][j];
+//				cell.makeOcean();
+//			}
+//		}
+//	}
 	
-	public void addSharks(){
-		int[] xShark = reader.populateCoorArray(reader.readProperty("sharkx"));
-		int[] yShark = reader.populateCoorArray(reader.readProperty("sharky"));
-		for(int i = 0; i< xShark.length;i++){
-			WaTorCell watorcell = (WaTorCell) grid[xShark[i]][yShark[i]];
-			watorcell.makeShark(sharkEnergy, 0);
-		}
-	}
-	
-	public void addFish(){
-		int[] xFish = reader.populateCoorArray(reader.readProperty("fishx"));
-		int[] yFish = reader.populateCoorArray(reader.readProperty("fishy"));
-		for(int i = 0; i< xFish.length;i++){
-			WaTorCell watorCell = (WaTorCell) grid[xFish[i]][yFish[i]];
-			watorCell.makeFish(fishEnergy, 0);
-		}
-	}
+//	public void addSharks(){
+//		int[] xShark = reader.populateCoorArray(reader.readProperty("sharkx"));
+//		int[] yShark = reader.populateCoorArray(reader.readProperty("sharky"));
+//		for(int i = 0; i< xShark.length;i++){
+//			WaTorCell watorcell = (WaTorCell) grid[xShark[i]][yShark[i]];
+//			watorcell.makeShark(sharkEnergy, 0);
+//		}
+//	}
+//	
+//	public void addFish(){
+//		int[] xFish = reader.populateCoorArray(reader.readProperty("fishx"));
+//		int[] yFish = reader.populateCoorArray(reader.readProperty("fishy"));
+//		for(int i = 0; i< xFish.length;i++){
+//			WaTorCell watorCell = (WaTorCell) grid[xFish[i]][yFish[i]];
+//			watorCell.makeFish(fishEnergy, 0);
+//		}
+//	}
 
 	
 }

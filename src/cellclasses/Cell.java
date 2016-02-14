@@ -1,7 +1,6 @@
 package cellclasses;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -10,17 +9,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 public abstract class Cell {
-	Group myRoot;
-	Color color;
+//	Group myRoot;
+	private Color color;
 	private Circle myCirc; 
 	private int myRow;
 	private int myCol;
-	final static Color TRANS = new Color(0, 0, 0, 0);
-	//Rectangle myRect;
+	private final static Color TRANS = new Color(0, 0, 0, 0);
 	private Shape myShape;
 	private ArrayList<Cell> myNeighbors;
-	final static Color DEFAULT_COLOR = Color.BLACK;
-	public boolean didMove; 
+	private final static Color DEFAULT_COLOR = Color.BLACK;
+	private boolean didMove; 
 	
 	public Cell(int x, int y){
 		myRow = x;
@@ -28,24 +26,21 @@ public abstract class Cell {
 		myNeighbors = new ArrayList<Cell>();
 	}
 	
-	public Cell(Group root, Shape s, int x, int y) {
-		myRow = x;
-		myCol = y;
-		myShape = s;
-		//myRect = new Rectangle(x*size, y*size, size, size);
-		s.setFill(DEFAULT_COLOR);
-		root.getChildren().add(myShape);
+	
+	public Color getTrans(){
+		return TRANS;
+	}
+	
+	public Color getDefault(){
+		return DEFAULT_COLOR;
 	}
 	
 	public Cell(Group root, double size, int x, int y) {
 		myRow = x;
 		myCol = y;
 		myShape = new Rectangle(x*size, y*size, size, size);
-//		myCirc = new Circle((x*size) + size/2, (y*size) - size/2, size/8);
-//		myCirc.setFill(TRANS);
 		myShape.setFill(DEFAULT_COLOR);
 		root.getChildren().add(myShape);
-//		root.getChildren().add(myCirc);
 	}
 	
 	public Color getColor(){
@@ -79,12 +74,10 @@ public abstract class Cell {
 	}
 	
 	public void setNeighbors(ArrayList<Cell> neighbors){
-		//System.out.println(neighbors.size());
 		myNeighbors = neighbors;
 	}
 	
-	public ArrayList<Cell> getNeighbors(){
-		//System.out.println(myNeighbors.size());
+	public List<Cell> getNeighbors(){
 		return myNeighbors;
 	}
 	

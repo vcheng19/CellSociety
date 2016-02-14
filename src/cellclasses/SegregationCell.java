@@ -51,7 +51,7 @@ public class SegregationCell extends Cell {
 	}
 	
 	public void makeEmpty(){
-		setColor(DEFAULT_COLOR);
+		setColor(getDefault());
 		setFalse();
 		isEmpty = true;
 	}

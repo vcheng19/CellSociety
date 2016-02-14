@@ -25,7 +25,7 @@ public class SlimeGridInitializer extends GridInitializer {
 		}
 		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g);
 		//System.out.println(WORLD_SIZE/DIMENSION);
-		thisGrid.createCells(wrap);
+		thisGrid.createCells(wrap, 1);
 		addAttributes();
 	}
 

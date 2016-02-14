@@ -28,7 +28,7 @@ public class GOLGridInitializer extends GridInitializer{
 		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g);
 		//System.out.println(WORLD_SIZE/DIMENSION);
 		System.out.println(wrap);
-		thisGrid.createCells(wrap);
+		thisGrid.createCells(wrap, 1);
 		addAttributes();
 	}
 	

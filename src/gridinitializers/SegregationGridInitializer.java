@@ -22,26 +22,23 @@ public class SegregationGridInitializer extends GridInitializer {
 	public void makeGrid() { 
 		grid = new SegregationCell[DIMENSION][DIMENSION];
 		for (int i=0;i<grid.length;i++) { 
-			for (int j=0;j<grid[0].length;j++) { 
+			for (int j=0;j<grid.length;j++) { 
 				SegregationCell cell = new SegregationCell(i, j);
 				grid[i][j] = cell;
 			}
 		}
 		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g);
-		//thisGrid.setGrid(grid);
-		
-		//System.out.println(WORLD_SIZE/DIMENSION);
 		thisGrid.createCells(wrap, 1);
 		addAttributes();
 	}
 	
 	public void addAttributes(){
 		for (int i=0;i<grid.length;i++) { 
-			for (int j=0;j<grid[0].length;j++) { 
-				SegregationCell cell = new SegregationCell(i, j);
-				grid[i][j] = cell;
-				if (doConfigCell(n2TagX, n2TagY, i, j)) cell.makeBlue();
+			for (int j=0;j<grid.length;j++) { 
+				SegregationCell cell = (SegregationCell) grid[i][j];
 				if (doConfigCell(n1TagX, n1TagY, i, j)) cell.makeRed();
+				if (doConfigCell(n2TagX, n2TagY, i, j)) cell.makeBlue();
+
 			}
 		}
 	}

@@ -6,13 +6,8 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 public class SlimeCell extends Cell {
-	boolean slime;  //might not need this
-	
-	public SlimeCell(Group root, double size, int x, int y) {
-		super(root, size, x, y);
-		// TODO Auto-generated constructor stub
-		slime = false;
-	}
+	private boolean slime;  //might not need this
+
 	
 	public SlimeCell(int x, int y){
 		super(x,y);

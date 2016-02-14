@@ -188,7 +188,7 @@ public class SugarScapeCell extends Cell{
 		agent.setMaxAge(0); 
 		agent.setSugar(0); 
 		agent.setSugarMetabolism(0); 
-		setColorCircle(TRANS);
+		setColorCircle(getTrans());
 	}
 	
 	public void moveAgent(SugarScapeCell agent, SugarScapeCell destination){

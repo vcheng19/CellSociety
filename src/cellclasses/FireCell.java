@@ -8,11 +8,6 @@ public class FireCell extends Cell {
 	private static final int FIRE_CONSTANT = 1;
 	private static final int TREE_CONSTANT = 2;
 	
-	public FireCell(Group root, double size, int x, int y) {
-		super(root, size, x, y);
-		makeTree();
-	}
-	
 	public FireCell(int x, int y){
 		super(x,y);
 	}
