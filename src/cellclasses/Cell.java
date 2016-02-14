@@ -1,7 +1,5 @@
 package cellclasses;
-
 import java.util.*;
-
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -23,8 +21,7 @@ public abstract class Cell {
 		myCol = y;
 		myNeighbors = new ArrayList<Cell>();
 	}
-	
-	
+
 	public Color getTrans(){
 		return TRANS;
 	}

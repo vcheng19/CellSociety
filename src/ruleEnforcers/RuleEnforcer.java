@@ -31,4 +31,8 @@ public abstract class RuleEnforcer {
 	public Cell[][] getGrid() { 
 		return myGrid;
 	}
+	
+	public Cell[][] giveGrid() { 
+		return myGrid;
+	}
 }

@@ -28,11 +28,16 @@ public class ForagingAntGridInitializer extends GridInitializer {
 			}
 		}
 	}
-
-	@Override
-	public void addAttributes(Cell[][] grid) {
-		// TODO Auto-generated method stub
-		
+	
+	public void addAttributes(Cell[][] grid) { 
+		for (int i=0;i<grid.length;i++) { 
+			for (int j=0;j<grid[0].length;j++) { 
+				ForagingAntCell cell = new ForagingAntCell(i, j);
+				grid[i][j] = cell;
+				if (doConfigCell(nestXTag, nestYTag, i, j)) cell.makeNest(initAnts);
+				if (doConfigCell(foodXTag, foodYTag, i, j)) cell.makeFood();
+			}
+		}
 	}
 
 }

@@ -21,6 +21,7 @@ public class GOLGridInitializer extends GridInitializer{
 				grid[i][j] = cell;
 			}
 		}
+
 		getThisGrid().setValues(grid, getWorldSize()/getDimension(), getGroup());
 		getThisGrid().createCells(getWrap(), 1);
 		addAttributes(grid);

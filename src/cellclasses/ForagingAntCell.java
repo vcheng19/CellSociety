@@ -4,7 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 public class ForagingAntCell extends Cell{
-	
+
 	private String type; 
 	private boolean antHasFood; 
 	private int foodPh; 
@@ -17,6 +17,7 @@ public class ForagingAntCell extends Cell{
 		setColor(Color.BEIGE);
 		numAnts = 0; 
 		hasEaten = false; 
+		
 	}
 	
 	public void addAnt() { 

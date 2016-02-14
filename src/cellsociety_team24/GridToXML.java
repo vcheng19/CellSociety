@@ -1,6 +1,5 @@
 package cellsociety_team24;
 
-
 import cellclasses.Cell;
 import cellclasses.SegregationCell;
 import ruleEnforcers.FireRuleEnforcer;
@@ -23,17 +22,7 @@ public class GridToXML {
 	}
 
 	public void matchSimType() { 
-		if (seg.getClass().isInstance(infoSource)) { 
-			
-		}
-	}
-	
-	public void asdkjj(Cell[][] grid) { 
-		for (int i=0; i< grid.length;i++) { 
-			for (int j=0;j < grid[0].length;j++) {
-				SegregationCell ce = (SegregationCell) grid[i][j];
-			}
-		}
+		
 	}
 	
 }

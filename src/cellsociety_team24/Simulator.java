@@ -54,12 +54,9 @@ public class Simulator {
 		}
 	}
 	
-	public void retrieveGrid() { 
-		System.out.println(ash(myRule));
+	public Cell[][] retrieveGrid() { 
+		stop();
+		return myRule.getGrid();
 	}
-	
-	public boolean ash(RuleEnforcer re) { 
-		System.out.println("it is what it is");
-		return FireRuleEnforcer.class.isInstance(re);
-	}
+
 }
