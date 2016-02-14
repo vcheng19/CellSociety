@@ -1,11 +1,8 @@
 package gridinitializers;
 
 import cellclasses.FireCell;
-import cellclasses.GameOfLifeCell;
+import cellclasses.Cell;
 import cellsociety_team24.Grid;
-import cellsociety_team24.HexagonGrid;
-import cellsociety_team24.SquareGrid;
-import cellsociety_team24.TriangleGrid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
 
@@ -18,31 +15,32 @@ public class FireGridInitializer extends GridInitializer {
 	}
 	
 	public void makeGrid(){
-		grid = new FireCell[DIMENSION][DIMENSION];
+		FireCell[][]grid = new FireCell[getDimension()][getDimension()];
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid.length;j++) { 
 				FireCell cell = new FireCell(i, j);
 				grid[i][j] = cell;
 			}
 		}
-		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g, true);
-		thisGrid.createCells(wrap);
-		addAttributes();
+		getThisGrid().setValues(grid, getWorldSize()/getDimension(), getGroup(), true);
+		getThisGrid().createCells(getWrap(), 1);
+		addAttributes(grid);
+		setGrid(grid);
 	}
 	
-	public void addAttributes(){
-		makeBorder();
-		addFire();
+	public void addAttributes(Cell[][] grid){
+		makeBorder((FireCell[][]) grid);
+		addFire((FireCell[][])grid);
 	}
 	
-	private void addFire(){
-		int fireX = Integer.parseInt(reader.readProperty("fireX"));
-		int fireY = Integer.parseInt(reader.readProperty("fireY"));
+	private void addFire(FireCell[][] grid){
+		int fireX = Integer.parseInt(getReader().readProperty(fireXTag));
+		int fireY = Integer.parseInt(getReader().readProperty(fireYTag));
 		FireCell fireCell = (FireCell) grid[fireX][fireY];
 		fireCell.makeFire();
 	}
 	
-	private void makeBorder(){
+	private void makeBorder(FireCell[][] grid){
 		for (int i=0;i<grid.length;i++) { 
 			for (int j=0;j<grid[0].length;j++) { 
 				FireCell cell = (FireCell)grid[i][j];
@@ -52,7 +50,7 @@ public class FireGridInitializer extends GridInitializer {
 				}
 			}
 		}
-
 	}
+	
 	
 }

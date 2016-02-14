@@ -26,6 +26,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 	}
 
 	public void initializeParameters() { 
+		FileReader reader = getReader();
 		fishSpawn = Integer.parseInt(reader.readProperty("fishspawn"));
 		sharkSpawn = Integer.parseInt(reader.readProperty("sharkspawn"));
 		sharkEnergy = Integer.parseInt(reader.readProperty("sharkenergy"));
@@ -85,7 +86,6 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 				shark.setEnergy(shark.getEnergy() - 1);
 			}
 		}
-
 	}
 
 	public WaTorCell chooseNeighbor(List<WaTorCell> neighbors) { 

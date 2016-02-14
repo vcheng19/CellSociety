@@ -1,7 +1,5 @@
 package cellclasses;
 
-
-import javafx.scene.Group;
 import javafx.scene.paint.Color;
 
 public class SegregationCell extends Cell {
@@ -9,10 +7,6 @@ public class SegregationCell extends Cell {
 	private boolean isRed;
 	private boolean isBlue;
 	
-	public SegregationCell(Group root, double size, int x, int y){
-		super(root, size, x, y);
-		setUp();
-	}
 	
 	public SegregationCell(int x, int y){
 		super(x,y);
@@ -50,7 +44,7 @@ public class SegregationCell extends Cell {
 	}
 	
 	public void makeEmpty(){
-		setColor(DEFAULT_COLOR);
+		setColor(getDefault());
 		setFalse();
 		isEmpty = true;
 	}

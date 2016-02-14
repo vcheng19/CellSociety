@@ -1,47 +1,44 @@
 package cellclasses;
-
-import java.util.ArrayList;
-
+import java.util.*;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
 public abstract class Cell {
-	Group myRoot;
-	Color color;
+	private Color color;
+	private Circle myCirc; 
 	private int myRow;
 	private int myCol;
-	Shape myShape;
-	private ArrayList<Cell> myNeighbors;
-	final static Color DEFAULT_COLOR = Color.BLACK;
-	public boolean didMove; 
+	private final static Color TRANS = new Color(0, 0, 0, 0);
+	private Shape myShape;
+	private List<Cell> myNeighbors;
+	private final static Color DEFAULT_COLOR = Color.BLACK;
+	private boolean didMove; 
 	
 	public Cell(int x, int y){
 		myRow = x;
 		myCol = y;
 		myNeighbors = new ArrayList<Cell>();
 	}
-	
-	public Cell(Group root, Shape s, int x, int y) {
-		myRow = x;
-		myCol = y;
-		myShape = s;
-		s.setFill(DEFAULT_COLOR);
-		root.getChildren().add(myShape);
+
+	public Color getTrans(){
+		return TRANS;
 	}
 	
-	public Cell(Group root, double size, int x, int y) {
-		myRow = x;
-		myCol = y;
-		myShape = new Rectangle(x*size, y*size, size, size);
-		myShape.setFill(DEFAULT_COLOR);
-		root.getChildren().add(myShape);
+	public Color getDefault(){
+		return DEFAULT_COLOR;
 	}
 	
 	public Color getColor(){
 		return color;
 	} 
+	
+	public void makeCircle(Group root, double size, int x, int y){
+		myCirc = new Circle((x*size) + size/2, (y*size) - size/2, size/8);
+		myCirc.setFill(TRANS);
+		root.getChildren().add(myCirc);
+	}
 	
 	public void setMoved(boolean moved) { 
 		didMove = moved;
@@ -49,6 +46,10 @@ public abstract class Cell {
 	
 	public void setColor(Color c){
 		myShape.setFill(c);
+	}
+	
+	public void setColorCircle(Color c){
+		myCirc.setFill(c);
 	}
 	
 	public int getX(){
@@ -59,13 +60,11 @@ public abstract class Cell {
 		return myCol;
 	}
 	
-	public void setNeighbors(ArrayList<Cell> neighbors){
-		//System.out.println(neighbors.size());
+	public void setNeighbors(List<Cell> neighbors){
 		myNeighbors = neighbors;
 	}
 	
-	public ArrayList<Cell> getNeighbors(){
-		//System.out.println(myNeighbors.size());
+	public List<Cell> getNeighbors(){
 		return myNeighbors;
 	}
 	

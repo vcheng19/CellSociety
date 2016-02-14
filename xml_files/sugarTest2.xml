@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='us-ascii'?>
+
+<cellsociety>
+	<sim_type value="SugarScape"/>
+	<title value="SugarScape Simulation"/>
+	<author value="Team 24" />
+	<dimension value="40" /> 
+	<vision value="2"/>
+	<sugarMetabolism value="4"/>
+	<sugarAmount value="3"/>
+	<sugarAgent value="3"/>
+	<sugarGrowBackRate value="3"/>
+	<sugarGrowBackInterval value="1"/>
+	<agentX value="17 37 37 26 5"/>
+	<agentY value="33 36 38 11 3"/>
+</cellsociety>

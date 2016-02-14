@@ -1,6 +1,6 @@
 package ruleEnforcers;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import cellclasses.Cell;
 import cellclasses.GameOfLifeCell;
@@ -12,7 +12,6 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 	private static int underPop; 
 	private static int overPop; 
 	private static int liveAgain; 
-	private boolean wrap = false;
 	
 	public GOLRuleEnforcer(Cell[][]grid, FileReader reader){
 		super(grid, reader);
@@ -25,6 +24,7 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 	}
 	
 	public void initializeParameters() { 
+		FileReader reader = getReader();
 		underPop = Integer.parseInt(reader.readProperty("underpop"));
 		overPop = Integer.parseInt(reader.readProperty("overpop"));
 		liveAgain = Integer.parseInt(reader.readProperty("liveagain"));
@@ -35,7 +35,6 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 		for(int r = 0; r < copyGrid.length; r++){
 			for(int c = 0; c < copyGrid.length; c++){
 				boolean copyCell = copyGrid[r][c];
-				// tell superclass to give 
 				GameOfLifeCell actualCell = myGrid[r][c];
 				int myNeighbors = numNeighbors(actualCell);
 				if(copyCell && myNeighbors == liveAgain){
@@ -57,11 +56,9 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 		}
 	}
 	
-	
-	
 	private int numNeighbors(Cell cell){
 		int numAliveCells = 0;
-		ArrayList<Cell> myNeighbors = cell.getNeighbors();
+		List<Cell> myNeighbors = cell.getNeighbors();
 		for (Cell x: myNeighbors){
 			int row= x.getX();
 			int col = x.getY();

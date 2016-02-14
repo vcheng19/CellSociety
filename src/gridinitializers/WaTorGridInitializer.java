@@ -1,10 +1,7 @@
 package gridinitializers;
 
-import cellclasses.WaTorCell;
+import cellclasses.*;
 import cellsociety_team24.Grid;
-import cellsociety_team24.HexagonGrid;
-import cellsociety_team24.SquareGrid;
-import cellsociety_team24.TriangleGrid;
 import filereadcheck.FileReader;
 import javafx.scene.Group; 
 
@@ -21,63 +18,30 @@ public class WaTorGridInitializer extends GridInitializer{
 	}
 	
 	public void makeGrid(){
-		grid = new WaTorCell[DIMENSION][DIMENSION];
+		Cell[][]grid = new WaTorCell[getDimension()][getDimension()];
+		FileReader reader = getReader();
 		sharkEnergy = Integer.parseInt(reader.readProperty("sharkenergy"));
 		fishEnergy = Integer.parseInt(reader.readProperty("fishenergy"));
-		// populates the grid
 		for(int i = 0;i<grid.length;i++){
 			for(int j = 0; j < grid[0].length;j++){
 				WaTorCell cell = new WaTorCell(i, j);
 				grid[i][j] = cell; 
 			}
 		}
-		thisGrid.setValues(grid, WORLD_SIZE/DIMENSION, g, true);
-		thisGrid.createCells(wrap);
-//		makeOcean();
-//		addSharks();
-//		addFish();
-		addAttributes();
-		
+		getThisGrid().setValues(grid, getWorldSize()/getDimension(), getGroup(), true);
+		getThisGrid().createCells(getWrap(), 1);
+		addAttributes(grid);
+		setGrid(grid);	
 	}
 	
-	public void addAttributes(){
-		for(int i = 0;i<grid.length;i++){
-		for(int j = 0; j < grid[0].length;j++){
-			WaTorCell cell = (WaTorCell) grid[i][j];
-			cell.makeOcean();
-			if (doConfigCell(sharkXTag, sharkYTag, i, j)) cell.makeShark(sharkEnergy, 0);
-			if (doConfigCell(fishXTag, fishYTag, i, j)) cell.makeFish(fishEnergy, 0);
-		}
-	}
-	}
-	
-	private void makeOcean(){
+	public void addAttributes(Cell[][] grid){
 		for(int i = 0;i<grid.length;i++){
 			for(int j = 0; j < grid[0].length;j++){
-				//WaTorCell cell = new WaTorCell(g, WORLD_SIZE/DIMENSION, i, j);
 				WaTorCell cell = (WaTorCell) grid[i][j];
 				cell.makeOcean();
+				if (doConfigCell(sharkXTag, sharkYTag, i, j)) cell.makeShark(sharkEnergy, 0);
+				if (doConfigCell(fishXTag, fishYTag, i, j)) cell.makeFish(fishEnergy, 0);
 			}
 		}
 	}
-	
-	public void addSharks(){
-		int[] xShark = reader.populateCoorArray(reader.readProperty("sharkx"));
-		int[] yShark = reader.populateCoorArray(reader.readProperty("sharky"));
-		for(int i = 0; i< xShark.length;i++){
-			WaTorCell watorcell = (WaTorCell) grid[xShark[i]][yShark[i]];
-			watorcell.makeShark(sharkEnergy, 0);
-		}
-	}
-	
-	public void addFish(){
-		int[] xFish = reader.populateCoorArray(reader.readProperty("fishx"));
-		int[] yFish = reader.populateCoorArray(reader.readProperty("fishy"));
-		for(int i = 0; i< xFish.length;i++){
-			WaTorCell watorcell = (WaTorCell) grid[xFish[i]][yFish[i]];
-			watorcell.makeFish(fishEnergy, 0);
-		}
-	}
-
-	
 }

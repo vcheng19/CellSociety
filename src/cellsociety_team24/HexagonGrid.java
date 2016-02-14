@@ -1,44 +1,24 @@
 package cellsociety_team24;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import cellclasses.Cell;
 import javafx.scene.Group;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 public class HexagonGrid extends Grid {
 	
-	public HexagonGrid(){
-		
-	}
+	public HexagonGrid(){}
 	
-	public HexagonGrid(double cellSize1, Group root1){
-		super(cellSize1, root1);
-	}
-	
-	public HexagonGrid(Cell[][] grid, int cellSize, Group root, boolean adj) {
-		super(grid, cellSize, root, adj);
-		// TODO Auto-generated constructor stub
-	}
-	
-	public HexagonGrid(Cell[][] grid, double cellSize, Group root){
-		super(grid, cellSize, root);
-	}
-	
-	public void createCells(boolean wrap){
+	public void createCells(boolean wrap, int range){
 		Cell[][] myGrid = getGrid();
         for (int i = 0; i < myGrid.length;i++){
 			for(int j = 0; j < myGrid.length;j++){
 				Cell x = myGrid[i][j];
+				double cellSize = getCellSize();
 				double height1 = cellSize;
-				//System.out.println(cellSize);
-				double side = height1/Math.sqrt(3);
-				//System.out.println(side);
-				double iIncrement = Math.sqrt(side*side - height1*height1/4);
-				//System.out.println(iIncrement);
-				
-				//System.out.println(i +  "    " + j);
+				double side = height1/Math.sqrt(3);								//these numbers are with the Hexagon Side Relation Formula. DO NOT CHANGE
+				double iIncrement = Math.sqrt(side*side - height1*height1/4);   //this too
 				Polygon hexagon = new Polygon();
 
 				double len1 = i*cellSize;
@@ -50,7 +30,6 @@ public class HexagonGrid extends Grid {
 				double wid3 = (j+1)*cellSize;
 				
 				if(i%2 == 0){
-					//change wid1, wid2, wid3
 					wid1 = wid1 + .5*cellSize;
 					wid2 = wid2 + .5*cellSize;
 					wid3 = wid3 + .5*cellSize;
@@ -64,9 +43,9 @@ public class HexagonGrid extends Grid {
 					    len3, wid3,
 					    len2, wid3 });
 				
-				
+				Group root = getRoot();
 				x.setToRoot(root, hexagon);				//could possibly refactor this
-				ArrayList<Cell> neighbors = myGetNeighbors(x,wrap);
+				List<Cell> neighbors = myGetNeighbors(x,wrap, range);
 				x.setNeighbors(neighbors); 
 				
 			}
@@ -74,32 +53,21 @@ public class HexagonGrid extends Grid {
 	}
 	
 	
-	public ArrayList<Cell> myGetNeighbors(Cell check, boolean wrap){
-		ArrayList<Cell> result = new ArrayList<Cell>();
-		ArrayList<Cell> allNeighbors = new ArrayList<Cell>();
+	public List<Cell> myGetNeighbors(Cell check, boolean wrap, int range){
+		List<Cell> result = new ArrayList<Cell>();
+		List<Cell> allNeighbors = new ArrayList<Cell>();
 		int r = check.getX();
 		int c = check.getY();
 		
-		if(r%2 != 0){			//check this logic
-			allNeighbors = getNeighbors(check, wrap);
-			for(Cell x: allNeighbors){
-				if(!(x.getY() == c+1 && x.getX() != r )){
-					result.add(x);
-				}
-			}
-		}
-		else{
-			allNeighbors = getNeighbors(check, wrap);
-			for(Cell x: allNeighbors){
-				if(x.getY() == c-1 && x.getX() != r ){
-				}
-				else{
-					result.add(x);
-				}
+		allNeighbors = getNeighbors(check, wrap, range);
+		for(Cell x: allNeighbors){
+			if((!(x.getY() == c+1 && x.getX() != r) && r%2 !=0) || (!(x.getY() == c-1 && x.getX() != r ) && r%2==0)){
+				result.add(x);
 			}
 		}
 		return result;
 	}
+
 	
 	
 }

@@ -1,48 +1,19 @@
 package cellsociety_team24;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import cellclasses.Cell;
 import javafx.scene.Group;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 public abstract class Grid {
-	//ArrayList<Cell> myGrid;
-	Cell[][] myGrid;
-	int mySize; 
-	double cellSize;
-	Group root;
-	boolean adjacent;
+	private Cell[][] myGrid;
+	private double cellSize;
+	private Group root;
+	private boolean adjacent;
 	
-	public Grid(){
-		
-	}
+	public Grid(){}
 	
-	public Grid(Cell[][] grid, double cellSize1, Group root1){
-		//myGrid = new ArrayList<Cell>();
-		//mySize = size;
-		myGrid = grid;
-		cellSize = cellSize1;
-		root = root1;
-	}
-	
-	public Grid(Cell[][] grid, double cellSize1, Group root1, boolean adj){
-		//myGrid = new ArrayList<Cell>();
-		//mySize = size;
-		adjacent = adj;
-		myGrid = grid;
-		cellSize = cellSize1;
-		root = root1;
-	}
-	
-	public Grid(double cellSize1, Group root1){
-		cellSize = cellSize1;
-		root = root1;
-	}
-	
-	
-	public abstract void createCells(boolean wrap);
+	public abstract void createCells(boolean wrap, int range);
 	
 	public void setValues(Cell[][] grid, double cellSize1, Group root1, boolean adj1){
 		myGrid = grid;
@@ -58,10 +29,6 @@ public abstract class Grid {
 	}
 	
 	
-	public int getYBound(){  //override this for the hexagon
-		return mySize;
-	}
-	
 	public Cell[][] getGrid(){
 		return myGrid;
 	}
@@ -70,19 +37,17 @@ public abstract class Grid {
 		return root;
 	}
 	
-	public void createNeighbors(){
-		for (Cell[] cellArray: myGrid){
-			for(Cell x: cellArray){
-				ArrayList<Cell> neighbors = getNeighbors(x, false);
-				x.setNeighbors(neighbors); 
-			}
-		}
+	public boolean getAdj(){
+		return adjacent;
 	}
 	
+	public double getCellSize(){
+		return cellSize;
+	}
 	
-	public ArrayList<Cell> getCardinalNeighbors(Cell check, boolean wrap){
+	public List<Cell> getCardinalNeighbors(Cell check, boolean wrap, int range){
 		ArrayList<Cell> result = new ArrayList<Cell>();
-		ArrayList<Cell> allNeighbors = getNeighbors(check, wrap);
+		List<Cell> allNeighbors = getNeighbors(check, wrap, range);
 
 		int myRow = check.getX();
 		int myCol = check.getY();
@@ -97,14 +62,13 @@ public abstract class Grid {
 		return result;
 	}
 	
-	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap){
+	public List<Cell> getNeighbors(Cell check, boolean wrap, int range){
 		ArrayList<Cell> result = new ArrayList<Cell>();
 		int r = check.getX();
 		int c = check.getY();
-		//System.out.println(r + "    " + c);
-		for(int rChange = -1;rChange < 2;rChange++){
+		for(int rChange = -range;rChange <= range;rChange++){
 			int rNew = r + rChange;
-			for (int cChange = -1;cChange < 2;cChange++){
+			for (int cChange = -range;cChange <=range;cChange++){
 				int cNew = c + cChange;
 				if( !(rChange == 0 && cChange == 0)){
 					if(rNew >= 0 && rNew < myGrid.length && cNew >= 0 && cNew < myGrid.length){
