@@ -11,7 +11,6 @@ public class SugarScapeGridInitializer extends GridInitializer{
 	private int sugarAmount;
 	private int sugarGrowBackRate;
 	private int sugarGrowBackInterval; 
-	private boolean[][] sugarGrid; 
 	private int lowerBoundAge = 60;
 	private int fertileLimitCutoff = 20; 
 	public SugarScapeGridInitializer(Group gr, FileReader fr){
@@ -44,14 +43,12 @@ public class SugarScapeGridInitializer extends GridInitializer{
 	}
 	
 	public void addSugar(){ 
-//		System.out.println("add sugar");
 		for (int i = 0; i < grid.length; i++){
 			for(int j = 0; j < grid.length; j++){
 				SugarScapeCell sugarCell = (SugarScapeCell) grid[i][j];
 				sugarCell.makeSugar(sugarAmount, sugarGrowBackRate, sugarGrowBackInterval);
 			}
 		}
-//		System.out.println("hey again");
 	}
 	
 	public void addAgent(){
@@ -61,7 +58,6 @@ public class SugarScapeGridInitializer extends GridInitializer{
 			SugarScapeCell sugarCell = (SugarScapeCell) grid[xAgent[i]][yAgent[i]];
 			int maxAge = (int) (Math.random() * 59) + 1 + lowerBoundAge; 
 			sugarCell.makeAgent(vision, sugarAgent, sugarMetabolism, maxAge, maxAge = fertileLimitCutoff);
-//			sugarGrid[xAgent[i]][yAgent[i]] = false;
 		}
 	}
 

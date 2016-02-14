@@ -45,6 +45,7 @@ public abstract class Cell {
 		myCirc.setFill(TRANS);
 		myShape.setFill(DEFAULT_COLOR);
 		root.getChildren().add(myShape);
+		root.getChildren().add(myCirc);
 	}
 	
 	public Color getColor(){

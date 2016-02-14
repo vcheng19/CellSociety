@@ -10,7 +10,7 @@ public class SugarScapeFileErrorCheck extends FileErrorCheck{
 	
 	public SugarScapeFileErrorCheck(FileReader fr) { 
 		super(fr); 
-		String[] neededGOL = {"underpop", "overpop", "liveagain"};
+		String[] neededGOL = {"vision", "sugarMetabolism", "sugarAmount", "sugarAgent", "sugarGrowBackRate", "sugarGrowBackInterval"};
 		needed = neededGOL; 
 	}
 	
