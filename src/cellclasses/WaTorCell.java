@@ -12,6 +12,15 @@ public class WaTorCell extends Cell{
 	public WaTorCell(Group root, double size, int x, int y) {
 		super(root, size, x, y);
 		makeOcean();
+
+	}
+	
+	public WaTorCell(int x, int y){
+		super(x,y);
+		setUp();
+	}
+	
+	private void setUp(){
 		turnsAlive = 0; 
 		energyLevel = 0;
 		didMove = false;
@@ -29,20 +38,20 @@ public class WaTorCell extends Cell{
 		type = "fish";
 		energyLevel = energy;
 		turnsAlive = ta;
-		myRect.setFill(Color.GREEN);
+		setColor(Color.GREEN);
 	}
 	
 	public void makeShark(int energy, int ta){
 		type = "shark";
 		energyLevel = energy;
 		turnsAlive = ta;
-		myRect.setFill(Color.YELLOW);
+		setColor(Color.YELLOW);
 	}
 	
 	public void makeOcean(){
 		type = "ocean";
 		energyLevel = 0;
-		myRect.setFill(Color.BLUE);
+		setColor(Color.BLUE);
 	}
 	
 	public boolean isFish(){

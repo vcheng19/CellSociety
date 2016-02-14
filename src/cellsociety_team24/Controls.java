@@ -2,8 +2,11 @@ package cellsociety_team24;
 
 import java.io.File;
 
+import cellclasses.Cell;
 import filereadcheck.FileReader;
+import filereadcheck.FileWriter;
 import gridinitializers.FireGridInitializer;
+import gridinitializers.ForagingAntGridInitializer;
 import gridinitializers.GOLGridInitializer;
 import gridinitializers.GridInitializer;
 import gridinitializers.SegregationGridInitializer;
@@ -19,6 +22,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ruleEnforcers.FireRuleEnforcer;
+import ruleEnforcers.ForagingAntRuleEnforcer;
 import ruleEnforcers.GOLRuleEnforcer;
 import ruleEnforcers.RuleEnforcer;
 import ruleEnforcers.SegregationRuleEnforcer;
@@ -33,12 +37,14 @@ public class Controls {
 	private Button play; 
 	private Button step;
 	private Button reset;
+	private Button saveGrid; 
 	private Slider slider; 
 	private Group root;
 	private Group ui = new Group();
 	private final int UIStartX = 600; 
 	Stage myStage;
 	private FileReader reader; 
+	private FileWriter writer; 
 	
 	public Controls(Group root, Stage s) {
 		this.root = root;
@@ -60,6 +66,8 @@ public class Controls {
 		pause = makeButton("Pause", event -> tryButton("Pause"), 30, 150);	
 		step = makeButton("Step", event -> tryButton("Step"), 30, 200);
 		reset =  makeButton("Reset to config", event -> tryButton("Reset"), 30, 250);
+		saveGrid =  makeButton("Save Config in XML", event -> saveGridXML(), 30, 300);
+		
 	}
 	
 	void tryButton(String action) { 
@@ -83,6 +91,12 @@ public class Controls {
 		} catch (Exception e) {
 			System.out.println("No simulation loaded yet.");
 		}
+	}
+	
+	void saveGridXML() { 
+		mySimulator.stop();
+		mySimulator.retrieveGrid();
+		
 	}
 	
 	void addTimeSlider() { 
@@ -110,10 +124,15 @@ public class Controls {
 		File selectedFile = fc.showOpenDialog(myStage);
 		try {
 			reader = new FileReader(selectedFile);
-			mySimulator = makeSim(root, reader);
 		} catch (Exception e) {
 			System.out.println("No file selected");
 		}
+		generateSim();
+	}
+	
+	private void generateSim() { 
+		reader.validateSim();
+		mySimulator = makeSim(root, reader);
 	}
 	
     public Simulator makeSim(Group gr, FileReader reader) { 
@@ -141,6 +160,10 @@ public class Controls {
         		gi = new SugarScapeGridInitializer(gr, reader);
         		rule = new SugarScapeRuleEnforcer(gi.getGrid(), reader);
         		break;
+//        	case "Foraging Ant": 
+//        		gi = new ForagingAntGridInitializer(gr, reader); 
+//        		rule = new ForagingAntRuleEnforcer(gi.getGrid(), reader); 
+//        		break;
         	default: 
         		gi = new GOLGridInitializer(gr, reader);
         		rule = new GOLRuleEnforcer(gi.getGrid(), reader);

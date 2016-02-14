@@ -133,7 +133,7 @@ public class WaTorRuleEnforcer extends RuleEnforcer{
 
 	public List<WaTorCell> getNeighbors (WaTorCell curCell, boolean fishNeighbor){  
 		List<WaTorCell> neighborList = new ArrayList<WaTorCell>(); 
-		List<Cell> allNeighbors = getAdjNeighbors(curCell, true, 1);
+		List<Cell> allNeighbors = curCell.getNeighbors();
 		for(Cell cell: allNeighbors){
 			WaTorCell checkedCell = (WaTorCell) cell;
 			if(checkedCell.isFish() && fishNeighbor){

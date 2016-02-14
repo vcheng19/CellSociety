@@ -1,33 +1,43 @@
 package filereadcheck;
+import java.util.ResourceBundle;
 
-import com.sun.xml.internal.txw2.Document;
+import org.w3c.dom.Node;
 
-public class FileErrorCheck {
-	// take resource file for the error messages
+public abstract class FileErrorCheck {
+	FileReader reader; 
+	FileWriter writer;
+	static final String ERROR_RESOURCES = "resources/ErrorMsgs";
+	static ResourceBundle myResources = ResourceBundle.getBundle(ERROR_RESOURCES); 
+	final String dim_tag = "dimension"; 
+	String sim_type;
+	String[] needed; 
 	
-
-	public FileErrorCheck(Document doc) {
-		
+	public FileErrorCheck(FileReader fr) {
+		reader = fr; 
+		writer = reader.getWriter();
+		sim_type = reader.readProperty("sim_type");
 	}
 	
-	public void validateSim() { 
-		// check for sim type
-		
+	public void checkParams() { 
+		for (int i=0;i<needed.length;i++) { 
+			String val = ""; 
+			try { 
+				val = reader.readProperty(needed[i]); 
+				validateParam(needed[i]);
+			} catch (Exception e) { 
+				System.out.println(String.format(myResources.getString("NoParams"), needed[i], sim_type));
+				fillParam(needed[i]); 
+			}
+		}
 	}
 	
-	// we want to edit specific tags for specific simulations... 
-	// extend for each simulation or use switch cases? 
-	public void fillParam() { 
-		// if param not given
-		// append param value to xml file 
-		
-		
+	public void validateParam(String property) { 
+		int n = Integer.parseInt(reader.readProperty(property));
+		if (n <= 0) { 
+			writer.removeNode(property);
+			fillParam(property);
+		} 
 	}
 	
-	public void validateParams() {
-		
-		
-	}
-	
-
+	public abstract void fillParam(String s);
 }

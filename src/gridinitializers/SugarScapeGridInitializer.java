@@ -64,4 +64,10 @@ public class SugarScapeGridInitializer extends GridInitializer{
 //			sugarGrid[xAgent[i]][yAgent[i]] = false;
 		}
 	}
+
+	@Override
+	public void addAttributes() {
+		// TODO Auto-generated method stub
+		
+	}
 }

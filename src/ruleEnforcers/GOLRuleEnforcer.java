@@ -35,6 +35,7 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 		for(int r = 0; r < copyGrid.length; r++){
 			for(int c = 0; c < copyGrid.length; c++){
 				boolean copyCell = copyGrid[r][c];
+				// tell superclass to give 
 				GameOfLifeCell actualCell = myGrid[r][c];
 				int myNeighbors = numNeighbors(actualCell);
 				if(copyCell && myNeighbors == liveAgain){
@@ -60,7 +61,7 @@ public class GOLRuleEnforcer extends RuleEnforcer {
 	
 	private int numNeighbors(Cell cell){
 		int numAliveCells = 0;
-		ArrayList<Cell> myNeighbors = getNeighbors(cell, wrap, 1);
+		ArrayList<Cell> myNeighbors = cell.getNeighbors();
 		for (Cell x: myNeighbors){
 			int row= x.getX();
 			int col = x.getY();

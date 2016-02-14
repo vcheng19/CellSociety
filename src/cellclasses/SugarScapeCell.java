@@ -126,19 +126,19 @@ public class SugarScapeCell extends Cell{
 			sugarAmount += sugarGrowBackRate;
 			if(sugarAmount > sugarAmountMax){
 				sugarAmount = sugarAmountMax;
-				myRect.setFill(Color.ORANGE);
+				setColor(Color.ORANGE);
 			}
 			else if(sugarAmount >= (sugarAmountMax - (sugarAmountMax *(ONE_THIRD)))){
-				myRect.setFill(Color.GOLD);
+				setColor(Color.GOLD);
 			}
 			else if(sugarAmount >= (sugarAmountMax - (sugarAmountMax *(TWO_THIRD)))){
-				myRect.setFill(Color.BISQUE);
+				setColor(Color.BISQUE);
 			}
 			sugarTick = 0; 
 		}
 		else{
 			sugarAmount = 0;
-			myRect.setFill(Color.WHITE);
+			setColor(Color.WHITE);
 		}
 	}
 
@@ -165,7 +165,7 @@ public class SugarScapeCell extends Cell{
 		this.maxAge = maxAge; 
 		this.fertileLimit = fertileLimit; 
 		agent = true; 
-		myCirc.setFill(Color.BLACK);
+		setColorCircle(Color.BLACK);
 		int pick = (int) Math.random() * 1;
 		if(pick == 0) gender = true;
 		else gender = false; 
@@ -177,7 +177,7 @@ public class SugarScapeCell extends Cell{
 		this.sugarGrowBackRate = sugarGrowBackRate;
 		this.sugarGrowBackInterval = sugarGrowBackInterval; 
 		sugarTick = 0; 
-		myRect.setFill(Color.ORANGE);
+		setColor(Color.ORANGE);
 	}
 	
 	public void killAgent(SugarScapeCell agent){
@@ -188,7 +188,7 @@ public class SugarScapeCell extends Cell{
 		agent.setMaxAge(0); 
 		agent.setSugar(0); 
 		agent.setSugarMetabolism(0); 
-		myCirc.setFill(TRANS);
+		setColor(TRANS);
 	}
 	
 	public void moveAgent(SugarScapeCell agent, SugarScapeCell destination){
@@ -202,6 +202,6 @@ public class SugarScapeCell extends Cell{
 		destination.eatSugar(destination.getSugarAmount()); 
 		agent.updateSugarAmount(false);
 		agent.killAgent(agent);
-		destination.myCirc.setFill(Color.BLACK);
+		destination.setColorCircle(Color.BLACK);
 	}
 }

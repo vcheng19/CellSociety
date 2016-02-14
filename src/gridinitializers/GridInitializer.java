@@ -22,7 +22,20 @@ public abstract class GridInitializer {
 	public Cell[][] getGrid(){
 		return grid;
 	}
-
+	
+	public boolean doConfigCell(String typeX, String typeY, int x, int y) { 
+		int[] xs = reader.populateCoorArray(reader.readProperty(typeX));
+		int[] ys = reader.populateCoorArray(reader.readProperty(typeY));
+		for (int i=0;i<xs.length;i++) { 
+			if (x == xs[i] && y == ys[i]) { 
+				return true;
+			}
+		}	
+		return false;
+	}
+	
+	public abstract void addAttributes();
+	
 	public abstract void makeGrid();
 	
 }

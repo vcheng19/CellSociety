@@ -20,7 +20,6 @@ public abstract class RuleEnforcer {
 
 	public abstract void iterateGrid();
 
-	//public abstract void updateState(Cell cell);
 
 	public ArrayList<Cell> getNeighbors(Cell check, boolean wrap, int range){
 		ArrayList<Cell> result = new ArrayList<Cell>();
@@ -65,6 +64,7 @@ public abstract class RuleEnforcer {
 		}
 		return result;
 	}
+	
 	public void createCopyGrid(){
 		for (int row = 0; row < myGrid.length; row++){
 			for(int col = 0; col < myGrid.length; col++){
@@ -72,5 +72,16 @@ public abstract class RuleEnforcer {
 			}
 		}
 	}
-
+	
+	public void resetMovedGrid() { 
+		for (int r=0;r<myGrid.length;r++) { 
+			for (int c=0;c<myGrid.length;c++) { 
+				myGrid[r][c].setMoved(false);
+			}
+		}
+	}
+	
+	public Cell[][] getGrid() { 
+		return myGrid;
+	}
 }
