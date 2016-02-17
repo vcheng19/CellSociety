@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
 
-public abstract class Cell {
+public class Cell {
 	private Color color;
 	private Circle myCirc; 
 	private int myRow;
