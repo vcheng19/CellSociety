@@ -15,6 +15,7 @@ public class ForagingAntGridInitializer extends GridInitializer {
 	
 	public ForagingAntGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean w) {
 		super(thisGrid, gr, fr, w);
+		
 	}
 	
 	public void makeGrid() {

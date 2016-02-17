@@ -18,8 +18,6 @@ public class SquareGrid extends Grid {
 				Group root = getRoot();
 				boolean adjacent = getAdj();
 				Rectangle myRect = new Rectangle(x.getX()*cellSize, x.getY()*cellSize, cellSize, cellSize);
-				
-				
 				x.setToRoot(root, myRect);
 				List<Cell> neighbors = new ArrayList<Cell>();
 				if(adjacent){
@@ -33,5 +31,4 @@ public class SquareGrid extends Grid {
 		}
 		
 	}
-
 }

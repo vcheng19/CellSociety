@@ -1,3 +1,14 @@
+// This entire file is part of my masterpiece.
+// Cody Li (cl305) 
+//Purpose and design: 	
+//			The purpose of this code was to provide a data structure to contain the actual grid of the simulation and to incorporate the implementation of different shapes of grids
+// 			such as Hexagonal and Triangular. Additionally, another main responsibility of this class was that it provided the methods that cells needed to obtain their neighbors. 
+//			The getCardinal and getNeighbor methods provided the tools for each simulation to pick out how they wanted to choose neighbors (either standard or toroidal, and either in the 
+//			4 cardinal directions or in all adjacent cells) as well as how many neighbors to retrieve (i.e. the vision variable in SugarScape). The flexibility in the code is that it takes
+//			in just the Cell object and then returns a List of Cells such that the simulation can then specifically parse through. This condensed a lot of redundant code into two very flexible
+//			and modular methods. 
+
+
 package cellsociety_team24;
 
 import java.util.*;
