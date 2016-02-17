@@ -17,19 +17,19 @@ public class SlimeFileErrorCheck extends FileErrorCheck {
 	public void fillParam(String property) { 
 		switch(property) { 
 		case "numSlimeCells": 
-			writer.writeProperty("numSlimeCells", DEFAULT_SLIMECELLS + "");
+			writer.editProperty("numSlimeCells", DEFAULT_SLIMECELLS + "");
 			break;
 		case "sniffThreshhold": 
-			writer.writeProperty("sniffThreshhold", DEFAULT_SNIFFTHRESHHOLD + "");
+			writer.editProperty("sniffThreshhold", DEFAULT_SNIFFTHRESHHOLD + "");
 			break;
 		case "sniffAngle": 
-			writer.writeProperty("sniffAngle", DEFAULT_SNIFFANGLE + "");
+			writer.editProperty("sniffAngle", DEFAULT_SNIFFANGLE + "");
 			break;
 		case "wiggleAngle": 
-			writer.writeProperty("wiggleAngle", DEFAULT_WIGGLEANGLE + "");
+			writer.editProperty("wiggleAngle", DEFAULT_WIGGLEANGLE + "");
 			break;
 		case "wiggleBias": 
-			writer.writeProperty("wiggleBias", DEFAULT_WIGGLEBIAS + "");
+			writer.editProperty("wiggleBias", DEFAULT_WIGGLEBIAS + "");
 			break;
 		default: 
 		}

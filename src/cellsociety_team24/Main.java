@@ -15,7 +15,8 @@ public class Main extends Application {
     public void start (Stage s){
         Group root = new Group();
         Scene scene = new Scene(root, WORLD_SIZE + UI_WIDTH, WORLD_SIZE + GRAPH_AREA, Color.BLACK);
-        Controls ui = new Controls(root, s);
+        ControlsModel control = new ControlsModel(root, s);
+        ControlsView ui = new ControlsView(root, control);
         Visualization vis = new Visualization(root);
         vis.drawVis();
         ui.drawInterface();

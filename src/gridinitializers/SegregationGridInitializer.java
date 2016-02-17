@@ -5,15 +5,18 @@ import cellclasses.*;
 import cellsociety_team24.Grid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
+import ruleEnforcers.SegregationRuleEnforcer;
 
 public class SegregationGridInitializer extends GridInitializer {
 	private final String n1TagX = "redx"; 
 	private final String n1TagY = "redy"; 
 	private final String n2TagX = "bluex"; 
 	private final String n2TagY = "bluey"; 
+	SegregationRuleEnforcer myRuleEnforcer;
 	
-	public SegregationGridInitializer(Grid thisGrid,Group gr, FileReader fr, boolean w) {
-		super(thisGrid,gr, fr, w);
+	public SegregationGridInitializer(Grid thisGrid,Group gr, FileReader fr) {
+		super(thisGrid,gr, fr);
+		myRuleEnforcer = new SegregationRuleEnforcer(getGrid(), fr);
 	}
 	
 	public void makeGrid() { 

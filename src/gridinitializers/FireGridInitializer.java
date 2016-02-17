@@ -5,13 +5,16 @@ import cellclasses.Cell;
 import cellsociety_team24.Grid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
+import ruleEnforcers.FireRuleEnforcer;
 
 public class FireGridInitializer extends GridInitializer {
 	private final String fireXTag = "fireX";
 	private final String fireYTag = "fireY"; 
+	FireRuleEnforcer myRuleEnforcer;
 	
-	public FireGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean w) {
-		super(thisGrid, gr, fr, w);
+	public FireGridInitializer(Grid thisGrid, Group gr, FileReader fr) {
+		super(thisGrid, gr, fr);
+		myRuleEnforcer = new FireRuleEnforcer(getGrid(), fr);
 	}
 	
 	public void makeGrid(){

@@ -11,6 +11,6 @@ public class SegregationFileErrorCheck extends FileErrorCheck{
 	}
 
 	public void fillParam(String property) {
-		writer.writeProperty(property, DEFAULT_SEG_PERCENT + "");
+		writer.editProperty(property, DEFAULT_SEG_PERCENT + "");
 	}
 }

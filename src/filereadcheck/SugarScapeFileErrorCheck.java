@@ -17,22 +17,22 @@ public class SugarScapeFileErrorCheck extends FileErrorCheck{
 	public void fillParam(String property) { 
 		switch(property) { 
 		case "vision": 
-			writer.writeProperty("vision", DEFAULT_VISION + "");
+			writer.editProperty("vision", DEFAULT_VISION + "");
 			break;
 		case "sugarMetabolism": 
-			writer.writeProperty("sugarMetabolism", DEFAULT_SUGARMETABOLISM + "");
+			writer.editProperty("sugarMetabolism", DEFAULT_SUGARMETABOLISM + "");
 			break;
 		case "sugarAmount": 
-			writer.writeProperty("sugarAmount", DEFAULT_SUGARAMOUNT + "");
+			writer.editProperty("sugarAmount", DEFAULT_SUGARAMOUNT + "");
 			break;
 		case "sugarAgent": 
-			writer.writeProperty("sugarAgent", DEFAULT_SUGARAGENT + "");
+			writer.editProperty("sugarAgent", DEFAULT_SUGARAGENT + "");
 			break;
 		case "sugarGrowBackRate": 
-			writer.writeProperty("sugarGrowBackRate", DEFAULT_SUGARGROWBACKRATE + "");
+			writer.editProperty("sugarGrowBackRate", DEFAULT_SUGARGROWBACKRATE + "");
 			break;
 		case "sugarGrowBackInterval": 
-			writer.writeProperty("sugarGrowBackInterval", DEFAULT_SUGARGROWBACKINTERVAL + "");
+			writer.editProperty("sugarGrowBackInterval", DEFAULT_SUGARGROWBACKINTERVAL + "");
 			break;
 		default: 
 		}

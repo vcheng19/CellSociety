@@ -16,16 +16,16 @@ public class WaTorFileErrorCheck extends FileErrorCheck {
 	public void fillParam(String property) { 
 		switch(property) { 
 		case "sharkspawn": 
-			writer.writeProperty("sharkspawn", DEFAULT_SHARK_TURNS_SPAWN + "");
+			writer.editProperty("sharkspawn", DEFAULT_SHARK_TURNS_SPAWN + "");
 			break;
 		case "fishspawn": 
-			writer.writeProperty("fishspawn", DEFAULT_FISH_TURNS_SPAWN + "");
+			writer.editProperty("fishspawn", DEFAULT_FISH_TURNS_SPAWN + "");
 			break;
 		case "sharkenergy": 
-			writer.writeProperty("sharkenergy", DEFAULT_SHARK_INIT_ENERGY + "");
+			writer.editProperty("sharkenergy", DEFAULT_SHARK_INIT_ENERGY + "");
 			break;
 		case "fishenergy": 
-			writer.writeProperty("fishenergy", DEFAULT_FISH_ENERGY + "");
+			writer.editProperty("fishenergy", DEFAULT_FISH_ENERGY + "");
 			break;
 		default: 
 		}

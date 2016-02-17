@@ -5,6 +5,7 @@ import cellclasses.ForagingAntCell;
 import cellsociety_team24.Grid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
+import ruleEnforcers.ForagingAntRuleEnforcer;
 
 public class ForagingAntGridInitializer extends GridInitializer {
 	private final String nestXTag = "nestx";
@@ -12,9 +13,11 @@ public class ForagingAntGridInitializer extends GridInitializer {
 	private final String foodXTag = "foodx"; 
 	private final String foodYTag = "foody"; 
 	private final int initAnts = Integer.parseInt(getReader().readProperty("initantsnest"));
+	ForagingAntRuleEnforcer myRuleEnforcer;
 	
-	public ForagingAntGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean w) {
-		super(thisGrid, gr, fr, w);
+	public ForagingAntGridInitializer(Grid thisGrid, Group gr, FileReader fr) {
+		super(thisGrid, gr, fr);
+		myRuleEnforcer = new ForagingAntRuleEnforcer(getGrid(), fr);
 	}
 	
 	public void makeGrid() {

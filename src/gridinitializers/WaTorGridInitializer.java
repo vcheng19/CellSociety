@@ -3,7 +3,8 @@ package gridinitializers;
 import cellclasses.*;
 import cellsociety_team24.Grid;
 import filereadcheck.FileReader;
-import javafx.scene.Group; 
+import javafx.scene.Group;
+import ruleEnforcers.WaTorRuleEnforcer; 
 
 public class WaTorGridInitializer extends GridInitializer{
 	private int sharkEnergy; 
@@ -12,9 +13,11 @@ public class WaTorGridInitializer extends GridInitializer{
 	private final String sharkYTag = "sharky";
 	private final String fishXTag = "fishx";
 	private final String fishYTag = "fishy"; 
+	WaTorRuleEnforcer myRuleEnforcer;
 	
-	public WaTorGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean isWrapped){
-		super(thisGrid,gr, fr, isWrapped);
+	public WaTorGridInitializer(Grid thisGrid1, Group gr, FileReader fr){
+		super(thisGrid1, gr, fr);
+		myRuleEnforcer = new WaTorRuleEnforcer(getGrid(), fr);
 	}
 	
 	public void makeGrid(){
