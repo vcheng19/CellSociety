@@ -2,7 +2,7 @@
 
 <cellsociety>
 	<sim_type>WaTor</sim_type>
-	<grid_type>Square</grid_type>
+	<grid_type>Hexagon</grid_type>
 	<edge_type>Toroidal</edge_type>
 	<title>Wa Tor Simulation</title>
 	<author>Team 24</author>
