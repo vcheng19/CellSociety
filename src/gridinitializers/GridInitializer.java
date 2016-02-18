@@ -3,6 +3,7 @@ import cellclasses.Cell;
 import cellsociety_team24.Grid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
+import ruleEnforcers.RuleEnforcer;
 
 public abstract class GridInitializer {
 
@@ -13,13 +14,14 @@ public abstract class GridInitializer {
 	private Cell[][] grid;
 	private Grid thisGrid;
 	private boolean wrap;
+	public RuleEnforcer myRuleEnforcer; 
 	
-	GridInitializer (Grid thisGrid1, Group gr, FileReader fr, boolean isWrapped) { 
+	GridInitializer (Grid thisGrid1, Group gr, FileReader fr) { 
 		g = gr; 
 		reader = fr;
 		DIMENSION = Integer.parseInt(reader.readProperty("dimension"));
 		thisGrid = thisGrid1;
-		wrap = isWrapped;
+		wrap = reader.readProperty("edge_type");
 		makeGrid();
 	}
 	

@@ -9,6 +9,8 @@ public abstract class FileErrorCheck {
 	static final String ERROR_RESOURCES = "resources/ErrorMsgs";
 	static ResourceBundle myResources = ResourceBundle.getBundle(ERROR_RESOURCES); 
 	final String dim_tag = "dimension"; 
+	final String shape_tag = "grid_shape";
+	final String edge_type = "edge_type";
 	String sim_type;
 	String[] needed; 
 	
@@ -19,6 +21,18 @@ public abstract class FileErrorCheck {
 	}
 	
 	public void checkParams() { 
+		try { 
+			String val = reader.readProperty(shape_tag); 
+		} catch (Exception e){ 
+			System.out.println(myResources.getString("AppliedSquare"));
+			writer.writeElementToFile("grid_shape", "Square");
+		}
+		try { 
+			String val = reader.readProperty(edge_type);
+		} catch (Exception e){ 
+			System.out.println(myResources.getString("AppliedFinite"));
+			writer.writeElementToFile("grid_shape", "Finite");
+		}
 		for (int i=0;i<needed.length;i++) { 
 			String val = ""; 
 			try { 

@@ -4,13 +4,16 @@ import cellclasses.*;
 import cellsociety_team24.Grid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
+import ruleEnforcers.GOLRuleEnforcer;
 
 public class GOLGridInitializer extends GridInitializer{
 	private final String aliveXTag = "alivex"; 
 	private final String aliveYTag = "alivey"; 
+	GOLRuleEnforcer myRuleEnforcer;
 	
-	public GOLGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean w) {
-		super(thisGrid, gr, fr, w);
+	public GOLGridInitializer(Grid thisGrid, Group gr, FileReader fr) {
+		super(thisGrid, gr, fr);
+		myRuleEnforcer = new GOLRuleEnforcer(getGrid(), getReader());
 	}
 	
 	public void makeGrid() { 

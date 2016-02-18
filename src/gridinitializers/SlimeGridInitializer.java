@@ -5,11 +5,14 @@ import cellsociety_team24.Grid;
 import cellsociety_team24.HexagonGrid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
+import ruleEnforcers.SlimeRuleEnforcer;
 
 public class SlimeGridInitializer extends GridInitializer {
+	SlimeRuleEnforcer myRuleEnforcer;
 	
-	public SlimeGridInitializer(Grid thisGrid,Group gr, FileReader fr, boolean isWrapped) {
-		super(thisGrid, gr, fr, isWrapped);
+	public SlimeGridInitializer(Grid thisGrid,Group gr, FileReader fr) {
+		super(thisGrid, gr, fr);
+		myRuleEnforcer = new SlimeRuleEnforcer(getGrid(), fr);
 		// TODO Auto-generated constructor stub
 	}
 	

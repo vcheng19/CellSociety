@@ -20,31 +20,31 @@ public class ForagingAntFileErrorCheck extends FileErrorCheck {
 	public void fillParam(String property) { 
 		switch(property) { 
 		case "birthrate": 
-			writer.writeProperty(property, DEFAULT_BIRTH + "");
+			writer.editProperty(property, DEFAULT_BIRTH + "");
 			break;
 		case "initantsnest": 
-			writer.writeProperty(property, DEFAULT_NUM_INITS + "");
+			writer.editProperty(property, DEFAULT_NUM_INITS + "");
 			break;
 		case "selectk": 
-			writer.writeProperty(property, SELECT_K + "");
+			writer.editProperty(property, SELECT_K + "");
 			break;
 		case "selectn": 
-			writer.writeProperty(property, SELECT_N + "");
+			writer.editProperty(property, SELECT_N + "");
 			break;
 		case "max_ph": 
-			writer.writeProperty(property, MAX_PH + "");
+			writer.editProperty(property, MAX_PH + "");
 			break;
 		case "nestx": 
-			writer.writeProperty(property, (int) DIMENSION * correctScale + "");
+			writer.editProperty(property, (int) DIMENSION * correctScale + "");
 			break;
 		case "nesty": 
-			writer.writeProperty(property, (int) DIMENSION * correctScale + "");
+			writer.editProperty(property, (int) DIMENSION * correctScale + "");
 			break;
 		case "foodx": 
-			writer.writeProperty(property, DIMENSION - (int) DIMENSION * correctScale + "");
+			writer.editProperty(property, DIMENSION - (int) DIMENSION * correctScale + "");
 			break;
 		case "foody": 
-			writer.writeProperty(property, DIMENSION - (int) DIMENSION * correctScale + "");
+			writer.editProperty(property, DIMENSION - (int) DIMENSION * correctScale + "");
 			break;
 		default: 
 		}

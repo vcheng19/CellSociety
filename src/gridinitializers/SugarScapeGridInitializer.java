@@ -4,6 +4,8 @@ import cellclasses.*;
 import cellsociety_team24.Grid;
 import filereadcheck.FileReader;
 import javafx.scene.Group;
+import ruleEnforcers.SugarScapeRuleEnforcer;
+import ruleEnforcers.WaTorRuleEnforcer;
 
 public class SugarScapeGridInitializer extends GridInitializer{
 	private int vision;
@@ -16,9 +18,11 @@ public class SugarScapeGridInitializer extends GridInitializer{
 	private int fertileLimitCutoff = 20; 
 	private final String agentXTag = "agentX";
 	private final String agentYTag = "agentY";
+	private SugarScapeRuleEnforcer myRuleEnforcer;
 	
-	public SugarScapeGridInitializer(Grid thisGrid, Group gr, FileReader fr, boolean wrap){
-		super(thisGrid, gr, fr, wrap); 
+	public SugarScapeGridInitializer(Grid thisGrid, Group gr, FileReader fr){
+		super(thisGrid, gr, fr); 
+		myRuleEnforcer = new SugarScapeRuleEnforcer(getGrid(), fr);
 	}
 
 	@Override

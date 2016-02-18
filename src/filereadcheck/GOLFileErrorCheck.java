@@ -15,13 +15,13 @@ public class GOLFileErrorCheck extends FileErrorCheck {
 	public void fillParam(String property) { 
 		switch(property) { 
 		case "overpop": 
-			writer.writeProperty("overpop", DEFAULT_OVERPOP + "");
+			writer.editProperty("overpop", DEFAULT_OVERPOP + "");
 			break;
 		case "underpop": 
-			writer.writeProperty("underpop", DEFAULT_UNDERPOP + "");
+			writer.editProperty("underpop", DEFAULT_UNDERPOP + "");
 			break;
 		case "liveagain": 
-			writer.writeProperty("liveagain", DEFAULT_LIVEAGAIN + "");
+			writer.editProperty("liveagain", DEFAULT_LIVEAGAIN + "");
 			break;
 		default: 
 		}

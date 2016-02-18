@@ -10,7 +10,7 @@ public class FireFileErrorCheck extends FileErrorCheck{
 	}
 	
 	public void fillParam(String property) { 
-		writer.writeProperty(property, DEFAULT_PERCENT + "");
+		writer.editProperty(property, DEFAULT_PERCENT + "");
 		System.out.println(String.format(myResources.getString("BadParam"), DEFAULT_PERCENT + ""));
 	}
 }

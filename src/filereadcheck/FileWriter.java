@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Carolyn Yao
+
 package filereadcheck;
 
 import java.io.File;
@@ -11,44 +14,48 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
 import org.w3c.dom.Node;
 
 public class FileWriter {
 	
 	FileReader reader; 
-	Document doc; 
+	private Document doc; 
 	private final String headTag = "cellsociety";
 	final static String ERROR_RESOURCES = "resources/ErrorMsgs";
 	static ResourceBundle myResources = ResourceBundle.getBundle(ERROR_RESOURCES); 
 	
+	// two different initializers - one for where config is loaded of a read file, so just edit the doc
 	FileWriter(FileReader reader) { 
 		this.reader = reader;
 		doc = reader.getDoc();
 	}
 	
-	FileWriter() { 
-		try { 
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.newDocument();
-			Element rootElement = doc.createElement("cellsociety");
-			doc.appendChild(rootElement);
-		} catch (Exception e) { 
-			System.out.println("Could not construct document");
-		}
+	FileWriter() {  // in case simulation does not load off a file, create a new doc to save
+		Document doc = constructDoc();
+		Element rootElement = doc.createElement(headTag);
+		doc.appendChild(rootElement);
 	}
 	
-	public void writeProperty(String property, String val) { 
-		Node cell = doc.getElementsByTagName(headTag).item(0);
-		Node prop = doc.createElement(property); 
-		prop.appendChild(doc.createTextNode(val));
-		cell.appendChild(prop);
+	public Document constructDoc() { 
+		Document newDoc; 
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		try { 
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();	
+			newDoc = docBuilder.newDocument();
+		}
+		catch (Exception e) { 
+			throw new FileException(myResources.getString("CouldNotMakeDoc"));
+		}
+		return newDoc;
+	}
+	
+	public void editProperty(String property, String val) { 
+		removeNode(property);
+		writeElementToFile(property, val);
 		System.out.println(String.format(myResources.getString("BadParam"), val + "", property));
 	}
 	
 	public void writeElementToFile(String property, String val) {
-		removeNode(property);
 		Node cell = doc.getElementsByTagName(headTag).item(0);
 		Node prop = doc.createElement(property); 
 		prop.appendChild(doc.createTextNode(val));
@@ -56,26 +63,22 @@ public class FileWriter {
 	}
 	
 	public void removeNode(String property) { 
-		Node p = retrievePropertyNode(property);
+		Node p = doc.getElementsByTagName(property).item(0);
 		if (p != null) { 
 			p.getParentNode().removeChild(p); 
 		}
 	}
 	
-	public Node retrievePropertyNode(String property) { 
-		return doc.getElementsByTagName(property).item(0);
-	}
-	
-	public void writeDocToXML(String sim_type) { 
+	public void writeDocToXML() { 
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		try {
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("xml_files\fsd.xml"));
+			StreamResult result = new StreamResult(new File(myResources.getString("DefaultFileSaveName")));
 			transformer.transform(source, result);
 			System.out.println("File saved!");
 		} catch (TransformerException e) {
-			System.out.println("couldn't transform to file");
+			throw new FileException(myResources.getString("CouldNotWriteToDoc"));
 		}
 	}
 }
